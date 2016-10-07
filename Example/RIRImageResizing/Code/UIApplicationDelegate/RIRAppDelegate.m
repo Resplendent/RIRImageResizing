@@ -7,13 +7,22 @@
 //
 
 #import "RIRAppDelegate.h"
+#import "RIRViewController.h"
+
+
+
+
 
 @implementation RIRAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
-    return YES;
+	UIWindow* const window = [[UIWindow alloc]initWithFrame:[[UIScreen mainScreen]bounds]];
+	[window setBackgroundColor:[UIColor redColor]];
+	[window setRootViewController:[RIRViewController new]];
+	[self setWindow:window];
+
+	return YES;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -41,6 +50,23 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+#pragma mark - window
+-(void)setWindow:(nullable UIWindow*)window
+{
+	if (self.window == window)
+	{
+		return;
+	}
+
+	_window = window;
+
+	UIWindow* const window_new = window;
+	if (window_new)
+	{
+		[window_new makeKeyAndVisible];
+	}
 }
 
 @end

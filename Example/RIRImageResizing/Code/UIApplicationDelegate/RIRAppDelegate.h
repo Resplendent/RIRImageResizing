@@ -8,8 +8,13 @@
 
 @import UIKit;
 
+
+
+
+
 @interface RIRAppDelegate : UIResponder <UIApplicationDelegate>
 
-@property (strong, nonatomic) UIWindow *window;
+#pragma mark - window
+@property (nonatomic, strong, nullable) UIWindow* window;
 
 @end
