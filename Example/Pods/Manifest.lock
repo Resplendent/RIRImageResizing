@@ -1,0 +1,16 @@
+PODS:
+  - RIRImageResizing (0.1.0)
+
+DEPENDENCIES:
+  - RIRImageResizing (from `../`)
+
+EXTERNAL SOURCES:
+  RIRImageResizing:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  RIRImageResizing: 173e1123b8144d700aa9a2a20e65a61005fdaa76
+
+PODFILE CHECKSUM: e389e7e79fd6d937d9d568555be1d7c19cdd75ea
+
+COCOAPODS: 1.0.1

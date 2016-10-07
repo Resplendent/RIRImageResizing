@@ -1,0 +1,6 @@
+framework module Pods_RIRImageResizing_Example {
+  umbrella header "Pods-RIRImageResizing_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}

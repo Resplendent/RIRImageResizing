@@ -1,0 +1,6 @@
+framework module RIRImageResizing {
+  umbrella header "RIRImageResizing-umbrella.h"
+
+  export *
+  module * { export * }
+}
