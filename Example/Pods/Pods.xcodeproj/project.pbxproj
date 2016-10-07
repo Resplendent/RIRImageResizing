@@ -13,10 +13,11 @@
 		4BBFFDF4269E73EEDCA0E99480B8304D /* Pods-RIRImageResizing_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C49B6FFAF3BF3B14664DEA5260B49FC /* Pods-RIRImageResizing_Example-dummy.m */; };
 		58FB3DD383D1E28DCB3361FB90764D81 /* Pods-RIRImageResizing_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D8E8B98EBEB1715DACCF29D3EEDD7D6 /* Pods-RIRImageResizing_Tests-dummy.m */; };
 		7AE8F34F1ED1880A01598F5404540D88 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
-		A2C52E6E2033F2F745235F4F95BF4A21 /* ReplaceMe.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FA1FC928E9CA0B96D493E5E14C02188 /* ReplaceMe.m */; };
-		AA865F3CDA43EFFDCC3EE669AF803B56 /* RIRImageResizing-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B05FF85AD57A7C9A177F1153BE1EB2D7 /* RIRImageResizing-dummy.m */; };
-		BC4B602E2D20B3D42E741E57FB01F46E /* RIRImageResizing-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = DFB66B9C225C44F4A78359DD474A1069 /* RIRImageResizing-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B030E2BBB55AEA9A2E1B43A831FB349A /* UIImage+RIRImageResizing.h in Headers */ = {isa = PBXBuildFile; fileRef = 1E128791F9231F5D03934D37239C0212 /* UIImage+RIRImageResizing.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DC4F296715AE6D90DD2A322BAD873800 /* Pods-RIRImageResizing_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 1919AC7E46CD25D9B50A038674C906C4 /* Pods-RIRImageResizing_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E9644A4E3FEE0B909C650E18A51445F5 /* RIRImageResizing-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B05FF85AD57A7C9A177F1153BE1EB2D7 /* RIRImageResizing-dummy.m */; };
+		EB8E41247E97F1E39425D49C0108E484 /* RIRImageResizing-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = DFB66B9C225C44F4A78359DD474A1069 /* RIRImageResizing-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F898D92DDA31801DBE4F6702F20F0DA9 /* UIImage+RIRImageResizing.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FF4EDD7A8B99CFCC49EE950FAFFEF7E /* UIImage+RIRImageResizing.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,10 +39,11 @@
 		166C9B737F51F81233F4B57E673EB986 /* RIRImageResizing.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = RIRImageResizing.modulemap; sourceTree = "<group>"; };
 		1919AC7E46CD25D9B50A038674C906C4 /* Pods-RIRImageResizing_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-RIRImageResizing_Tests-umbrella.h"; sourceTree = "<group>"; };
 		1C49B6FFAF3BF3B14664DEA5260B49FC /* Pods-RIRImageResizing_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-RIRImageResizing_Example-dummy.m"; sourceTree = "<group>"; };
+		1E128791F9231F5D03934D37239C0212 /* UIImage+RIRImageResizing.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UIImage+RIRImageResizing.h"; sourceTree = "<group>"; };
 		2D8E8B98EBEB1715DACCF29D3EEDD7D6 /* Pods-RIRImageResizing_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-RIRImageResizing_Tests-dummy.m"; sourceTree = "<group>"; };
 		2E69F4F63BA6BEA8D354E3A1CC461611 /* Pods-RIRImageResizing_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-RIRImageResizing_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		2FA1FC928E9CA0B96D493E5E14C02188 /* ReplaceMe.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ReplaceMe.m; sourceTree = "<group>"; };
 		347EBDB6220BA96CC99C420F570B6119 /* Pods-RIRImageResizing_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-RIRImageResizing_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		3FF4EDD7A8B99CFCC49EE950FAFFEF7E /* UIImage+RIRImageResizing.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RIRImageResizing.m"; sourceTree = "<group>"; };
 		4A12C0BE4EFC6ED23EA07468556E97E6 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4ED27DD02ED0553E1B7D9E6EC2EE24EB /* Pods-RIRImageResizing_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-RIRImageResizing_Example-frameworks.sh"; sourceTree = "<group>"; };
 		69CFBA068CBC6095AF327C93545FF5F9 /* Pods_RIRImageResizing_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RIRImageResizing_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -102,10 +104,10 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		1EF30C1C3EBBE50D06ABD7295CB7E3AD /* Classes */ = {
+		0189900FF7FE9F219F7AA94041772A3F /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				2FA1FC928E9CA0B96D493E5E14C02188 /* ReplaceMe.m */,
+				6EE70371631A500998182372B0903102 /* Category */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -121,7 +123,7 @@
 		4E7340A29625902A083D9E8463EB5633 /* RIRImageResizing */ = {
 			isa = PBXGroup;
 			children = (
-				1EF30C1C3EBBE50D06ABD7295CB7E3AD /* Classes */,
+				0189900FF7FE9F219F7AA94041772A3F /* Classes */,
 			);
 			path = RIRImageResizing;
 			sourceTree = "<group>";
@@ -142,6 +144,15 @@
 			);
 			name = "Pods-RIRImageResizing_Example";
 			path = "Target Support Files/Pods-RIRImageResizing_Example";
+			sourceTree = "<group>";
+		};
+		6EE70371631A500998182372B0903102 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				1E128791F9231F5D03934D37239C0212 /* UIImage+RIRImageResizing.h */,
+				3FF4EDD7A8B99CFCC49EE950FAFFEF7E /* UIImage+RIRImageResizing.m */,
+			);
+			path = Category;
 			sourceTree = "<group>";
 		};
 		7DB346D0F39D3F0E887471402A8071AB = {
@@ -225,11 +236,12 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		6A279152A3AEC62F69764F7A3A9F46AA /* Headers */ = {
+		3D937085910C90DE51C873E291620E29 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BC4B602E2D20B3D42E741E57FB01F46E /* RIRImageResizing-umbrella.h in Headers */,
+				EB8E41247E97F1E39425D49C0108E484 /* RIRImageResizing-umbrella.h in Headers */,
+				B030E2BBB55AEA9A2E1B43A831FB349A /* UIImage+RIRImageResizing.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,9 +286,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 83B34F356C6209437C170A50369E1B51 /* Build configuration list for PBXNativeTarget "RIRImageResizing" */;
 			buildPhases = (
-				2EDDDC54E76957866B6FEF995E9DE80F /* Sources */,
+				F9D37A059E5B2EE13DD3D9B62FC67E94 /* Sources */,
 				150BBC620DAD4B14A78E364A24A5B967 /* Frameworks */,
-				6A279152A3AEC62F69764F7A3A9F46AA /* Headers */,
+				3D937085910C90DE51C873E291620E29 /* Headers */,
 			);
 			buildRules = (
 			);
@@ -349,12 +361,12 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2EDDDC54E76957866B6FEF995E9DE80F /* Sources */ = {
+		F9D37A059E5B2EE13DD3D9B62FC67E94 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A2C52E6E2033F2F745235F4F95BF4A21 /* ReplaceMe.m in Sources */,
-				AA865F3CDA43EFFDCC3EE669AF803B56 /* RIRImageResizing-dummy.m in Sources */,
+				E9644A4E3FEE0B909C650E18A51445F5 /* RIRImageResizing-dummy.m in Sources */,
+				F898D92DDA31801DBE4F6702F20F0DA9 /* UIImage+RIRImageResizing.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
