@@ -85,15 +85,15 @@ NSUInteger const kUIImage_RIRResizing_numberOfComponentsPerARBGPixel = 4;
 		|| self.imageOrientation == UIImageOrientationRight
 		|| self.imageOrientation == UIImageOrientationRightMirrored)
 	{
-		size_t temp = destWidth;
+		size_t const temp = destWidth;
 		destWidth = destHeight;
 		destHeight = temp;
 	}
 
-	CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+	CGColorSpaceRef const colorSpace = CGColorSpaceCreateDeviceRGB();
 
 	/// Create an ARGB bitmap context
-	CGContextRef bmContext = [self.class rir_createARGBBitmapContext:destWidth height:destHeight bytesPerRow:destWidth * kUIImage_RIRResizing_numberOfComponentsPerARBGPixel withAlpha:[self rir_imageHasAlpha]];
+	CGContextRef const bmContext = [self.class rir_createARGBBitmapContext:destWidth height:destHeight bytesPerRow:destWidth * kUIImage_RIRResizing_numberOfComponentsPerARBGPixel withAlpha:[self rir_imageHasAlpha]];
 	//	CGContextRef bmContext = NYXCreateARGBBitmapContext(destWidth, destHeight, destWidth * kUIImage_RIRResizing_numberOfComponentsPerARBGPixel, NYXImageHasAlpha(self.CGImage));
 
 	CGColorSpaceRelease(colorSpace);
@@ -113,8 +113,8 @@ NSUInteger const kUIImage_RIRResizing_numberOfComponentsPerARBGPixel = 4;
 	UIGraphicsPopContext();
 
 	/// Create an image object from the context
-	CGImageRef scaledImageRef = CGBitmapContextCreateImage(bmContext);
-	UIImage* scaled = [UIImage imageWithCGImage:scaledImageRef scale:self.scale orientation:self.imageOrientation];
+	CGImageRef const scaledImageRef = CGBitmapContextCreateImage(bmContext);
+	UIImage* const scaled = [UIImage imageWithCGImage:scaledImageRef scale:self.scale orientation:self.imageOrientation];
 
 	/// Cleanup
 	CGImageRelease(scaledImageRef);
@@ -126,8 +126,8 @@ NSUInteger const kUIImage_RIRResizing_numberOfComponentsPerARBGPixel = 4;
 -(nonnull UIImage*)rir_scaleToCoverSize:(CGSize)newSize
 {
 	size_t destWidth, destHeight;
-	CGFloat widthRatio = newSize.width / self.size.width;
-	CGFloat heightRatio = newSize.height / self.size.height;
+	CGFloat const widthRatio = newSize.width / self.size.width;
+	CGFloat const heightRatio = newSize.height / self.size.height;
 	/// Keep aspect ratio
 	if (heightRatio > widthRatio)
 	{
@@ -139,6 +139,7 @@ NSUInteger const kUIImage_RIRResizing_numberOfComponentsPerARBGPixel = 4;
 		destWidth = (size_t)newSize.width;
 		destHeight = (size_t)(self.size.height * newSize.width / self.size.width);
 	}
+
 	return [self rir_scaleToFillSize:CGSizeMake(destWidth, destHeight)];
 }
 
@@ -151,7 +152,7 @@ NSUInteger const kUIImage_RIRResizing_numberOfComponentsPerARBGPixel = 4;
 #pragma mark - Static methods
 +(BOOL)rir_imageHasAlpha:(CGImageRef)imageRef
 {
-	CGImageAlphaInfo alpha = CGImageGetAlphaInfo(imageRef);
+	CGImageAlphaInfo const alpha = CGImageGetAlphaInfo(imageRef);
 	BOOL hasAlpha = (alpha == kCGImageAlphaFirst || alpha == kCGImageAlphaLast || alpha == kCGImageAlphaPremultipliedFirst || alpha == kCGImageAlphaPremultipliedLast);
 
 	return hasAlpha;
@@ -163,10 +164,10 @@ NSUInteger const kUIImage_RIRResizing_numberOfComponentsPerARBGPixel = 4;
 	/// Use the generic RGB color space
 	/// We avoid the NULL check because CGColorSpaceRelease() NULL check the value anyway, and worst case scenario = fail to create context
 	/// Create the bitmap context, we want pre-multiplied ARGB, 8-bits per component
-	CGImageAlphaInfo alphaInfo = (withAlpha ? kCGImageAlphaPremultipliedFirst : kCGImageAlphaNoneSkipFirst);
-	CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+	CGImageAlphaInfo const alphaInfo = (withAlpha ? kCGImageAlphaPremultipliedFirst : kCGImageAlphaNoneSkipFirst);
+	CGColorSpaceRef const colorSpace = CGColorSpaceCreateDeviceRGB();
 
-	CGContextRef bmContext = CGBitmapContextCreate(NULL, width, height, 8/*Bits per component*/, bytesPerRow, colorSpace, kCGBitmapByteOrderDefault | alphaInfo);
+	CGContextRef const bmContext = CGBitmapContextCreate(NULL, width, height, 8/*Bits per component*/, bytesPerRow, colorSpace, kCGBitmapByteOrderDefault | alphaInfo);
 
 	CGColorSpaceRelease(colorSpace);
 

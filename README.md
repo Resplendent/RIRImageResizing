@@ -1,5 +1,5 @@
 # RIRImageResizing
-A library with tools to resize images.
+A library with tools to resize an image.
 
 [![CI Status](http://img.shields.io/travis/Benjamin Maer/RIRImageResizing.svg?style=flat)](https://travis-ci.org/Benjamin Maer/RIRImageResizing)
 [![Version](https://img.shields.io/cocoapods/v/RIRImageResizing.svg?style=flat)](http://cocoapods.org/pods/RIRImageResizing)
