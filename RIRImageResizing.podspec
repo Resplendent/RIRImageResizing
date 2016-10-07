@@ -21,7 +21,7 @@ Pod::Spec.new do |s|
 A library with tools to resize an image.
 Resizing methods offer:
 1) newSize
-TODO: Add long description of the pod here.
+2) resizeMode
                        DESC
 
   s.homepage         = 'https://github.com/<GITHUB_USERNAME>/RIRImageResizing'
