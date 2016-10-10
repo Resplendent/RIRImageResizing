@@ -1,8 +1,8 @@
 {
   "name": "RIRImageResizing",
   "version": "0.1.0",
-  "summary": "A short description of RIRImageResizing.",
-  "description": "TODO: Add long description of the pod here.",
+  "summary": "A library with tools to resize an image.",
+  "description": "A library with tools to resize an image.\nResizing methods offer:\n1) newSize\n2) resizeMode",
   "homepage": "https://github.com/<GITHUB_USERNAME>/RIRImageResizing",
   "license": {
     "type": "MIT",

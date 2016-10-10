@@ -19,7 +19,10 @@
 {
 	UIWindow* const window = [[UIWindow alloc]initWithFrame:[[UIScreen mainScreen]bounds]];
 	[window setBackgroundColor:[UIColor redColor]];
-	[window setRootViewController:[RIRViewController new]];
+
+	UINavigationController* const navigationController = [[UINavigationController alloc]initWithRootViewController:[RIRViewController new]];
+	[window setRootViewController:navigationController];
+
 	[self setWindow:window];
 
 	return YES;

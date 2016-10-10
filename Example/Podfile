@@ -5,5 +5,8 @@ target 'RIRImageResizing_Example' do
 
   target 'RIRImageResizing_Tests' do
     inherit! :search_paths
+	
+	pod 'RTSMTableSectionManager', '0.1.8'
+	pod 'ResplendentUtilities', '0.5.0'
   end
 end
