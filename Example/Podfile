@@ -1,0 +1,9 @@
+use_frameworks!
+
+target 'RIRImageResizing_Example' do
+  pod 'RIRImageResizing', :path => '../'
+
+  target 'RIRImageResizing_Tests' do
+    inherit! :search_paths
+  end
+end
