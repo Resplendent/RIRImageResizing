@@ -152,6 +152,12 @@ NSUInteger const kUIImage_RIRResizing_numberOfComponentsPerARBGPixel = 4;
 #pragma mark - Static methods
 +(BOOL)rir_imageHasAlpha:(CGImageRef)imageRef
 {
+	if (imageRef == nil)
+	{
+		NSAssert(false, @"should pass non nil imageRef");
+		return NO;
+	}
+
 	CGImageAlphaInfo const alpha = CGImageGetAlphaInfo(imageRef);
 	BOOL hasAlpha = (alpha == kCGImageAlphaFirst || alpha == kCGImageAlphaLast || alpha == kCGImageAlphaPremultipliedFirst || alpha == kCGImageAlphaPremultipliedLast);
 
@@ -159,7 +165,7 @@ NSUInteger const kUIImage_RIRResizing_numberOfComponentsPerARBGPixel = 4;
 }
 
 #pragma mark - createARGBBitmapContext
-+(CGContextRef)rir_createARGBBitmapContext:(const size_t)width height:(const size_t)height bytesPerRow:(const size_t)bytesPerRow withAlpha:(BOOL)withAlpha
++(nonnull CGContextRef)rir_createARGBBitmapContext:(const size_t)width height:(const size_t)height bytesPerRow:(const size_t)bytesPerRow withAlpha:(BOOL)withAlpha
 {
 	/// Use the generic RGB color space
 	/// We avoid the NULL check because CGColorSpaceRelease() NULL check the value anyway, and worst case scenario = fail to create context

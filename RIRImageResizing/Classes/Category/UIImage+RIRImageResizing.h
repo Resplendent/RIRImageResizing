@@ -64,9 +64,9 @@ typedef NS_ENUM(NSInteger, UIImage_RIRResizing_ResizeMode) {
 
 #pragma mark - imageHasAlpha
 -(BOOL)rir_imageHasAlpha;
-+(BOOL)rir_imageHasAlpha:(CGImageRef)imageRef;
++(BOOL)rir_imageHasAlpha:(nonnull CGImageRef)imageRef;
 
 #pragma mark - createARGBBitmapContext
-+(CGContextRef)rir_createARGBBitmapContext:(const size_t)width height:(const size_t)height bytesPerRow:(const size_t)bytesPerRow withAlpha:(BOOL)withAlpha;
++(nonnull CGContextRef)rir_createARGBBitmapContext:(const size_t)width height:(const size_t)height bytesPerRow:(const size_t)bytesPerRow withAlpha:(BOOL)withAlpha;
 
 @end

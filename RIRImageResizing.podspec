@@ -24,12 +24,12 @@ Resizing methods offer:
 2) resizeMode
                        DESC
 
-  s.homepage         = 'https://github.com/<GITHUB_USERNAME>/RIRImageResizing'
+  s.homepage         = 'https://github.com/Resplendent/RIRImageResizing'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Benjamin Maer' => 'ben@resplendent.co' }
-  s.source           = { :git => 'https://github.com/<GITHUB_USERNAME>/RIRImageResizing.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/Resplendent/RIRImageResizing.git', :tag => "v#{s.version}" }
 
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '7.0'
 
   s.source_files = 'RIRImageResizing/Classes/**/*'
 end
