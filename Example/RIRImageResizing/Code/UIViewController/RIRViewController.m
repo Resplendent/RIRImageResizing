@@ -8,6 +8,20 @@
 
 #import "RIRViewController.h"
 
+#import <RTSMTableSectionManager/RTSMTableSectionManager.h>
+
+
+
+
+
+
+typedef NS_ENUM(NSInteger, RIRViewController__tableView_section) {
+    RIRViewController__tableView_section_originalImage,
+    RIRViewController__tableView_section_resizedImages
+    
+};
+
+
 
 
 
@@ -26,7 +40,7 @@
 -(void)viewDidLoad
 {
 	[super viewDidLoad];
-	
+    	
 	[self.view setBackgroundColor:[UIColor orangeColor]];
 }
 

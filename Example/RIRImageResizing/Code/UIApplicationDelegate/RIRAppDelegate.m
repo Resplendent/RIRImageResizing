@@ -7,7 +7,7 @@
 //
 
 #import "RIRAppDelegate.h"
-#import "RIRViewController.h"
+#import "RIRNavigationController.h"
 
 
 
@@ -20,7 +20,8 @@
 	UIWindow* const window = [[UIWindow alloc]initWithFrame:[[UIScreen mainScreen]bounds]];
 	[window setBackgroundColor:[UIColor redColor]];
 
-	UINavigationController* const navigationController = [[UINavigationController alloc]initWithRootViewController:[RIRViewController new]];
+    RIRNavigationController* navigationController = [RIRNavigationController new];
+    
 	[window setRootViewController:navigationController];
 
 	[self setWindow:window];

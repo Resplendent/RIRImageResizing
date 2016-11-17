@@ -19,6 +19,7 @@
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
+		B63789131DDE25ED00FE4433 /* RIRNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = B63789121DDE25ED00FE4433 /* RIRNavigationController.m */; };
 		D7C423021DA855E100614F30 /* RIRAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D7C422FE1DA855E100614F30 /* RIRAppDelegate.m */; };
 		D7C423031DA855E100614F30 /* RIRViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D7C423011DA855E100614F30 /* RIRViewController.m */; };
 		F039887B7ED5D3B79095BA5F /* Pods_RIRImageResizing_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 506C8093F268DED6B096CD01 /* Pods_RIRImageResizing_Example.framework */; };
@@ -57,6 +58,8 @@
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
 		80918B468316FDEBFD9ED05B /* Pods-RIRImageResizing_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RIRImageResizing_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RIRImageResizing_Tests/Pods-RIRImageResizing_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		8570B0987F525C3206D077BF /* Pods-RIRImageResizing_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RIRImageResizing_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RIRImageResizing_Example/Pods-RIRImageResizing_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		B63789111DDE25ED00FE4433 /* RIRNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RIRNavigationController.h; sourceTree = "<group>"; };
+		B63789121DDE25ED00FE4433 /* RIRNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RIRNavigationController.m; sourceTree = "<group>"; };
 		BA23F6FD650BC0F9C1069A63 /* Pods-RIRImageResizing_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RIRImageResizing_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-RIRImageResizing_Example/Pods-RIRImageResizing_Example.release.xcconfig"; sourceTree = "<group>"; };
 		C4EF27ED1AC70CFC022DF8A2 /* Pods_RIRImageResizing_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RIRImageResizing_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7C422FD1DA855E100614F30 /* RIRAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RIRAppDelegate.h; sourceTree = "<group>"; };
@@ -176,10 +179,20 @@
 			name = "Podspec Metadata";
 			sourceTree = "<group>";
 		};
+		B63789101DDE25BD00FE4433 /* UINavigationController */ = {
+			isa = PBXGroup;
+			children = (
+				B63789111DDE25ED00FE4433 /* RIRNavigationController.h */,
+				B63789121DDE25ED00FE4433 /* RIRNavigationController.m */,
+			);
+			path = UINavigationController;
+			sourceTree = "<group>";
+		};
 		D7C422FB1DA855E100614F30 /* Code */ = {
 			isa = PBXGroup;
 			children = (
 				D7C422FC1DA855E100614F30 /* UIApplicationDelegate */,
+				B63789101DDE25BD00FE4433 /* UINavigationController */,
 				D7C422FF1DA855E100614F30 /* UIViewController */,
 			);
 			path = Code;
@@ -414,6 +427,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D7C423031DA855E100614F30 /* RIRViewController.m in Sources */,
+				B63789131DDE25ED00FE4433 /* RIRNavigationController.m in Sources */,
 				D7C423021DA855E100614F30 /* RIRAppDelegate.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 			);
