@@ -76,6 +76,7 @@ typedef NS_ENUM(NSInteger, RIRViewController__tableView_section) {
 -(nonnull NSString*)labelTextForCellAtIndexPath:(NSIndexPath*)indexPath;
 -(nonnull NSString*)labelTextForResizedImageCellAtIndexPath:(NSIndexPath*)indexPath;
 -(CGFloat)cellHeight;
+-(UIViewContentMode)viewContentModeForNativeImageViewAtIndexPath:(NSIndexPath*)indexPath;
 
 #pragma mark - tableSectionManager
 @property (nonatomic, readonly, strong, nullable) RTSMTableSectionManager* tableSectionManager;
@@ -298,7 +299,6 @@ typedef NS_ENUM(NSInteger, RIRViewController__tableView_section) {
 
     UIImage_RIRResizing_ResizeMode resizeModeForRow = [self.tableSectionRangeManager.tableSectionManager sectionForIndexPathSection:indexPath.row];
 
-    
     return [image rir_scaleToSize:self.imageSize usingMode:resizeModeForRow];
 }
 #pragma mark - UIImagePickerControllerDelegate
@@ -361,6 +361,30 @@ typedef NS_ENUM(NSInteger, RIRViewController__tableView_section) {
     return self.imageHeight;
 }
 
+-(UIViewContentMode)viewContentModeForNativeImageViewAtIndexPath:(NSIndexPath *)indexPath
+{
+    UIImage_RIRResizing_ResizeMode resizeModeForRow = [self.tableSectionRangeManager.tableSectionManager sectionForIndexPathSection:indexPath.row];
+    
+    switch (resizeModeForRow) {
+        case UIImage_RIRResizing_ResizeMode_ScaleToFill:
+            return UIViewContentModeScaleToFill;
+            break;
+            
+        case UIImage_RIRResizing_ResizeMode_AspectFit:
+            return UIViewContentModeScaleAspectFit;
+            break;
+            
+        case UIImage_RIRResizing_ResizeMode_AspectFill:
+            return UIViewContentModeScaleAspectFill;
+            break;
+            
+        default:
+            break;
+    }
+    return UIViewContentModeScaleAspectFit;
+
+}
+
 #pragma mark - UITableViewDelegate, UITableViewDataSource
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -382,13 +406,19 @@ typedef NS_ENUM(NSInteger, RIRViewController__tableView_section) {
     if (image)
     {
         [cell.exampleImageView setImage:image];
+        [cell.nativeImageView setImage:self.image];
+        [cell.nativeImageView setContentMode:[self viewContentModeForNativeImageViewAtIndexPath:indexPath]];
     }
     return cell;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return self.imageHeight;
+    if (indexPath.section == 0)
+    {
+        return 250.0f;
+    }
+    return (self.imageHeight) * 2.0f + 30.0f;
 }
 
 #pragma mark - imageSize

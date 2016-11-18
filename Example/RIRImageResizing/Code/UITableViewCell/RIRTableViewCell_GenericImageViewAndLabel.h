@@ -17,6 +17,9 @@
 #pragma mark - label
 @property (nonatomic, strong, nullable) UILabel* label;
 
+#pragma mark - nativeImageView
+@property (nonatomic, strong, nullable) UIImageView* nativeImageView;
+
 #pragma mark - exampleImageView
 @property (nonatomic, strong, nullable) UIImageView* exampleImageView;
 

@@ -17,6 +17,10 @@
 #pragma mark - label
 -(CGRect)label_frame;
 
+#pragma mark - nativeImageView
+-(CGRect)nativeImageView_frame;
+
+
 #pragma mark - exampleImageView
 -(CGRect)exampleImageView_frame;
 
@@ -38,10 +42,20 @@
         [self.label setBackgroundColor:[UIColor whiteColor]];
         [self.contentView addSubview:self.label];
         
+        _nativeImageView = [UIImageView new];
+        [self.nativeImageView setClipsToBounds:YES];
+        [self.nativeImageView setBackgroundColor:[UIColor redColor]];
+        
+        [self.contentView addSubview:self.nativeImageView];
+        
         _exampleImageView = [UIImageView new];
+        [self.exampleImageView setClipsToBounds:YES];
+        [self.exampleImageView setContentMode:UIViewContentModeCenter];
         [self.exampleImageView setBackgroundColor:[UIColor greenColor]];
-        [self.exampleImageView setClipsToBounds:NO];
+        
         [self.contentView addSubview:self.exampleImageView];
+        
+        [self.contentView setClipsToBounds:YES];
         
         [self.contentView setBackgroundColor:[UIColor blueColor]];
     }
@@ -54,6 +68,7 @@
 {
     [super layoutSubviews];
     [self.label setFrame:self.label_frame];
+    [self.nativeImageView setFrame:self.nativeImageView_frame];
     [self.exampleImageView setFrame:self.exampleImageView_frame];
 }
 
@@ -66,13 +81,23 @@
     };
 }
 
-#pragma mark - exampleImageView
--(CGRect)exampleImageView_frame
+#pragma mark - nativeImageView
+-(CGRect)nativeImageView_frame
 {
     return (CGRect){
         .origin.y       = CGRectGetMaxY(self.label_frame),
         .size.width     = self.exampleImageView.image.size.width,
-        .size.height    = CGRectGetHeight(self.contentView.bounds) - CGRectGetHeight(self.label_frame)
+        .size.height    = self.exampleImageView.image.size.height
+    };
+}
+
+#pragma mark - exampleImageView
+-(CGRect)exampleImageView_frame
+{
+    return (CGRect){
+        .origin.y       = CGRectGetMaxY(self.nativeImageView_frame),
+        .size.width     = self.exampleImageView.image.size.width,
+        .size.height    = self.exampleImageView.image.size.height
     };
 }
 
