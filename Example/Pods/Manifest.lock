@@ -11,7 +11,7 @@ DEPENDENCIES:
 
 EXTERNAL SOURCES:
   RIRImageResizing:
-    :path: "../"
+    :path: ../
 
 SPEC CHECKSUMS:
   ResplendentUtilities: df8bb038d91568f9e82ee88ba5796d5d68014cdf

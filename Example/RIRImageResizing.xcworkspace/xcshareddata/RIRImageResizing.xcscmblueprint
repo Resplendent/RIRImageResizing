@@ -1,0 +1,37 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "CE93899624E584449F8000859148424440792781+++A4F1A64",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "CE93899624E584449F8000859148424440792781+++7B2EEF1" : 9223372036854775807,
+    "CE93899624E584449F8000859148424440792781+++97C70FA" : 9223372036854775807,
+    "CE93899624E584449F8000859148424440792781+++A4F1A64" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "63E7AE69-37F2-482C-AB35-E052A7CBFC2F",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "CE93899624E584449F8000859148424440792781+++7B2EEF1" : "",
+    "CE93899624E584449F8000859148424440792781+++97C70FA" : "",
+    "CE93899624E584449F8000859148424440792781+++A4F1A64" : "RIRImageResizing\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "RIRImageResizing",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Example\/RIRImageResizing.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/Resplendent\/RIRImageResizing.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "CE93899624E584449F8000859148424440792781+++7B2EEF1"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/richiereitz\/RIRImageResizing.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "CE93899624E584449F8000859148424440792781+++97C70FA"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/richiereitz\/RIRImageResizing.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "CE93899624E584449F8000859148424440792781+++A4F1A64"
+    }
+  ]
+}

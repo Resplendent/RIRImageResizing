@@ -6,8 +6,9 @@
 //
 //
 
-#import <UIKit/UIKit.h>
 #import "RIRResizeImageOperationParameters.h"
+
+#import <UIKit/UIKit.h>
 
 
 
@@ -16,6 +17,6 @@
 @interface UIImage (RIRImageResizing)
 
 #pragma mark - scale
--(nonnull UIImage*)rir_scaledImage_withResizeOperationParameters:(RIRResizeImageOperationParameters*)parameters;
+-(nullable UIImage*)rir_scaledImage_withResizeOperationParameters:(nonnull RIRResizeImageOperationParameters*)parameters;
 
 @end

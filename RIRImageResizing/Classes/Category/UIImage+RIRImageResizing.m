@@ -9,6 +9,8 @@
 #import "UIImage+RIRImageResizing.h"
 #import "RIRResizeImageOperation.h"
 
+#import <ResplendentUtilities/RUConditionalReturn.h>
+
 
 
 
@@ -16,9 +18,14 @@
 @implementation UIImage (RIRImageResizing)
 
 #pragma mark - scale
--(UIImage *)rir_scaledImage_withResizeOperationParameters:(RIRResizeImageOperationParameters *)parameters
+-(nullable UIImage*)rir_scaledImage_withResizeOperationParameters:(nonnull RIRResizeImageOperationParameters*)parameters
 {
-    RIRResizeImageOperation* image_scale_operation = [[RIRResizeImageOperation alloc] init_with_resizeParameters:parameters image:self];
+    kRUConditionalReturn_ReturnValueNil(parameters == nil, YES);
+    
+    RIRResizeImageOperation* const image_scale_operation = [[RIRResizeImageOperation alloc] init_with_resizeParameters:parameters image:self];
+    
+    kRUConditionalReturn_ReturnValueNil(image_scale_operation == nil, YES);
+    
     return [image_scale_operation resizedImage];
 }
 

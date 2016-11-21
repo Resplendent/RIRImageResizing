@@ -21,21 +21,23 @@
 {
     kRUConditionalReturn_ReturnValueNil(YES, YES);
     return [self init_with_newSize:CGSizeZero
-                        resizeMode:UIImage_RIRResizing_ResizeMode_AspectFit];
+                        resizeMode:UIImage_RIRResizing_ResizeMode_none
+                             scale:0.0f];
 }
 
 #pragma mark - init
 -(instancetype)init_with_newSize:(CGSize)newSize
                       resizeMode:(UIImage_RIRResizing_ResizeMode)resizeMode
+                           scale:(CGFloat)scale
 {
-    kRUConditionalReturn_ReturnValueNil(newSize.height < 0 || newSize.width < 0, NO);
-    kRUConditionalReturn_ReturnValueNil(resizeMode < UIImage_RIRResizing_ResizeMode_first || resizeMode > UIImage_RIRResizing_ResizeMode_last, NO);
+    kRUConditionalReturn_ReturnValueNil(newSize.height <= 0 || newSize.width <= 0, YES);
+    kRUConditionalReturn_ReturnValueNil(UIImage_RIRResizing_ResizeMode__isInRange(resizeMode) == NO, YES);
     
     if (self = [super init])
     {
-        [self setNewSize:newSize];
-        [self setResizeMode:resizeMode];
-        [self setScale:0.0f];
+        _newSize = newSize;
+        _resizeMode = resizeMode;
+        _scale = scale;
     }
     
     return self;

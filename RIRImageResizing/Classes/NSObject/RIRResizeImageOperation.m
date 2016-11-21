@@ -8,7 +8,7 @@
 
 #import "RIRResizeImageOperation.h"
 
-#import "RUConditionalReturn.h"
+#import <ResplendentUtilities/RUConditionalReturn.h>
 
 
 
@@ -25,34 +25,34 @@
  
  @return A new `UIImage` instance, which is a resized version of the receiver.
  */
--(nullable UIImage*)rir_scaleToSize:(CGSize)newSize usingMode:(UIImage_RIRResizing_ResizeMode)resizeMode;
+-(nullable UIImage*)scaleToSize:(CGSize)newSize usingMode:(UIImage_RIRResizing_ResizeMode)resizeMode;
 
 /**
- Returns a new `UIImage` instance, which is a resized version of the receiver. Uses `UIImage_RIRResizing_ResizeMode_AspectFit` resizing mode.
+ Returns a new `UIImage` instance, which is a resized version of the receiver. Uses `UIImage_RIRResizing_ResizeMode_aspectFit` resizing mode.
  
  @param newSize    The size that the new UIImage instance aims for. This is not necessarily the size of the final image, as it depends on the target image's size, and the `resizeMode` parameter.
  
  @return A new `UIImage` instance, which is a resized version of the receiver.
  */
--(nonnull UIImage*)rir_scaleToFitSize:(CGSize)newSize;		//UIImage_RIRResizing_ResizeMode_AspectFit
+-(nonnull UIImage*)scaleToFitSize:(CGSize)newSize;		//UIImage_RIRResizing_ResizeMode_aspectFit
 
 /**
- Returns a new `UIImage` instance, which is a resized version of the receiver. Uses `UIImage_RIRResizing_ResizeMode_ScaleToFill` resizing mode.
+ Returns a new `UIImage` instance, which is a resized version of the receiver. Uses `UIImage_RIRResizing_ResizeMode_scaleToFill` resizing mode.
  
  @param newSize    The size that the new UIImage instance aims for. This is not necessarily the size of the final image, as it depends on the target image's size, and the `resizeMode` parameter.
  
  @return A new `UIImage` instance, which is a resized version of the receiver.
  */
--(nonnull UIImage*)rir_scaleToFillSize:(CGSize)newSize;		//UIImage_RIRResizing_ResizeMode_ScaleToFill
+-(nonnull UIImage*)scaleToFillSize:(CGSize)newSize;		//UIImage_RIRResizing_ResizeMode_scaleToFill
 
 /**
- Returns a new `UIImage` instance, which is a resized version of the receiver. Uses `UIImage_RIRResizing_ResizeMode_AspectFill` resizing mode.
+ Returns a new `UIImage` instance, which is a resized version of the receiver. Uses `UIImage_RIRResizing_ResizeMode_aspectFill` resizing mode.
  
  @param newSize    The size that the new UIImage instance aims for. This is not necessarily the size of the final image, as it depends on the target image's size, and the `resizeMode` parameter.
  
  @return A new `UIImage` instance, which is a resized version of the receiver.
  */
--(nonnull UIImage*)rir_scaleToCoverSize:(CGSize)newSize;	//UIImage_RIRResizing_ResizeMode_AspectFill
+-(nonnull UIImage*)scaleToCoverSize:(CGSize)newSize;	//UIImage_RIRResizing_ResizeMode_aspectFill
 
 @end
 
@@ -74,33 +74,33 @@
 -(instancetype)init_with_resizeParameters:(RIRResizeImageOperationParameters *)resizeParameters
                                     image:(UIImage *)image
 {
-    kRUConditionalReturn_ReturnValueNil(resizeParameters == nil, NO);
-    kRUConditionalReturn_ReturnValueNil(image == nil, NO);
+    kRUConditionalReturn_ReturnValueNil(resizeParameters == nil, YES);
+    kRUConditionalReturn_ReturnValueNil(image == nil, YES);
     
     if (self = [super init])
     {
-        [self setResizeParameters:resizeParameters];
-        [self setImage:image];
+        _resizeParameters = resizeParameters;
+        _image = image;
     }
     
     return self;
 }
 
 #pragma mark - scale
--(nullable UIImage*)rir_scaleToSize:(CGSize)newSize usingMode:(UIImage_RIRResizing_ResizeMode)resizeMode
+-(nullable UIImage*)scaleToSize:(CGSize)newSize usingMode:(UIImage_RIRResizing_ResizeMode)resizeMode
 {
     switch (resizeMode)
     {
-        case UIImage_RIRResizing_ResizeMode_AspectFit:
-            return [self rir_scaleToFitSize:newSize];
+        case UIImage_RIRResizing_ResizeMode_aspectFit:
+            return [self scaleToFitSize:newSize];
             break;
             
-        case UIImage_RIRResizing_ResizeMode_AspectFill:
-            return [self rir_scaleToCoverSize:newSize];
+        case UIImage_RIRResizing_ResizeMode_aspectFill:
+            return [self scaleToCoverSize:newSize];
             break;
             
-        case UIImage_RIRResizing_ResizeMode_ScaleToFill:
-            return [self rir_scaleToFillSize:newSize];
+        case UIImage_RIRResizing_ResizeMode_scaleToFill:
+            return [self scaleToFillSize:newSize];
             break;
             
         default:
@@ -111,7 +111,7 @@
     return nil;
 }
 
--(nonnull UIImage*)rir_scaleToFitSize:(CGSize)newSize
+-(nonnull UIImage*)scaleToFitSize:(CGSize)newSize
 {
     /// Keep aspect ratio
     size_t destWidth, destHeight;
@@ -136,13 +136,13 @@
         destWidth = (size_t)(self.image.size.width * newSize.height / self.image.size.height);
     }
     
-    return [self rir_scaleToFillSize:(CGSize){
+    return [self scaleToFillSize:(CGSize){
         .width		= destWidth,
         .height		= destHeight,
     }];
 }
 
--(nonnull UIImage*)rir_scaleToFillSize:(CGSize)newSize
+-(nonnull UIImage*)scaleToFillSize:(CGSize)newSize
 {
     UIGraphicsBeginImageContextWithOptions(newSize, NO, self.resizeParameters.scale);
     
@@ -154,7 +154,7 @@
     return newImage;
 }
 
--(nonnull UIImage*)rir_scaleToCoverSize:(CGSize)newSize
+-(nonnull UIImage*)scaleToCoverSize:(CGSize)newSize
 {
     size_t destWidth, destHeight;
     CGFloat const widthRatio = newSize.width / self.image.size.width;
@@ -171,13 +171,19 @@
         destHeight = (size_t)(self.image.size.height * newSize.width / self.image.size.width);
     }
     
-    return [self rir_scaleToFillSize:CGSizeMake(destWidth, destHeight)];
+    return [self scaleToFillSize:CGSizeMake(destWidth, destHeight)];
 }
 
 #pragma mark - resizedImage
--(UIImage *)resizedImage
+@synthesize resizedImage;
+
+-(nullable UIImage *)resizedImage
 {
-    return [self rir_scaleToSize:self.resizeParameters.newSize usingMode:self.resizeParameters.resizeMode];
+    if (resizedImage == nil)
+    {
+        resizedImage = [self scaleToSize:self.resizeParameters.newSize usingMode:self.resizeParameters.resizeMode];
+    }
+    return resizedImage;
 }
 
 @end
