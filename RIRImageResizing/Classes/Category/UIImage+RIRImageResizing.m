@@ -78,49 +78,14 @@ NSUInteger const kUIImage_RIRResizing_numberOfComponentsPerARBGPixel = 4;
 
 -(nonnull UIImage*)rir_scaleToFillSize:(CGSize)newSize
 {
-	size_t destWidth = (size_t)(newSize.width * self.scale);
-	size_t destHeight = (size_t)(newSize.height * self.scale);
-	if (self.imageOrientation == UIImageOrientationLeft
-		|| self.imageOrientation == UIImageOrientationLeftMirrored
-		|| self.imageOrientation == UIImageOrientationRight
-		|| self.imageOrientation == UIImageOrientationRightMirrored)
-	{
-		size_t const temp = destWidth;
-		destWidth = destHeight;
-		destHeight = temp;
-	}
-
-	CGColorSpaceRef const colorSpace = CGColorSpaceCreateDeviceRGB();
-
-	/// Create an ARGB bitmap context
-	CGContextRef const bmContext = [self.class rir_createARGBBitmapContext:destWidth height:destHeight bytesPerRow:destWidth * kUIImage_RIRResizing_numberOfComponentsPerARBGPixel withAlpha:[self rir_imageHasAlpha]];
-	//	CGContextRef bmContext = NYXCreateARGBBitmapContext(destWidth, destHeight, destWidth * kUIImage_RIRResizing_numberOfComponentsPerARBGPixel, NYXImageHasAlpha(self.CGImage));
-
-	CGColorSpaceRelease(colorSpace);
-
-	if (!bmContext)
-		return nil;
-
-	/// Image quality
-	CGContextSetShouldAntialias(bmContext, true);
-	CGContextSetAllowsAntialiasing(bmContext, true);
-	CGContextSetInterpolationQuality(bmContext, kCGInterpolationHigh);
-
-	/// Draw the image in the bitmap context
-
-	UIGraphicsPushContext(bmContext);
-	CGContextDrawImage(bmContext, CGRectMake(0.0f, 0.0f, destWidth, destHeight), self.CGImage);
-	UIGraphicsPopContext();
-
-	/// Create an image object from the context
-	CGImageRef const scaledImageRef = CGBitmapContextCreateImage(bmContext);
-	UIImage* const scaled = [UIImage imageWithCGImage:scaledImageRef scale:self.scale orientation:self.imageOrientation];
-
-	/// Cleanup
-	CGImageRelease(scaledImageRef);
-	CGContextRelease(bmContext);
-
-	return scaled;
+    UIGraphicsBeginImageContextWithOptions(newSize, NO, 0.0f);
+   
+    [self drawInRect:CGRectMake(0,0,newSize.width,newSize.height)];
+    UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    
+    return newImage;
 }
 
 -(nonnull UIImage*)rir_scaleToCoverSize:(CGSize)newSize
