@@ -9,6 +9,7 @@
 #import "RIRViewController.h"
 #import "RIRTableViewCell_GenericImageViewAndLabel.h"
 #import "UIImage+RIRImageResizing.h"
+#import "RIRResizeImageOperation.h"
 
 #import <ResplendentUtilities/RUConditionalReturn.h>
 #import <ResplendentUtilities/UIView+RUUtility.h>
