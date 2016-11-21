@@ -16,6 +16,9 @@ typedef NS_ENUM(NSInteger, UIImage_RIRResizing_ResizeMode) {
 	UIImage_RIRResizing_ResizeMode_ScaleToFill,
 	UIImage_RIRResizing_ResizeMode_AspectFit,
 	UIImage_RIRResizing_ResizeMode_AspectFill,
+    
+    UIImage_RIRResizing_ResizeMode_first = UIImage_RIRResizing_ResizeMode_ScaleToFill,
+    UIImage_RIRResizing_ResizeMode_last = UIImage_RIRResizing_ResizeMode_AspectFill
 };
 
 
