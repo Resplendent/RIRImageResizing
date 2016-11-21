@@ -8,6 +8,8 @@
 
 #import "RIRTableViewCell_GenericImageViewAndLabel.h"
 
+#import <ResplendentUtilities/UIView+RUUtility.h>
+
 
 
 
@@ -19,7 +21,6 @@
 
 #pragma mark - nativeImageView
 -(CGRect)nativeImageView_frame;
-
 
 #pragma mark - exampleImageView
 -(CGRect)exampleImageView_frame;
@@ -75,30 +76,30 @@
 #pragma mark - label
 -(CGRect)label_frame
 {
-    return (CGRect) {
+    return CGRectCeilOrigin((CGRect) {
         .size.width = CGRectGetWidth(self.contentView.bounds),
         .size.height = 30.0f
-    };
+    });
 }
 
 #pragma mark - nativeImageView
 -(CGRect)nativeImageView_frame
 {
-    return (CGRect){
+    return CGRectCeilOrigin((CGRect){
         .origin.y       = CGRectGetMaxY(self.label_frame),
         .size.width     = self.exampleImageView.image.size.width,
         .size.height    = self.exampleImageView.image.size.height
-    };
+    });
 }
 
 #pragma mark - exampleImageView
 -(CGRect)exampleImageView_frame
 {
-    return (CGRect){
+    return CGRectCeilOrigin((CGRect){
         .origin.y       = CGRectGetMaxY(self.nativeImageView_frame),
         .size.width     = self.exampleImageView.image.size.width,
         .size.height    = self.exampleImageView.image.size.height
-    };
+    });
 }
 
 @end

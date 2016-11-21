@@ -21,17 +21,7 @@
 
 
 
-typedef NS_ENUM(NSInteger, RIRViewController__tableView_section) {
-    RIRViewController__tableView_section_originalImage,
-    RIRViewController__tableView_section_resizedImages
-};
-
-
-
-
-
-
-@interface RIRViewController () <UITableViewDataSource,UITableViewDelegate,RTSMTableSectionManager_SectionDelegate, RTSMTableSectionRangeManager_SectionLengthDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate>
+@interface RIRViewController () <UITableViewDataSource,UITableViewDelegate,RTSMTableSectionManager_SectionDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate>
 
 #pragma mark - height_and_width_controlView
 @property (nonatomic, readonly, strong, nullable) UIView* height_and_width_controlView;
@@ -62,7 +52,6 @@ typedef NS_ENUM(NSInteger, RIRViewController__tableView_section) {
 @property (nonatomic, readonly, strong, nullable) UITextField* widthTextfield;
 -(CGRect)widthTextfield_frame;
 
-
 #pragma mark - tableView
 @property (nonatomic, readonly, strong, nullable) UITableView* tableView;
 -(CGRect)tableView_frame;
@@ -73,16 +62,12 @@ typedef NS_ENUM(NSInteger, RIRViewController__tableView_section) {
 -(nullable UIImage*)rescaledImage:(nullable UIImage*)image forIndexpath:(nullable NSIndexPath*)indexPath;
 
 #pragma mark - cell helpers
--(nonnull NSString*)labelTextForCellAtIndexPath:(NSIndexPath*)indexPath;
 -(nonnull NSString*)labelTextForResizedImageCellAtIndexPath:(NSIndexPath*)indexPath;
 -(CGFloat)cellHeight;
 -(UIViewContentMode)viewContentModeForNativeImageViewAtIndexPath:(NSIndexPath*)indexPath;
 
 #pragma mark - tableSectionManager
 @property (nonatomic, readonly, strong, nullable) RTSMTableSectionManager* tableSectionManager;
-
-#pragma mark - tableSectionRangeManager
-@property (nonatomic, readonly, strong, nullable) RTSMTableSectionRangeManager* tableSectionRangeManager;
 
 #pragma mark - textField helper
 -(void)textDidChange;
@@ -137,15 +122,8 @@ typedef NS_ENUM(NSInteger, RIRViewController__tableView_section) {
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLineEtched];
     [self.view addSubview:self.tableView];
     
-    _tableSectionManager = [[RTSMTableSectionManager alloc] initWithFirstSection:RIRViewController__tableView_section_originalImage lastSection:RIRViewController__tableView_section_resizedImages];
+    _tableSectionManager = [[RTSMTableSectionManager alloc] initWithFirstSection:UIImage_RIRResizing_ResizeMode_first lastSection:UIImage_RIRResizing_ResizeMode_last];
     [self.tableSectionManager setSectionDelegate:self];
-    
-    RTSMTableSectionManager* tableSectionManager_forTableSectionRangeManager = [[RTSMTableSectionManager alloc] initWithFirstSection:UIImage_RIRResizing_ResizeMode_first lastSection:UIImage_RIRResizing_ResizeMode_last];
-    [tableSectionManager_forTableSectionRangeManager setSectionDelegate:self];
-   
-    _tableSectionRangeManager = [RTSMTableSectionRangeManager new];
-    [self.tableSectionRangeManager setTableSectionManager:tableSectionManager_forTableSectionRangeManager];
-    [self.tableSectionRangeManager setSectionLengthDelegate:self];
     	
 	[self.view setBackgroundColor:[UIColor orangeColor]];
 }
@@ -167,23 +145,6 @@ typedef NS_ENUM(NSInteger, RIRViewController__tableView_section) {
 -(BOOL)tableSectionManager:(RTSMTableSectionManager *)tableSectionManager sectionIsAvailable:(NSInteger)section
 {
     return YES;
-}
-
-#pragma mark - RTSMTableSectionRangeManager_SectionLengthDelegate
--(NSUInteger)tableSectionRangeManager:(RTSMTableSectionRangeManager *)tableSectionRangeManager lengthOfSection:(NSInteger)section
-{
-    RIRViewController__tableView_section const tableSection = [self.tableSectionManager indexPathSectionForSection:section];
-    
-    switch (tableSection)
-    {
-        case RIRViewController__tableView_section_originalImage:
-            return 1;
-            break;
-            
-        case RIRViewController__tableView_section_resizedImages:
-            return tableSectionRangeManager.tableSectionManager.numberOfSectionsAvailable;
-            break;
-    }
 }
 
 #pragma mark - height_and_width_controlView
@@ -297,14 +258,14 @@ typedef NS_ENUM(NSInteger, RIRViewController__tableView_section) {
     kRUConditionalReturn_ReturnValueNil(image == nil, NO);
     kRUConditionalReturn_ReturnValueNil(indexPath == nil, NO);
 
-    UIImage_RIRResizing_ResizeMode resizeModeForRow = [self.tableSectionRangeManager.tableSectionManager sectionForIndexPathSection:indexPath.row];
+    UIImage_RIRResizing_ResizeMode const resizeModeForRow = [self.tableSectionManager sectionForIndexPathSection:indexPath.section];
 
     return [image rir_scaleToSize:self.imageSize usingMode:resizeModeForRow];
 }
 #pragma mark - UIImagePickerControllerDelegate
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
 {
-    UIImage* image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    UIImage* const image = [info objectForKey:UIImagePickerControllerOriginalImage];
    
     if (image)
     {
@@ -317,25 +278,9 @@ typedef NS_ENUM(NSInteger, RIRViewController__tableView_section) {
 }
 
 #pragma mark - cell helpers
--(NSString *)labelTextForCellAtIndexPath:(NSIndexPath *)indexPath
-{
-    RIRViewController__tableView_section const section = [self.tableSectionRangeManager sectionForIndexPathSection:indexPath.section];
-    
-    switch (section)
-    {
-        case RIRViewController__tableView_section_originalImage:
-            return @"Original Image";
-            break;
-            
-        case RIRViewController__tableView_section_resizedImages:
-            return [self labelTextForResizedImageCellAtIndexPath:indexPath];
-            break;
-    }
-}
-
 -(NSString *)labelTextForResizedImageCellAtIndexPath:(NSIndexPath *)indexPath
 {
-    UIImage_RIRResizing_ResizeMode resizeModeForRow = [self.tableSectionRangeManager.tableSectionManager sectionForIndexPathSection:indexPath.row];
+    UIImage_RIRResizing_ResizeMode resizeModeForRow = [self.tableSectionManager sectionForIndexPathSection:indexPath.section];
     
     switch (resizeModeForRow) {
         case UIImage_RIRResizing_ResizeMode_ScaleToFill:
@@ -363,7 +308,7 @@ typedef NS_ENUM(NSInteger, RIRViewController__tableView_section) {
 
 -(UIViewContentMode)viewContentModeForNativeImageViewAtIndexPath:(NSIndexPath *)indexPath
 {
-    UIImage_RIRResizing_ResizeMode resizeModeForRow = [self.tableSectionRangeManager.tableSectionManager sectionForIndexPathSection:indexPath.row];
+    UIImage_RIRResizing_ResizeMode resizeModeForRow = [self.tableSectionManager sectionForIndexPathSection:indexPath.section];
     
     switch (resizeModeForRow) {
         case UIImage_RIRResizing_ResizeMode_ScaleToFill:
@@ -393,13 +338,13 @@ typedef NS_ENUM(NSInteger, RIRViewController__tableView_section) {
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self tableSectionRangeManager:self.tableSectionRangeManager lengthOfSection:section];
+    return 1;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     RIRTableViewCell_GenericImageViewAndLabel* cell = [RIRTableViewCell_GenericImageViewAndLabel new];
-    [cell.label setText:[self labelTextForCellAtIndexPath:indexPath]];
+    [cell.label setText:[self labelTextForResizedImageCellAtIndexPath:indexPath]];
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     
     UIImage* image = [self rescaledImage:self.image forIndexpath:indexPath];
@@ -414,10 +359,6 @@ typedef NS_ENUM(NSInteger, RIRViewController__tableView_section) {
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 0)
-    {
-        return 250.0f;
-    }
     return (self.imageHeight) * 2.0f + 30.0f;
 }
 
@@ -435,6 +376,7 @@ typedef NS_ENUM(NSInteger, RIRViewController__tableView_section) {
 {
     NSInteger const heightInteger = [self.heightTextField.text integerValue];
     NSInteger const widthInteger = [self.widthTextfield.text integerValue];
+    
     if (heightInteger != self.imageHeight)
     {
         self.imageHeight = heightInteger;
@@ -447,7 +389,5 @@ typedef NS_ENUM(NSInteger, RIRViewController__tableView_section) {
     
     [self.tableView reloadData];
 }
-
-
 
 @end
