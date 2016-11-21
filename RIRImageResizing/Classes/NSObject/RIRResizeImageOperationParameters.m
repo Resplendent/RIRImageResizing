@@ -8,7 +8,7 @@
 
 #import "RIRResizeImageOperationParameters.h"
 
-#import <ResplendentUtilities/RUConditionalReturn.h>
+#import "RUConditionalReturn.h"
 
 
 
@@ -30,6 +30,7 @@
 {
     kRUConditionalReturn_ReturnValueNil(newSize.height < 0 || newSize.width < 0, NO);
     kRUConditionalReturn_ReturnValueNil(resizeMode < UIImage_RIRResizing_ResizeMode_first || resizeMode > UIImage_RIRResizing_ResizeMode_last, NO);
+    
     if (self = [super init])
     {
         [self setNewSize:newSize];
