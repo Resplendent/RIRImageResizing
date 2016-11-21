@@ -200,6 +200,8 @@
 		B0915018F6A3DB075604FBDF2CE8A54C /* Pods-RIRImageResizing_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C49B6FFAF3BF3B14664DEA5260B49FC /* Pods-RIRImageResizing_Example-dummy.m */; };
 		B26ED875D74E2C7828B6CAEAABC6F3E0 /* RUImageViewFullscreenRotatingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C9D1E17865C8A82D5655C4DB7506BB3 /* RUImageViewFullscreenRotatingView.m */; };
 		B360F69783BD27B8D0CC30338B67DC68 /* RUClassOrNilUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = F92A579FDA4D62DFACDA9AF0C48FB9E8 /* RUClassOrNilUtil.m */; };
+		B6B645971DE36DC5004D8C49 /* RIRResizeImageOperationParameters.h in Headers */ = {isa = PBXBuildFile; fileRef = B6B645951DE36DC5004D8C49 /* RIRResizeImageOperationParameters.h */; };
+		B6B645981DE36DC5004D8C49 /* RIRResizeImageOperationParameters.m in Sources */ = {isa = PBXBuildFile; fileRef = B6B645961DE36DC5004D8C49 /* RIRResizeImageOperationParameters.m */; };
 		B93501AF8ABE4930684E125B6A9D92E1 /* UIImage+RIRImageResizing.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FF4EDD7A8B99CFCC49EE950FAFFEF7E /* UIImage+RIRImageResizing.m */; };
 		B9EC028B2C64FBA774ADDADBB2276F86 /* RUHorizontalTitlePagingViewProtocols.h in Headers */ = {isa = PBXBuildFile; fileRef = E1F86B41337DE0D66A960053F33A83A2 /* RUHorizontalTitlePagingViewProtocols.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BA3207813C64CDE87E8A3BAA06DA100E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF5F6F206C07845A01B6D080A205C2FC /* Foundation.framework */; };
@@ -361,7 +363,7 @@
 		14F27DB9BAAE724530ACDD92CC79531E /* UIView+RUDrawHole.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIView+RUDrawHole.h"; path = "Pod/Classes/Category/UIView/UIView+RUDrawHole.h"; sourceTree = "<group>"; };
 		15F8F63AEC16AB4419D31CC414C16671 /* UIView+RUDrawHole.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIView+RUDrawHole.m"; path = "Pod/Classes/Category/UIView/UIView+RUDrawHole.m"; sourceTree = "<group>"; };
 		165572EA0AA018BF7ED278CDB4E82582 /* RUTriangle.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RUTriangle.m; path = Pod/Classes/View/Geometry/RUTriangle.m; sourceTree = "<group>"; };
-		166C9B737F51F81233F4B57E673EB986 /* RIRImageResizing.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = RIRImageResizing.modulemap; sourceTree = "<group>"; };
+		166C9B737F51F81233F4B57E673EB986 /* RIRImageResizing.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = RIRImageResizing.modulemap; sourceTree = "<group>"; };
 		169B3AC302F3F5EDEC265C2EED3202F3 /* UITextField+RUAttributes.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UITextField+RUAttributes.m"; path = "Pod/Classes/Category/UITextField/UITextField+RUAttributes.m"; sourceTree = "<group>"; };
 		16F93C447809F01B85ACAA90A4123739 /* NSString+RUStringContainsUtil.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSString+RUStringContainsUtil.h"; path = "Pod/Classes/Category/NSString/NSString+RUStringContainsUtil.h"; sourceTree = "<group>"; };
 		17124365FD601DF00F9EC259186328D4 /* NSURL+RUDirectories.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSURL+RUDirectories.m"; path = "Pod/Classes/Category/NSURL/NSURL+RUDirectories.m"; sourceTree = "<group>"; };
@@ -431,7 +433,7 @@
 		5056EF2D8008E97C58BE346BB8E16BC4 /* RUNavigationControllerDelegate_navbarColorSetter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RUNavigationControllerDelegate_navbarColorSetter.m; path = Pod/Classes/Objects/NavigationControllerDelegate_navbarColorSetter/RUNavigationControllerDelegate_navbarColorSetter.m; sourceTree = "<group>"; };
 		507BE72F5FA3BC81F612866E178A201D /* RUModalView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RUModalView.h; path = Pod/Classes/View/Modal/RUModalView.h; sourceTree = "<group>"; };
 		50D58A9C9FDD2BFC876E46B243737C8F /* RTSMTableSectionManager.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = RTSMTableSectionManager.xcconfig; sourceTree = "<group>"; };
-		515BDBE4F55E3BE55D5D3B3E5F22E944 /* RTSMTableSectionManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = RTSMTableSectionManager.framework; path = RTSMTableSectionManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		515BDBE4F55E3BE55D5D3B3E5F22E944 /* RTSMTableSectionManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RTSMTableSectionManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5188061FBD6CED183B4DC6698A7CAE2F /* RUSynthesizeUserDefaultMethods.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RUSynthesizeUserDefaultMethods.h; path = Pod/Classes/Misc/RUSynthesizeUserDefaultMethods.h; sourceTree = "<group>"; };
 		51D6FC5B9BF1AE1F5DA22BA3C24A7074 /* UIFont+RUHelvetica.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIFont+RUHelvetica.m"; path = "Pod/Classes/Category/UIFont+RUHelvetica.m"; sourceTree = "<group>"; };
 		51F92B79160D3D8E620A5757DACA5661 /* UIView+RUSubviews.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIView+RUSubviews.h"; path = "Pod/Classes/Category/UIView/UIView+RUSubviews.h"; sourceTree = "<group>"; };
@@ -442,13 +444,13 @@
 		5455D66C7F4E127F2CEEA93C64EE29B1 /* UIImage+RURotation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+RURotation.h"; path = "Pod/Classes/Category/UIImage/UIImage+RURotation.h"; sourceTree = "<group>"; };
 		550E0ECB203BA700AE9F00ADF5B792AF /* UITableView+RTSMEmptySpace.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UITableView+RTSMEmptySpace.m"; path = "RTSMTableSectionManager/Classes/Category/UITableView+RTSMEmptySpace.m"; sourceTree = "<group>"; };
 		554F0911BC06F3AE2A39899EC910655B /* RUScrollView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RUScrollView.h; path = Pod/Classes/View/ScrollView/RUScrollView.h; sourceTree = "<group>"; };
-		56353957B08D9611D7046C9B52F4A9E9 /* ResplendentUtilities.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = ResplendentUtilities.modulemap; sourceTree = "<group>"; };
+		56353957B08D9611D7046C9B52F4A9E9 /* ResplendentUtilities.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = ResplendentUtilities.modulemap; sourceTree = "<group>"; };
 		568127A8FBD27350B3ED690A7DB3ACAE /* ResplendentUtilities-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ResplendentUtilities-prefix.pch"; sourceTree = "<group>"; };
 		5780699B6DFB5E71F564C57AF187380A /* UIViewController+RUDismissOrPop.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIViewController+RUDismissOrPop.h"; path = "Pod/Classes/Category/UIViewController/UIViewController+RUDismissOrPop.h"; sourceTree = "<group>"; };
 		57B5B2A840AC55555794E3DB3EA12949 /* RUModalView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RUModalView.m; path = Pod/Classes/View/Modal/RUModalView.m; sourceTree = "<group>"; };
 		58083C95DA34D3AF0016CA4FAFB5AF93 /* NSMutableDictionary+RUUtil.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSMutableDictionary+RUUtil.h"; path = "Pod/Classes/Category/NSMutableDictionary+RUUtil.h"; sourceTree = "<group>"; };
 		5955A1CE20F8FF8A635C851AB975DC1F /* UIActionSheet+RUShowUtil.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIActionSheet+RUShowUtil.m"; path = "Pod/Classes/Category/UIActionSheet+RUShowUtil.m"; sourceTree = "<group>"; };
-		5B8D3898C019F582ADDF0D85E93BC896 /* Pods_RIRImageResizing_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_RIRImageResizing_Tests.framework; path = "Pods-RIRImageResizing_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5B8D3898C019F582ADDF0D85E93BC896 /* Pods_RIRImageResizing_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RIRImageResizing_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F837A063E1B09266930CD94B9ED9D48 /* RUConstants.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RUConstants.h; path = Pod/Classes/Misc/RUConstants.h; sourceTree = "<group>"; };
 		60550B4FE279CF36E3A8A23B989744D8 /* RUColoredNavigationBar.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RUColoredNavigationBar.h; path = Pod/Classes/View/UINavigationBar/RUColoredNavigationBar.h; sourceTree = "<group>"; };
 		6071BB6FE6FC9AD4E9976E0C3B5A5D5C /* UIApplication+RUPushNotifications.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIApplication+RUPushNotifications.m"; path = "Pod/Classes/Category/UIApplication/UIApplication+RUPushNotifications.m"; sourceTree = "<group>"; };
@@ -503,19 +505,19 @@
 		8E9803E5A6979A317513F153D1D4E834 /* NSArray+RUComponents.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSArray+RUComponents.m"; path = "Pod/Classes/Category/NSArray/NSArray+RUComponents.m"; sourceTree = "<group>"; };
 		8F2CED2788BDE62A9B611F053AF250BD /* RUNavigationControllerDelegate_navbarColorSetter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RUNavigationControllerDelegate_navbarColorSetter.h; path = Pod/Classes/Objects/NavigationControllerDelegate_navbarColorSetter/RUNavigationControllerDelegate_navbarColorSetter.h; sourceTree = "<group>"; };
 		91BD7F6F54E50B4EF84717C0293BE749 /* UIView+RUMaskRoundCorners.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIView+RUMaskRoundCorners.m"; path = "Pod/Classes/Category/UIView/UIView+RUMaskRoundCorners.m"; sourceTree = "<group>"; };
-		926D6127339ACF0C72E1C81ACA86B4B3 /* RTSMTableSectionManager.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = RTSMTableSectionManager.modulemap; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		926D6127339ACF0C72E1C81ACA86B4B3 /* RTSMTableSectionManager.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = RTSMTableSectionManager.modulemap; sourceTree = "<group>"; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		952C1EB0D3F18E4166475AA0CF8F6371 /* UINavigationController+RUColoredStatusBarView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UINavigationController+RUColoredStatusBarView.h"; path = "Pod/Classes/Category/UINavigationController/UINavigationController+RUColoredStatusBarView.h"; sourceTree = "<group>"; };
 		9659FAC4C27016EEFBDF94E88CCBB971 /* RUSingleton.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RUSingleton.h; path = Pod/Classes/Misc/RUSingleton.h; sourceTree = "<group>"; };
 		98209CB24D6727AACDD824B075922360 /* UIView+RUEnableTapToResignFirstResponder.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIView+RUEnableTapToResignFirstResponder.h"; path = "Pod/Classes/Category/UIView/UIView+RUEnableTapToResignFirstResponder.h"; sourceTree = "<group>"; };
 		985428F33FF9927DFC4E31DEA33D7782 /* Pods-RIRImageResizing_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-RIRImageResizing_Tests-frameworks.sh"; sourceTree = "<group>"; };
 		988AFF03954F4F259D510BF2FAB555B9 /* NSString+RUUtil.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSString+RUUtil.m"; path = "Pod/Classes/Category/NSString/NSString+RUUtil.m"; sourceTree = "<group>"; };
 		9A2EA9663E8674199E4CC20D30DB3D3F /* NSString+RUUrlComponents.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSString+RUUrlComponents.m"; path = "Pod/Classes/Category/NSString/NSString+RUUrlComponents.m"; sourceTree = "<group>"; };
-		9A3064CB94BF343CBF7AD0C84A5875D2 /* Pods-RIRImageResizing_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-RIRImageResizing_Example.modulemap"; sourceTree = "<group>"; };
+		9A3064CB94BF343CBF7AD0C84A5875D2 /* Pods-RIRImageResizing_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-RIRImageResizing_Example.modulemap"; sourceTree = "<group>"; };
 		9AECF757E9574FDA333A239843637427 /* NSURL+RUQueryParams.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSURL+RUQueryParams.m"; path = "Pod/Classes/Category/NSURL/NSURL+RUQueryParams.m"; sourceTree = "<group>"; };
 		9D7BAF7FFCB9D412197F6D70902E7DF9 /* RUOrderedDictionary.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RUOrderedDictionary.m; path = Pod/Classes/Objects/RUOrderedDictionary/RUOrderedDictionary.m; sourceTree = "<group>"; };
 		A1164A5A42D0F703880428F81EB8DFB1 /* NSArray+RUShuffling.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSArray+RUShuffling.h"; path = "Pod/Classes/Category/NSArray/NSArray+RUShuffling.h"; sourceTree = "<group>"; };
-		A26F8CC55EC9E97E79A956B351D9BBD6 /* Pods-RIRImageResizing_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-RIRImageResizing_Tests.modulemap"; sourceTree = "<group>"; };
+		A26F8CC55EC9E97E79A956B351D9BBD6 /* Pods-RIRImageResizing_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-RIRImageResizing_Tests.modulemap"; sourceTree = "<group>"; };
 		A461BEAE7FB33051139426C765729EF9 /* UIImageView+RUAsynchronousImageFetching.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIImageView+RUAsynchronousImageFetching.m"; path = "Pod/Classes/View/ImageFetching/UIImageView+RUAsynchronousImageFetching.m"; sourceTree = "<group>"; };
 		A4C59D92969D75EAECF98C88D73EC72C /* RTSMTableSectionManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RTSMTableSectionManager.h; path = RTSMTableSectionManager/Classes/RTSMTableSectionManager/RTSMTableSectionManager.h; sourceTree = "<group>"; };
 		A4D3AB53B68A9746E8746683F4C2CDFD /* UIScrollView+RUAboveContentView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIScrollView+RUAboveContentView.m"; path = "Pod/Classes/Category/UIScrollView+RUAboveContentView.m"; sourceTree = "<group>"; };
@@ -532,10 +534,10 @@
 		A8CA8DFA0FA34D78A7B1D4BDDE58A838 /* RTSMTableSectionManagerProtocols.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RTSMTableSectionManagerProtocols.h; path = RTSMTableSectionManager/Classes/RTSMTableSectionManager/RTSMTableSectionManagerProtocols.h; sourceTree = "<group>"; };
 		AA1A957A31B78F2EED0A3E4FC4CCECF4 /* RUOrderedMutableDictionary.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RUOrderedMutableDictionary.h; path = Pod/Classes/Objects/RUOrderedDictionary/RUOrderedMutableDictionary.h; sourceTree = "<group>"; };
 		AA7F08F504F5888CB9D12A2550BFE660 /* RUOrderedDictionary.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RUOrderedDictionary.h; path = Pod/Classes/Objects/RUOrderedDictionary/RUOrderedDictionary.h; sourceTree = "<group>"; };
-		AB4690F1F3E12604183E18EF661F3D68 /* Pods_RIRImageResizing_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_RIRImageResizing_Example.framework; path = "Pods-RIRImageResizing_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB4690F1F3E12604183E18EF661F3D68 /* Pods_RIRImageResizing_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RIRImageResizing_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD0489B7564ACD7071EBC6AD61A2F7D8 /* NSString+RUDirectories.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSString+RUDirectories.h"; path = "Pod/Classes/Category/NSString/NSString+RUDirectories.h"; sourceTree = "<group>"; };
 		AD346D7D1B52B308EEFD84F851010D47 /* NSPredicate+RUUtil.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSPredicate+RUUtil.h"; path = "Pod/Classes/Category/NSPredicate+RUUtil.h"; sourceTree = "<group>"; };
-		AE4E776169866CE9A57E8987FFECA4E4 /* ResplendentUtilities.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = ResplendentUtilities.framework; path = ResplendentUtilities.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AE4E776169866CE9A57E8987FFECA4E4 /* ResplendentUtilities.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ResplendentUtilities.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B042F4763C085EBD095261693ED5A2F2 /* RUCompatability.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RUCompatability.h; path = Pod/Classes/Misc/Compatability/RUCompatability.h; sourceTree = "<group>"; };
 		B05FF85AD57A7C9A177F1153BE1EB2D7 /* RIRImageResizing-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "RIRImageResizing-dummy.m"; sourceTree = "<group>"; };
 		B0C16A06A8D414BAD6B4C8A9C4FAE39F /* NSArray+RUComponents.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSArray+RUComponents.h"; path = "Pod/Classes/Category/NSArray/NSArray+RUComponents.h"; sourceTree = "<group>"; };
@@ -544,6 +546,8 @@
 		B400DDC08BBBD2EDCA035E030040C494 /* RUCreateDestroyViewSynthesization.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RUCreateDestroyViewSynthesization.h; path = Pod/Classes/Misc/RUCreateDestroyViewSynthesization.h; sourceTree = "<group>"; };
 		B4415E39033956FC1B73B0A7003288ED /* NSString+RUEncodedUrl.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSString+RUEncodedUrl.h"; path = "Pod/Classes/Category/NSString/NSString+RUEncodedUrl.h"; sourceTree = "<group>"; };
 		B61AEDFFE913DD9FAF79BD011E7F9777 /* RUNavigationControllerDelegate_navbarColorSetterProtocols.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RUNavigationControllerDelegate_navbarColorSetterProtocols.h; path = Pod/Classes/Objects/NavigationControllerDelegate_navbarColorSetter/RUNavigationControllerDelegate_navbarColorSetterProtocols.h; sourceTree = "<group>"; };
+		B6B645951DE36DC5004D8C49 /* RIRResizeImageOperationParameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RIRResizeImageOperationParameters.h; sourceTree = "<group>"; };
+		B6B645961DE36DC5004D8C49 /* RIRResizeImageOperationParameters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RIRResizeImageOperationParameters.m; sourceTree = "<group>"; };
 		B774B7548D14EFEDDD4185ED6F2D50F8 /* UITabBarController+RUTabBarVisibility.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UITabBarController+RUTabBarVisibility.m"; path = "Pod/Classes/Category/UITabBarController/UITabBarController+RUTabBarVisibility.m"; sourceTree = "<group>"; };
 		B799892ED41EBEA5AEAD12DBCE25626E /* NSString+RUMacros.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSString+RUMacros.h"; path = "Pod/Classes/Macros/NSString+RUMacros.h"; sourceTree = "<group>"; };
 		B7D69B915A38C622F42B987E195B1A18 /* NSString+RUEncodedUrl.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSString+RUEncodedUrl.m"; path = "Pod/Classes/Category/NSString/NSString+RUEncodedUrl.m"; sourceTree = "<group>"; };
@@ -564,7 +568,7 @@
 		C7D7C7C80738494E418ABC690B8000F2 /* RUAlertView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RUAlertView.h; path = Pod/Classes/View/UIAlertView/RUAlertView.h; sourceTree = "<group>"; };
 		C7F6CB969A49C9B732B0D8BA2A34A5C1 /* RUHorizontalTitlePagingViewCollectionViewCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RUHorizontalTitlePagingViewCollectionViewCell.h; path = Pod/Classes/View/HorizontalTitlePagingView/RUHorizontalTitlePagingViewCollectionViewCell.h; sourceTree = "<group>"; };
 		C82ED09A030DF889834BC043CB38F34C /* UIView+RUSuperviews.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIView+RUSuperviews.h"; path = "Pod/Classes/Category/UIView/UIView+RUSuperviews.h"; sourceTree = "<group>"; };
-		C85B667ABAA112B0EF0289DEE447CF3F /* RIRImageResizing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = RIRImageResizing.framework; path = RIRImageResizing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C85B667ABAA112B0EF0289DEE447CF3F /* RIRImageResizing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RIRImageResizing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8622AD25F6278491F9AAA93862B4BFD /* RUColorPickerCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RUColorPickerCell.h; path = Pod/Classes/View/ColorPicker/RUColorPickerCell.h; sourceTree = "<group>"; };
 		C9895D72DC222FC24BBF60EDDA590931 /* ResplendentUtilities-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "ResplendentUtilities-dummy.m"; sourceTree = "<group>"; };
 		C9FA3DE6262AD40640A2AAF125E69527 /* RUTopBottomBarModalView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RUTopBottomBarModalView.h; path = Pod/Classes/View/Modal/RUTopBottomBarModalView.h; sourceTree = "<group>"; };
@@ -678,8 +682,8 @@
 			isa = PBXGroup;
 			children = (
 				6EE70371631A500998182372B0903102 /* Category */,
+				B6B645941DE36CF0004D8C49 /* NSObject */,
 			);
-			name = Classes;
 			path = Classes;
 			sourceTree = "<group>";
 		};
@@ -963,7 +967,6 @@
 				E35991FDA44D8CA3F759267517BD8416 /* UIViewController+RUStatusBarHeight.m */,
 				0418A28383DEE356543137FDB007AB57 /* Support Files */,
 			);
-			name = ResplendentUtilities;
 			path = ResplendentUtilities;
 			sourceTree = "<group>";
 		};
@@ -993,7 +996,6 @@
 			children = (
 				0189900FF7FE9F219F7AA94041772A3F /* Classes */,
 			);
-			name = RIRImageResizing;
 			path = RIRImageResizing;
 			sourceTree = "<group>";
 		};
@@ -1021,7 +1023,6 @@
 				1E128791F9231F5D03934D37239C0212 /* UIImage+RIRImageResizing.h */,
 				3FF4EDD7A8B99CFCC49EE950FAFFEF7E /* UIImage+RIRImageResizing.m */,
 			);
-			name = Category;
 			path = Category;
 			sourceTree = "<group>";
 		};
@@ -1067,6 +1068,15 @@
 			name = "Development Pods";
 			sourceTree = "<group>";
 		};
+		B6B645941DE36CF0004D8C49 /* NSObject */ = {
+			isa = PBXGroup;
+			children = (
+				B6B645951DE36DC5004D8C49 /* RIRResizeImageOperationParameters.h */,
+				B6B645961DE36DC5004D8C49 /* RIRResizeImageOperationParameters.m */,
+			);
+			path = NSObject;
+			sourceTree = "<group>";
+		};
 		D1F092619513291CFA1D8DCAB50D4667 /* Targets Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -1089,7 +1099,6 @@
 				550E0ECB203BA700AE9F00ADF5B792AF /* UITableView+RTSMEmptySpace.m */,
 				A5143920A8D4AED6347A3E8932C84FB0 /* Support Files */,
 			);
-			name = RTSMTableSectionManager;
 			path = RTSMTableSectionManager;
 			sourceTree = "<group>";
 		};
@@ -1302,6 +1311,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B6B645971DE36DC5004D8C49 /* RIRResizeImageOperationParameters.h in Headers */,
 				8B08C9A66B6D9A489769F2FD2B079708 /* Pods-RIRImageResizing_Example-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1463,6 +1473,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B0915018F6A3DB075604FBDF2CE8A54C /* Pods-RIRImageResizing_Example-dummy.m in Sources */,
+				B6B645981DE36DC5004D8C49 /* RIRResizeImageOperationParameters.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
