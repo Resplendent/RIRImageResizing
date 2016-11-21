@@ -18,5 +18,10 @@
   "platforms": {
     "ios": "7.0"
   },
-  "source_files": "RIRImageResizing/Classes/**/*"
+  "source_files": "RIRImageResizing/Classes/**/*",
+  "dependencies": {
+    "ResplendentUtilities": [
+      "~> 0.5.0"
+    ]
+  }
 }

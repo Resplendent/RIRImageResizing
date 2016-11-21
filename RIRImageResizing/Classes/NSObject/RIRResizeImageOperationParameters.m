@@ -8,7 +8,7 @@
 
 #import "RIRResizeImageOperationParameters.h"
 
-#import "RUConditionalReturn.h"
+#import <ResplendentUtilities/RUConditionalReturn.h>
 
 
 
