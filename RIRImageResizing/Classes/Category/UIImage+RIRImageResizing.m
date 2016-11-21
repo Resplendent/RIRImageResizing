@@ -78,7 +78,7 @@ NSUInteger const kUIImage_RIRResizing_numberOfComponentsPerARBGPixel = 4;
 
 -(nonnull UIImage*)rir_scaleToFillSize:(CGSize)newSize
 {
-    UIGraphicsBeginImageContextWithOptions(newSize, NO, 0.0f);
+    UIGraphicsBeginImageContextWithOptions(newSize, NO, self.scale);
    
     [self drawInRect:CGRectMake(0,0,newSize.width,newSize.height)];
     UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
