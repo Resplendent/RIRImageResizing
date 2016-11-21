@@ -23,8 +23,8 @@
 @property (nonatomic, strong, nullable) UIImage* image;
 
 #pragma mark - init
--(nullable instancetype)init_with_resizeParameters:(RIRResizeImageOperationParameters*)resizeParameters
-                                             image:(UIImage*)image;
+-(nullable instancetype)init_with_resizeParameters:(nullable RIRResizeImageOperationParameters*)resizeParameters
+                                             image:(nullable UIImage*)image;
 
 #pragma mark - resizedImage
 -(nonnull UIImage*)resizedImage;

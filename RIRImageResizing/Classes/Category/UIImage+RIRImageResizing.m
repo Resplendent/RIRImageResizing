@@ -19,7 +19,7 @@
 -(UIImage *)rir_scaledImage_withResizeOperationParameters:(RIRResizeImageOperationParameters *)parameters
 {
     RIRResizeImageOperation* image_scale_operation = [[RIRResizeImageOperation alloc] init_with_resizeParameters:parameters image:self];
-    return image_scale_operation.resizedImage;
+    return [image_scale_operation resizedImage];
 }
 
 

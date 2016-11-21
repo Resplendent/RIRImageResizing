@@ -82,6 +82,8 @@
         [self setResizeParameters:resizeParameters];
         [self setImage:image];
     }
+    
+    return self;
 }
 
 #pragma mark - scale

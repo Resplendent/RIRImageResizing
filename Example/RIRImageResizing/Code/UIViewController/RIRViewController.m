@@ -260,8 +260,10 @@
     kRUConditionalReturn_ReturnValueNil(indexPath == nil, NO);
 
     UIImage_RIRResizing_ResizeMode const resizeModeForRow = [self.tableSectionManager sectionForIndexPathSection:indexPath.section];
+    
+    RIRResizeImageOperationParameters* const resizeParameters = [[RIRResizeImageOperationParameters alloc] init_with_newSize:self.imageSize resizeMode:resizeModeForRow];
 
-    return [image rir_scaleToSize:self.imageSize usingMode:resizeModeForRow];
+    return [image rir_scaledImage_withResizeOperationParameters:resizeParameters];
 }
 #pragma mark - UIImagePickerControllerDelegate
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
