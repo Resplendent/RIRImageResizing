@@ -6,13 +6,14 @@
 //
 //
 
+#ifndef UIImage_RIRResizing_ResizeModes_h
+#define UIImage_RIRResizing_ResizeModes_h
+
 #import <ResplendentUtilities/RUEnumIsInRangeSynthesization.h>
 
 
 
 
-#ifndef UIImage_RIRResizing_ResizeModes_h
-#define UIImage_RIRResizing_ResizeModes_h
 
 typedef NS_ENUM(NSInteger, UIImage_RIRResizing_ResizeMode) {
     UIImage_RIRResizing_ResizeMode_none,
@@ -26,5 +27,9 @@ typedef NS_ENUM(NSInteger, UIImage_RIRResizing_ResizeMode) {
 };
 
 static inline RUEnumIsInRangeSynthesization_autoFirstLast(UIImage_RIRResizing_ResizeMode);
+
+
+
+
 
 #endif /* UIImage_RIRResizing_ResizeModes_h */
