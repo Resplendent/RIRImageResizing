@@ -18,7 +18,7 @@
 @implementation UIImage (RIRImageResizing)
 
 #pragma mark - scale
--(nullable UIImage*)rir_scaledImage_withResizeOperationParameters:(nonnull RIRResizeImageOperationParameters*)parameters
+-(nullable UIImage*)rir_scaledImage_with_resizeOperationParameters:(nonnull RIRResizeImageOperationParameters*)parameters
 {
     kRUConditionalReturn_ReturnValueNil(parameters == nil, YES);
     

@@ -7,6 +7,7 @@
 //
 
 #import "RIRResizeImageOperation.h"
+#import "RIRResizeImageOperationParameters.h"
 
 #import <ResplendentUtilities/RUConditionalReturn.h>
 
@@ -54,6 +55,13 @@
  */
 -(nonnull UIImage*)scaleToCoverSize:(CGSize)newSize;	//UIImage_RIRResizing_ResizeMode_aspectFill
 
+#pragma mark - resizeParameters
+@property (nonatomic, strong, nonnull) RIRResizeImageOperationParameters* resizeParameters;
+
+#pragma mark - image
+@property (nonatomic, strong, nonnull) UIImage* image;
+
+
 @end
 
 
@@ -66,21 +74,21 @@
 -(instancetype)init
 {
     kRUConditionalReturn_ReturnValueNil(YES, YES);
-    return [self init_with_resizeParameters:nil
-                                      image:nil];
+    return [self init_with_resizeParameters:[RIRResizeImageOperationParameters new]
+                                      image:[UIImage new]];
 }
 
 #pragma mark - init
--(instancetype)init_with_resizeParameters:(RIRResizeImageOperationParameters *)resizeParameters
-                                    image:(UIImage *)image
+-(instancetype)init_with_resizeParameters:(nonnull RIRResizeImageOperationParameters *)resizeParameters
+                                    image:(nonnull UIImage *)image
 {
     kRUConditionalReturn_ReturnValueNil(resizeParameters == nil, YES);
     kRUConditionalReturn_ReturnValueNil(image == nil, YES);
     
     if (self = [super init])
     {
-        _resizeParameters = resizeParameters;
-        _image = image;
+        [self setResizeParameters:resizeParameters];
+        [self setImage:image];
     }
     
     return self;
@@ -175,15 +183,15 @@
 }
 
 #pragma mark - resizedImage
-@synthesize resizedImage;
+@synthesize resizedImage = _resizedImage;
 
 -(nullable UIImage *)resizedImage
 {
-    if (resizedImage == nil)
+    if (_resizedImage == nil)
     {
-        resizedImage = [self scaleToSize:self.resizeParameters.newSize usingMode:self.resizeParameters.resizeMode];
+        _resizedImage = [self scaleToSize:self.resizeParameters.newSize usingMode:self.resizeParameters.resizeMode];
     }
-    return resizedImage;
+    return _resizedImage;
 }
 
 @end

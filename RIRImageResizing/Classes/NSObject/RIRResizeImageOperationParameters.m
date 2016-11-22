@@ -14,6 +14,23 @@
 
 
 
+@interface RIRResizeImageOperationParameters ()
+
+#pragma mark - newSize
+@property (nonatomic, assign) CGSize newSize;
+
+#pragma mark - resizeMode
+@property (nonatomic, assign) UIImage_RIRResizing_ResizeMode resizeMode;
+
+#pragma mark - scalse
+@property (nonatomic, assign) CGFloat scale;
+
+@end
+
+
+
+
+
 @implementation RIRResizeImageOperationParameters
 
 #pragma mark - NSObject
@@ -35,9 +52,9 @@
     
     if (self = [super init])
     {
-        _newSize = newSize;
-        _resizeMode = resizeMode;
-        _scale = scale;
+        [self setNewSize:newSize];
+        [self setResizeMode:resizeMode];
+        [self setScale:scale];
     }
     
     return self;

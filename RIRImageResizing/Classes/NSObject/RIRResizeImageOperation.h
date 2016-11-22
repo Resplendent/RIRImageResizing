@@ -6,9 +6,13 @@
 //
 //
 
-#import "RIRResizeImageOperationParameters.h"
-
 #import <Foundation/Foundation.h>
+
+
+
+
+
+@class RIRResizeImageOperationParameters;
 
 
 
@@ -16,15 +20,9 @@
 
 @interface RIRResizeImageOperation : NSObject
 
-#pragma mark - resizeParameters
-@property (nonatomic, readonly, strong, nullable) RIRResizeImageOperationParameters* resizeParameters;
-
-#pragma mark - image
-@property (nonatomic, readonly, strong, nullable) UIImage* image;
-
 #pragma mark - init
--(nullable instancetype)init_with_resizeParameters:(nullable RIRResizeImageOperationParameters*)resizeParameters
-                                             image:(nullable UIImage*)image;
+-(nullable instancetype)init_with_resizeParameters:(nonnull RIRResizeImageOperationParameters*)resizeParameters
+                                             image:(nonnull UIImage*)image;
 
 #pragma mark - resizedImage
 @property (nonatomic, readonly, strong, nullable) UIImage* resizedImage;

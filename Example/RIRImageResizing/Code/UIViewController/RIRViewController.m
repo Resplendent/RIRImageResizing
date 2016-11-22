@@ -263,8 +263,9 @@
     
     RIRResizeImageOperationParameters* const resizeParameters = [[RIRResizeImageOperationParameters alloc] init_with_newSize:self.imageSize resizeMode:resizeModeForRow scale:0.0f];
 
-    return [image rir_scaledImage_withResizeOperationParameters:resizeParameters];
+    return [image rir_scaledImage_with_resizeOperationParameters:resizeParameters];
 }
+
 #pragma mark - UIImagePickerControllerDelegate
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
 {
