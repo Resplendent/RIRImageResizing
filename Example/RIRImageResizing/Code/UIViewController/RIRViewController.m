@@ -9,6 +9,7 @@
 #import "RIRViewController.h"
 #import "RIRTableViewCell_GenericImageViewAndLabel.h"
 #import "UIImage+RIRImageResizing.h"
+#import "RIRResizeImageOperation.h"
 
 #import <ResplendentUtilities/RUConditionalReturn.h>
 #import <ResplendentUtilities/UIView+RUUtility.h>
@@ -122,7 +123,7 @@
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLineEtched];
     [self.view addSubview:self.tableView];
     
-    _tableSectionManager = [[RTSMTableSectionManager alloc] initWithFirstSection:UIImage_RIRResizing_ResizeMode_first lastSection:UIImage_RIRResizing_ResizeMode_last];
+    _tableSectionManager = [[RTSMTableSectionManager alloc] initWithFirstSection:UIImage_RIRResizing_ResizeMode__first lastSection:UIImage_RIRResizing_ResizeMode__last];
     [self.tableSectionManager setSectionDelegate:self];
     	
 	[self.view setBackgroundColor:[UIColor orangeColor]];
@@ -259,9 +260,12 @@
     kRUConditionalReturn_ReturnValueNil(indexPath == nil, NO);
 
     UIImage_RIRResizing_ResizeMode const resizeModeForRow = [self.tableSectionManager sectionForIndexPathSection:indexPath.section];
+    
+    RIRResizeImageOperationParameters* const resizeParameters = [[RIRResizeImageOperationParameters alloc] init_with_newSize:self.imageSize resizeMode:resizeModeForRow scale:0.0f];
 
-    return [image rir_scaleToSize:self.imageSize usingMode:resizeModeForRow];
+    return [image rir_scaledImage_with_resizeOperationParameters:resizeParameters];
 }
+
 #pragma mark - UIImagePickerControllerDelegate
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
 {
@@ -283,15 +287,15 @@
     UIImage_RIRResizing_ResizeMode resizeModeForRow = [self.tableSectionManager sectionForIndexPathSection:indexPath.section];
     
     switch (resizeModeForRow) {
-        case UIImage_RIRResizing_ResizeMode_ScaleToFill:
+        case UIImage_RIRResizing_ResizeMode_scaleToFill:
             return @"Scale to Fill";
             break;
             
-        case UIImage_RIRResizing_ResizeMode_AspectFit:
+        case UIImage_RIRResizing_ResizeMode_aspectFit:
             return @"Aspect Fit";
             break;
             
-        case UIImage_RIRResizing_ResizeMode_AspectFill:
+        case UIImage_RIRResizing_ResizeMode_aspectFill:
             return @"Aspect Fill";
             break;
             
@@ -311,15 +315,15 @@
     UIImage_RIRResizing_ResizeMode resizeModeForRow = [self.tableSectionManager sectionForIndexPathSection:indexPath.section];
     
     switch (resizeModeForRow) {
-        case UIImage_RIRResizing_ResizeMode_ScaleToFill:
+        case UIImage_RIRResizing_ResizeMode_scaleToFill:
             return UIViewContentModeScaleToFill;
             break;
             
-        case UIImage_RIRResizing_ResizeMode_AspectFit:
+        case UIImage_RIRResizing_ResizeMode_aspectFit:
             return UIViewContentModeScaleAspectFit;
             break;
             
-        case UIImage_RIRResizing_ResizeMode_AspectFill:
+        case UIImage_RIRResizing_ResizeMode_aspectFill:
             return UIViewContentModeScaleAspectFill;
             break;
             
