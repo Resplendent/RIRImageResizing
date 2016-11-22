@@ -61,7 +61,6 @@
 #pragma mark - image
 @property (nonatomic, strong, nonnull) UIImage* image;
 
-
 @end
 
 
