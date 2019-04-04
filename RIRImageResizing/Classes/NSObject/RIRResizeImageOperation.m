@@ -55,6 +55,8 @@
  */
 -(nonnull UIImage*)scaleToCoverSize:(CGSize)newSize;	//UIImage_RIRResizing_ResizeMode_aspectFill
 
+-(CGFloat)scaleToUse;
+
 #pragma mark - resizeParameters
 @property (nonatomic, strong, nonnull) RIRResizeImageOperationParameters* resizeParameters;
 
@@ -98,19 +100,19 @@
 {
     switch (resizeMode)
     {
-        case UIImage_RIRResizing_ResizeMode_aspectFit:
-            return [self scaleToFitSize:newSize];
+        case UIImage_RIRResizing_ResizeMode_none:
             break;
             
         case UIImage_RIRResizing_ResizeMode_aspectFill:
             return [self scaleToCoverSize:newSize];
             break;
             
-        case UIImage_RIRResizing_ResizeMode_scaleToFill:
-            return [self scaleToFillSize:newSize];
+        case UIImage_RIRResizing_ResizeMode_aspectFit:
+            return [self scaleToFitSize:newSize];
             break;
             
-        default:
+        case UIImage_RIRResizing_ResizeMode_scaleToFill:
+            return [self scaleToFillSize:newSize];
             break;
     }
     
@@ -132,6 +134,7 @@
         destHeight = (size_t)newSize.height;
         destWidth = (size_t)(self.image.size.width * newSize.height / self.image.size.height);
     }
+    
     if (destWidth > newSize.width)
     {
         destWidth = (size_t)newSize.width;
@@ -151,7 +154,7 @@
 
 -(nonnull UIImage*)scaleToFillSize:(CGSize)newSize
 {
-    UIGraphicsBeginImageContextWithOptions(newSize, NO, self.resizeParameters.scale);
+    UIGraphicsBeginImageContextWithOptions(newSize, NO, [self scaleToUse]);
     
     [self.image drawInRect:CGRectMake(0,0,newSize.width,newSize.height)];
     UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
@@ -179,6 +182,12 @@
     }
     
     return [self scaleToFillSize:CGSizeMake(destWidth, destHeight)];
+}
+
+-(CGFloat)scaleToUse
+{
+    CGFloat const paramsScale = self.resizeParameters.scale;
+    return (paramsScale == 0.0) ? self.image.scale : paramsScale;
 }
 
 #pragma mark - resizedImage
