@@ -1,23 +1,27 @@
 PODS:
-  - ResplendentUtilities (0.5.0)
-  - RIRImageResizing (0.1.0):
-    - ResplendentUtilities (~> 0.5.0)
-  - RTSMTableSectionManager (0.1.8):
-    - ResplendentUtilities (~> 0.5.0)
+  - ResplendentUtilities (0.5.5)
+  - RIRImageResizing (0.1.1)
+  - RTSMTableSectionManager (0.1.10):
+    - ResplendentUtilities (~> 0.5.4)
 
 DEPENDENCIES:
   - RIRImageResizing (from `../`)
   - RTSMTableSectionManager
 
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - ResplendentUtilities
+    - RTSMTableSectionManager
+
 EXTERNAL SOURCES:
   RIRImageResizing:
-    :path: ../
+    :path: "../"
 
 SPEC CHECKSUMS:
-  ResplendentUtilities: df8bb038d91568f9e82ee88ba5796d5d68014cdf
-  RIRImageResizing: 3865ca1f291506b793de17eae8f67d36b7c7e280
-  RTSMTableSectionManager: 0da0f9e521a00501edabcd72be8b045c9d920111
+  ResplendentUtilities: c832d1a4a801951cb34b5b93e7acd018d3666274
+  RIRImageResizing: 7e19893ad7137e1310c13478412796bc1a2a71b6
+  RTSMTableSectionManager: 84569dfa25fb04a8785668e7a37c4e082d015456
 
-PODFILE CHECKSUM: 8db902a9134287679db454bb383de6d3ccfd336d
+PODFILE CHECKSUM: beeb00b5cd36a673f9306e1acb88f1a8ad69e8a4
 
-COCOAPODS: 1.1.1
+COCOAPODS: 1.6.1

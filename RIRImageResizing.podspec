@@ -33,6 +33,4 @@ Resizing methods offer:
 
   s.source_files = 'RIRImageResizing/Classes/**/*'
 
-  s.dependency 'ResplendentUtilities', '~> 0.5.0'
-
 end

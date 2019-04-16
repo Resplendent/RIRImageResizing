@@ -28,4 +28,5 @@
 {
     return (self = [self initWithRootViewController:[RIRViewController new]]);
 }
+
 @end

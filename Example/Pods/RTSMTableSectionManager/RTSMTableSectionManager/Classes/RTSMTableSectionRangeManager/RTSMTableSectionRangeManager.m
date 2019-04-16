@@ -77,9 +77,12 @@
 
 -(NSInteger)sectionForIndexPathSection:(NSUInteger)indexPathSection
 {
+	RTSMTableSectionManager* const tableSectionManager = self.tableSectionManager;
+	kRUConditionalReturn_ReturnValue(tableSectionManager == nil, NO, NSNotFound);
+
 	NSUInteger sectionCount = 0;
-	for (NSInteger section_loop = self.tableSectionManager.firstSection;
-		 section_loop <= self.tableSectionManager.lastSection;
+	for (NSInteger section_loop = tableSectionManager.firstSection;
+		 section_loop <= tableSectionManager.lastSection;
 		 section_loop++)
 	{
 		if ([self tableSectionManager_sectionIsAvailable:section_loop])
@@ -101,9 +104,12 @@
 
 -(NSUInteger)indexPathSectionCount
 {
+	RTSMTableSectionManager* const tableSectionManager = self.tableSectionManager;
+	kRUConditionalReturn_ReturnValue(tableSectionManager == nil, NO, 0.0f);
+
 	NSUInteger sectionCount = 0;
-	for (NSInteger section_loop = self.tableSectionManager.firstSection;
-		 section_loop <= self.tableSectionManager.lastSection;
+	for (NSInteger section_loop = tableSectionManager.firstSection;
+		 section_loop <= tableSectionManager.lastSection;
 		 section_loop++)
 	{
 		if ([self tableSectionManager_sectionIsAvailable:section_loop])
