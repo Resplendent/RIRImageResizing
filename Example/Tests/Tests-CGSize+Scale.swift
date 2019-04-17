@@ -23,37 +23,98 @@ class TestsCGSizeScale: XCTestCase {
     // MARK: - scaled(to: CGSize)
     func testCGSizeScaleLargerHeight() {
         let startingSize = CGSize(width: 2, height: 3)
-        let multiplier: CGFloat = 2.0
-        let doubleSize = CGSize(width: startingSize.width * multiplier, height: startingSize.height * multiplier)
-        XCTAssert(startingSize.scaled(to: doubleSize) == doubleSize, "Should be equal")
+        for multiplier in (1...10) {
+            let multipliedSize = startingSize.scaled(by: CGFloat(multiplier))
+            let finalSize = startingSize.scaled(to: multipliedSize)
+            XCTAssert(finalSize == multipliedSize,
+                      """
+                
+                `finalSize` should be equal to `multipliedSize`
+                startingSize: \(startingSize)
+                multiplier: \(multiplier)
+                multipliedSize: \(multipliedSize)
+                finalSize: \(finalSize)
+                """)
+        }
     }
     
     func testCGSizeScaleLargerWidth() {
         let startingSize = CGSize(width: 4, height: 3)
-        let scalingSize = CGSize(width: 8, height: 8)
-        XCTAssert(startingSize.scaled(to: scalingSize) == CGSize(width: 8, height: 6), "Should be equal")
+        for multiplier in (1...10) {
+            let multiplier = CGFloat(multiplier)
+            let scalingSize = CGSize(width: startingSize.width * multiplier, height: startingSize.width * multiplier)
+            let finalSize = startingSize.scaled(to: scalingSize)
+            let compareToSize = startingSize.scaled(by: multiplier)
+            XCTAssert(finalSize == compareToSize,
+                      """
+                
+                `finalSize` should be equal to `compareToSize`
+                startingSize: \(startingSize)
+                multiplier: \(multiplier)
+                scalingSize: \(scalingSize)
+                finalSize: \(finalSize)
+                compareToSize: \(compareToSize)
+                """)
+        }
     }
     
     // MARK: - boundedWithPreservedScale(by: CGSize)
     func testCGSizeScaledAndBoundedLargerWidth() {
-        let startingWidth: CGFloat = 20.0
-        let startingWidthToHeightRatio: CGFloat = 1.5
-        let startingSize = CGSize(width: startingWidth, height: startingWidth * startingWidthToHeightRatio)
-        
         let scaledAndBoundedSize = CGSize(width: 10, height: 10)
+        let scaledAndBoundedWidthToHeightRatio = scaledAndBoundedSize.height / scaledAndBoundedSize.width
         
-        let finalSize = startingSize.boundedWithPreservedScale(by: scaledAndBoundedSize)
-        let finalRatio = finalSize.height / finalSize.width
+        let startingWidth: CGFloat = scaledAndBoundedSize.width
         
-        XCTAssert(finalRatio == startingWidthToHeightRatio,
-                  """
+        let increment: CGFloat = 0.25
+        for startingWidthToHeightRatio in stride(from: increment, to: 3.0, by: increment) {
+            let startingSize = CGSize(width: startingWidth, height: startingWidth * startingWidthToHeightRatio)
             
-            `finalRatio` was not equal to `scaledAndBoundedWidthToHeightRatio`
-            finalRatio: \(finalRatio)
-            startingWidthToHeightRatio: \(startingWidthToHeightRatio)
-            startingSize: \(startingSize)
-            scaledAndBoundedSize: \(scaledAndBoundedSize)
-            finalSize: \(finalSize)
-            """)
+            let finalSize = startingSize.boundedWithPreservedScale(by: scaledAndBoundedSize)
+            let finalRatio = finalSize.height / finalSize.width
+            
+            let ratioToCompareTo = startingWidthToHeightRatio
+            
+            var assertString: String {
+                return """
+                scaledAndBoundedSize: \(scaledAndBoundedSize)
+                scaledAndBoundedWidthToHeightRatio: \(scaledAndBoundedWidthToHeightRatio)
+                startingWidthToHeightRatio: \(startingWidthToHeightRatio)
+                startingSize: \(startingSize)
+                finalSize: \(finalSize)
+                finalRatio: \(finalRatio)
+                """
+            }
+            
+            XCTAssert(finalRatio == ratioToCompareTo,"""
+                `finalRatio` should be equal to `ratioToCompareTo`
+                \(assertString)
+                ratioToCompareTo: \(ratioToCompareTo)
+                """)
+            
+            if startingWidthToHeightRatio < 1.0 {
+                let sizeToCompareTo = CGSize(width: scaledAndBoundedSize.width, height: scaledAndBoundedSize.width * startingWidthToHeightRatio)
+                XCTAssert(finalSize == sizeToCompareTo, """
+                    
+                    `finalSize` should be equal to `sizeToCompareTo`
+                    \(assertString)
+                    sizeToCompareTo: \(sizeToCompareTo)
+                    """)
+            }
+            else {
+                let sizeToCompareTo = CGSize(width: startingSize.width / startingWidthToHeightRatio, height: scaledAndBoundedSize.height)
+                XCTAssert(finalSize == sizeToCompareTo, """
+                    
+                    `finalSize` should be equal to `sizeToCompareTo`
+                    \(assertString)
+                    sizeToCompareTo: \(sizeToCompareTo)
+                    """)
+            }
+        }
+    }
+}
+
+private extension CGSize {
+    func scaled(by scale: CGFloat) -> CGSize {
+        return CGSize(width: width * scale, height: height * scale)
     }
 }
