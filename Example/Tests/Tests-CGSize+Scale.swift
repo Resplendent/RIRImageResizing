@@ -26,15 +26,13 @@ class TestsCGSizeScale: XCTestCase {
         for multiplier in (1...10) {
             let multipliedSize = startingSize.scaled(by: CGFloat(multiplier))
             let finalSize = startingSize.scaled(to: multipliedSize)
-            XCTAssert(finalSize == multipliedSize,
-                      """
-                
-                `finalSize` should be equal to `multipliedSize`
-                startingSize: \(startingSize)
-                multiplier: \(multiplier)
-                multipliedSize: \(multipliedSize)
-                finalSize: \(finalSize)
-                """)
+            XCTAssert(finalSize == multipliedSize,[
+                "`finalSize` should be equal to `multipliedSize`",
+                "startingSize: \(startingSize)",
+                "multiplier: \(multiplier)",
+                "multipliedSize: \(multipliedSize)",
+                "finalSize: \(finalSize)"
+                ].xctAssertFormatted)
         }
     }
     
@@ -45,16 +43,15 @@ class TestsCGSizeScale: XCTestCase {
             let scalingSize = CGSize(width: startingSize.width * multiplier, height: startingSize.width * multiplier)
             let finalSize = startingSize.scaled(to: scalingSize)
             let compareToSize = startingSize.scaled(by: multiplier)
-            XCTAssert(finalSize == compareToSize,
-                      """
-                
-                `finalSize` should be equal to `compareToSize`
-                startingSize: \(startingSize)
-                multiplier: \(multiplier)
-                scalingSize: \(scalingSize)
-                finalSize: \(finalSize)
-                compareToSize: \(compareToSize)
-                """)
+            
+            XCTAssert(finalSize == compareToSize,[
+                "`finalSize` should be equal to `compareToSize`",
+                "startingSize: \(startingSize)",
+                "multiplier: \(multiplier)",
+                "scalingSize: \(scalingSize)",
+                "finalSize: \(finalSize)",
+                "compareToSize: \(compareToSize)"
+                ].xctAssertFormatted)
         }
     }
     
@@ -75,40 +72,31 @@ class TestsCGSizeScale: XCTestCase {
             let ratioToCompareTo = startingWidthToHeightRatio
             
             var assertString: String {
-                return """
-                scaledAndBoundedSize: \(scaledAndBoundedSize)
-                scaledAndBoundedWidthToHeightRatio: \(scaledAndBoundedWidthToHeightRatio)
-                startingWidthToHeightRatio: \(startingWidthToHeightRatio)
-                startingSize: \(startingSize)
-                finalSize: \(finalSize)
-                finalRatio: \(finalRatio)
-                """
+                return [
+                    "scaledAndBoundedSize: \(scaledAndBoundedSize)",
+                    "scaledAndBoundedWidthToHeightRatio: \(scaledAndBoundedWidthToHeightRatio)",
+                    "startingWidthToHeightRatio: \(startingWidthToHeightRatio)",
+                    "startingSize: \(startingSize)",
+                    "finalSize: \(finalSize)",
+                    "finalRatio: \(finalRatio)",
+                ].xctAssertFormatted(isFinal: false)
             }
             
-            XCTAssert(finalRatio == ratioToCompareTo,"""
-                `finalRatio` should be equal to `ratioToCompareTo`
-                \(assertString)
-                ratioToCompareTo: \(ratioToCompareTo)
-                """)
+            XCTAssert(finalRatio == ratioToCompareTo, [
+                "`finalRatio` should be equal to `ratioToCompareTo`",
+                assertString,
+                "ratioToCompareTo: \(ratioToCompareTo)",
+                ].xctAssertFormatted)
             
-            if startingWidthToHeightRatio < 1.0 {
-                let sizeToCompareTo = CGSize(width: scaledAndBoundedSize.width, height: scaledAndBoundedSize.width * startingWidthToHeightRatio)
-                XCTAssert(finalSize == sizeToCompareTo, """
-                    
-                    `finalSize` should be equal to `sizeToCompareTo`
-                    \(assertString)
-                    sizeToCompareTo: \(sizeToCompareTo)
-                    """)
-            }
-            else {
-                let sizeToCompareTo = CGSize(width: startingSize.width / startingWidthToHeightRatio, height: scaledAndBoundedSize.height)
-                XCTAssert(finalSize == sizeToCompareTo, """
-                    
-                    `finalSize` should be equal to `sizeToCompareTo`
-                    \(assertString)
-                    sizeToCompareTo: \(sizeToCompareTo)
-                    """)
-            }
+            let sizeToCompareTo = startingWidthToHeightRatio < 1.0
+                ? CGSize(width: scaledAndBoundedSize.width, height: scaledAndBoundedSize.width * startingWidthToHeightRatio)
+                : CGSize(width: startingSize.width / startingWidthToHeightRatio, height: scaledAndBoundedSize.height)
+            
+            XCTAssert(finalSize == sizeToCompareTo, [
+                "`finalSize` should be equal to `sizeToCompareTo`",
+                assertString,
+                "sizeToCompareTo: \(sizeToCompareTo)",
+                ].xctAssertFormatted)
         }
     }
 }
