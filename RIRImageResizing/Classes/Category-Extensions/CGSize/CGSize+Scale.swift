@@ -7,14 +7,14 @@
 
 import Foundation
 
-extension CGSize {
+public extension CGSize {
     func scaled(to size: CGSize) -> CGSize {
         return width > height
             ? CGSize(width: size.width, height: height * size.width / width)
             : CGSize(width: width * size.height / height, height: size.height)
     }
     
-    func scaledAndBounded(by size: CGSize) -> CGSize {
+    func boundedWithPreservedScale(by size: CGSize) -> CGSize {
         var scaledAndBoundedSize = self
         
         if scaledAndBoundedSize.width > size.width {

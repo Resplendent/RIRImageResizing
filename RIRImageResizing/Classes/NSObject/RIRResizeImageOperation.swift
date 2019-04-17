@@ -57,7 +57,7 @@ public class RIRResizeImageOperation {
     private var resizedImageAspectFit: UIImage? {
         return resizedImageScaleToFill(size: {
             let initialSize = image.size.scaled(to: parameters.newSize)
-            return initialSize.scaledAndBounded(by: parameters.newSize)
+            return initialSize.boundedWithPreservedScale(by: parameters.newSize)
 //            let boundedToNewSize = initialSize.scaledAndBounded(by: parameters.newSize)
 //            return boundedToNewSize.scaledAndBounded(by: image.size)
         }())

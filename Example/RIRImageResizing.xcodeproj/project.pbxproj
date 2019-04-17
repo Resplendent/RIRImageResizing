@@ -18,9 +18,9 @@
 		6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
-		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		B63789131DDE25ED00FE4433 /* RIRNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = B63789121DDE25ED00FE4433 /* RIRNavigationController.m */; };
 		B6BC2AF11DDE33AC00384D79 /* RIRTableViewCell_GenericImageViewAndLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = B6BC2AF01DDE33AC00384D79 /* RIRTableViewCell_GenericImageViewAndLabel.m */; };
+		D752B06D2266A9EC00B48363 /* Tests-CGSize+Scale.swift in Sources */ = {isa = PBXBuildFile; fileRef = D752B06C2266A9EC00B48363 /* Tests-CGSize+Scale.swift */; };
 		D7C423021DA855E100614F30 /* RIRAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D7C422FE1DA855E100614F30 /* RIRAppDelegate.m */; };
 		D7C423031DA855E100614F30 /* RIRViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D7C423011DA855E100614F30 /* RIRViewController.m */; };
 		F039887B7ED5D3B79095BA5F /* Pods_RIRImageResizing_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 506C8093F268DED6B096CD01 /* Pods_RIRImageResizing_Example.framework */; };
@@ -55,7 +55,6 @@
 		6003F5AF195388D20070C39A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		6003F5B7195388D20070C39A /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
 		6003F5B9195388D20070C39A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		6003F5BB195388D20070C39A /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
 		80918B468316FDEBFD9ED05B /* Pods-RIRImageResizing_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RIRImageResizing_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RIRImageResizing_Tests/Pods-RIRImageResizing_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		8570B0987F525C3206D077BF /* Pods-RIRImageResizing_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RIRImageResizing_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RIRImageResizing_Example/Pods-RIRImageResizing_Example.debug.xcconfig"; sourceTree = "<group>"; };
@@ -65,6 +64,8 @@
 		B6BC2AF01DDE33AC00384D79 /* RIRTableViewCell_GenericImageViewAndLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RIRTableViewCell_GenericImageViewAndLabel.m; sourceTree = "<group>"; };
 		BA23F6FD650BC0F9C1069A63 /* Pods-RIRImageResizing_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RIRImageResizing_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-RIRImageResizing_Example/Pods-RIRImageResizing_Example.release.xcconfig"; sourceTree = "<group>"; };
 		C4EF27ED1AC70CFC022DF8A2 /* Pods_RIRImageResizing_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RIRImageResizing_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D752B0692266A22000B48363 /* RIRImageResizing_Tests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RIRImageResizing_Tests-Bridging-Header.h"; sourceTree = "<group>"; };
+		D752B06C2266A9EC00B48363 /* Tests-CGSize+Scale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tests-CGSize+Scale.swift"; sourceTree = "<group>"; };
 		D7C422FD1DA855E100614F30 /* RIRAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RIRAppDelegate.h; sourceTree = "<group>"; };
 		D7C422FE1DA855E100614F30 /* RIRAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RIRAppDelegate.m; sourceTree = "<group>"; };
 		D7C423001DA855E100614F30 /* RIRViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RIRViewController.h; sourceTree = "<group>"; };
@@ -158,8 +159,9 @@
 		6003F5B5195388D20070C39A /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				6003F5BB195388D20070C39A /* Tests.m */,
+				D752B0692266A22000B48363 /* RIRImageResizing_Tests-Bridging-Header.h */,
 				6003F5B6195388D20070C39A /* Supporting Files */,
+				D752B06C2266A9EC00B48363 /* Tests-CGSize+Scale.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -306,6 +308,7 @@
 						LastSwiftMigration = 1020;
 					};
 					6003F5AD195388D20070C39A = {
+						LastSwiftMigration = 1020;
 						TestTargetID = 6003F589195388D20070C39A;
 					};
 				};
@@ -427,7 +430,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6003F5BC195388D20070C39A /* Tests.m in Sources */,
+				D752B06D2266A9EC00B48363 /* Tests-CGSize+Scale.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -610,6 +613,7 @@
 			baseConfigurationReference = 80918B468316FDEBFD9ED05B /* Pods-RIRImageResizing_Tests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -622,8 +626,12 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "Tests/Tests-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Tests/RIRImageResizing_Tests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RIRImageResizing_Example.app/RIRImageResizing_Example";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -634,6 +642,7 @@
 			baseConfigurationReference = 5C749903BE08DC90AC963E24 /* Pods-RIRImageResizing_Tests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -642,8 +651,11 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Tests/Tests-Prefix.pch";
 				INFOPLIST_FILE = "Tests/Tests-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Tests/RIRImageResizing_Tests-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RIRImageResizing_Example.app/RIRImageResizing_Example";
 				WRAPPER_EXTENSION = xctest;
 			};
