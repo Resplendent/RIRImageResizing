@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum RIRImageResizeType {
+public enum RIRImageResizeType: CaseIterable {
     case scaleToFill, aspectFit, aspectFill
 }
 

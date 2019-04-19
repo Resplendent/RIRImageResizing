@@ -12,8 +12,8 @@ extension UIImage {
         return RIRResizeImageOperation(parameters: parameters, image: self)
     }
     
-    func rirScaledImage(with parameters: RIRResizeImageOperationParameters) -> UIImage? {
-        return rirScaledImageOperation(with: parameters).resizedImage
+    func rirScaledImage(with parameters: RIRResizeImageOperationParameters) throws -> UIImage {
+        return try rirScaledImageOperation(with: parameters).resizedImage()
     }
 }
 

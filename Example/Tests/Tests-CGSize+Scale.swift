@@ -6,7 +6,6 @@
 //  Copyright © 2019 Benjamin Maer. All rights reserved.
 //
 
-import Foundation
 import XCTest
 
 @testable import RIRImageResizing
@@ -98,11 +97,5 @@ class TestsCGSizeScale: XCTestCase {
                 "sizeToCompareTo: \(sizeToCompareTo)",
                 ].xctAssertFormatted)
         }
-    }
-}
-
-private extension CGSize {
-    func scaled(by scale: CGFloat) -> CGSize {
-        return CGSize(width: width * scale, height: height * scale)
     }
 }

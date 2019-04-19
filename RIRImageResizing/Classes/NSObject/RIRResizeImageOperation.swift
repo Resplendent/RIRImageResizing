@@ -19,20 +19,28 @@ public class RIRResizeImageOperation {
     private var hasAttemptedImageResize: Bool = false
     
     // MARK: - Resized Image
-    private var resizedImagePointer: UIImage?
-    var resizedImage: UIImage? {
-        if resizedImagePointer == nil {
-            guard hasAttemptedImageResize == false else {
-                assertionFailure("`resizedImagePointer` is nil, but we've already attempted to resize the image.")
-                return nil
-            }
+    private enum ResizedImagePointer {
+        case notSet, attempted, set(UIImage)
+    }
+    private var resizedImagePointer: ResizedImagePointer = .notSet
+    
+    enum ResizedImageError: Error {
+        case alreadyAttemptedAndFailed
+    }
+    func resizedImage() throws -> UIImage {
+        switch resizedImagePointer {
+        case .notSet:
+            resizedImagePointer = .attempted
+            let resizedImage = try resizedImageGenerate()
+            resizedImagePointer = .set(resizedImage)
+            return resizedImage
             
-            hasAttemptedImageResize = true
+        case .attempted:
+            throw ResizedImageError.alreadyAttemptedAndFailed
             
-            resizedImagePointer = resizedImageGenerate
+        case .set(let image):
+            return image
         }
-        
-        return resizedImagePointer
     }
     
     // MARK: - Init
@@ -42,20 +50,20 @@ public class RIRResizeImageOperation {
     }
     
     // MARK: - Resized Image (functions)
-    private var resizedImageGenerate: UIImage? {
+    private func resizedImageGenerate() throws -> UIImage {
         switch parameters.resizeType {
-        case .scaleToFill:  return resizedImageScaleToFill
-        case .aspectFit:    return resizedImageAspectFit
-        case .aspectFill:   return resizedImageAspectFill
+        case .scaleToFill:  return try resizedImageScaleToFill()
+        case .aspectFit:    return try resizedImageAspectFit()
+        case .aspectFill:   return try resizedImageAspectFill()
         }
     }
     
-    private var resizedImageScaleToFill: UIImage? {
-        return resizedImageScaleToFill(size: parameters.newSize)
+    private func resizedImageScaleToFill() throws -> UIImage {
+        return try resizedImageScaleToFill(size: parameters.newSize)
     }
     
-    private var resizedImageAspectFit: UIImage? {
-        return resizedImageScaleToFill(size: {
+    private func resizedImageAspectFit() throws -> UIImage {
+        return try resizedImageScaleToFill(size: {
             let initialSize = image.size.scaled(to: parameters.newSize)
             return initialSize.boundedWithPreservedScale(by: parameters.newSize)
 //            let boundedToNewSize = initialSize.scaledAndBounded(by: parameters.newSize)
@@ -63,20 +71,23 @@ public class RIRResizeImageOperation {
         }())
     }
     
-    private var resizedImageAspectFill: UIImage? {
+    private func resizedImageAspectFill() throws -> UIImage {
         let newSize = parameters.newSize
         let widthRatio = newSize.width / image.size.width
         let heightRatio = newSize.height / image.size.height
         let heightRatioIsGreaterThanWidth = heightRatio > widthRatio
-        return resizedImageScaleToFill(size: CGSize(width: heightRatioIsGreaterThanWidth ? image.size.width * heightRatio : newSize.width,
-                                                    height: heightRatioIsGreaterThanWidth ? newSize.height : image.size.height * widthRatio))
+        return try resizedImageScaleToFill(size: CGSize(width: heightRatioIsGreaterThanWidth ? image.size.width * heightRatio : newSize.width,
+                                                        height: heightRatioIsGreaterThanWidth ? newSize.height : image.size.height * widthRatio))
     }
     
-    private func resizedImageScaleToFill(size: CGSize) -> UIImage? {
-        return type(of: self).resized(image: image, scaleToFill: size, scale: scaleToUse)
+    private func resizedImageScaleToFill(size: CGSize) throws -> UIImage {
+        return try type(of: self).resized(image: image, scaleToFill: size, scale: scaleToUse)
     }
     
-    private static func resized(image: UIImage, scaleToFill size: CGSize, scale: CGFloat) -> UIImage? {
+    enum ResizeImageGenerationError: Error {
+        case generatedImageWasNil
+    }
+    private static func resized(image: UIImage, scaleToFill size: CGSize, scale: CGFloat) throws -> UIImage {
         UIGraphicsBeginImageContextWithOptions(size, false, scale);
         image.draw(in: CGRect(origin: .zero, size: size))
         
@@ -84,7 +95,17 @@ public class RIRResizeImageOperation {
         
         UIGraphicsEndImageContext()
         
-        return newImage
+        guard let finalImage = newImage else {
+            assertionFailure("""
+                Failed to create image with parameters:
+                image: \(image)
+                size: \(size)
+                scale: \(scale)
+                """)
+            throw ResizeImageGenerationError.generatedImageWasNil
+        }
+        
+        return finalImage
     }
     
     // MARK: - Scale
@@ -108,7 +129,14 @@ public class RIRResizeImageOperation {
     let swiftInstance: RIRResizeImageOperation
     
     // MARK: - Resized Image
-    @objc var resizedImage: UIImage? { return swiftInstance.resizedImage }
+    @objc var resizedImage: UIImage? {
+        do {
+            return try swiftInstance.resizedImage()
+        } catch {
+            assertionFailure("Failed to create resized image with error: \(error)")
+            return nil
+        }
+    }
     
     // MARK: - Init
     @objc(init_with_parameters:image:) public init(parameters: RIRResizeImageOperationParametersObjCLegacy, image: UIImage) {

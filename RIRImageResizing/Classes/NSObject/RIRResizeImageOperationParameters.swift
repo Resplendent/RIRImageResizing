@@ -27,6 +27,16 @@ public class RIRResizeImageOperationParameters {
     }
 }
 
+extension RIRResizeImageOperationParameters: CustomStringConvertible {
+    public var description: String {
+        return [
+            "newSize: \(newSize)",
+            "resizeType: \(resizeType)",
+            "scale: \(String(describing: scale))",
+        ].joined(separator: "\n")
+    }
+}
+
 @objc(RIRResizeImageOperationParameters) public class RIRResizeImageOperationParametersObjCLegacy: NSObject {
     @objc var newSize: CGSize { return swiftInstance.newSize }
     @objc let resizeType: RIRImageResizeTypeObjCLegacy
