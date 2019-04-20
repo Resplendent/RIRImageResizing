@@ -11,16 +11,40 @@ import XCTest
 @testable import RIRImageResizing
 
 class Tests_UIImage_RIRImageResizing: XCTestCase {
-
+    
     override func setUp() {
         super.setUp()
     }
-
+    
     override func tearDown() {
         super.tearDown()
     }
     
     // MARK: - rirScaledImage(with: CGSize)
+    fileprivate enum Comparison: CaseIterable {
+        case resizedImageWidthToHeightRatioAssertion
+        case resizeParametersNewSizeToResizedImage
+    }
+    
+    fileprivate struct ComparisonValues<T> {
+        let scaleToFillValue: T
+        let aspectFitValue: T
+        let aspectFillValue: T
+        
+        func value(for type: RIRImageResizeType) -> T {
+            switch type {
+            case .scaleToFill:  return scaleToFillValue
+            case .aspectFit:    return aspectFitValue
+            case .aspectFill:   return aspectFillValue
+            }
+        }
+    }
+    
+    fileprivate struct ComparisonData<T> {
+        let comparisonValues: ComparisonValues<T>
+        let asserStringComponents: ComparisonValues<([String]) -> [String]>
+    }
+    
     func testScaledImage() {
         for isLarger in [true, false] {
             let assertStringComponents = ["isLarger: \(isLarger)"]
@@ -81,20 +105,38 @@ class Tests_UIImage_RIRImageResizing: XCTestCase {
                 let resizedImageWidthToHeightRatio = resizedImage.size.height / resizedImage.size.width
                 assertStringComponents.append("resizedImageWidthToHeightRatio: \(resizedImageWidthToHeightRatio)")
                 
+                func performTest<T: Equatable>(value: T, comparisonData: ComparisonData<T>, file: StaticString = #file, line: UInt = #line) {
+                    let valueToCompareTo = comparisonData.comparisonValues.value(for: resizeType)
+                    let assertStringComponentsClosure = comparisonData.asserStringComponents.value(for: resizeType)
+                    XCTAssert(value == valueToCompareTo, assertStringComponentsClosure(assertStringComponents).xctAssertFormatted, file: file, line: line)
+                }
+                
+                for comparison in Comparison.allCases {
+                    switch comparison {
+                    case .resizedImageWidthToHeightRatioAssertion:
+                        performTest(value: resizedImageWidthToHeightRatio,
+                                    comparisonData: ComparisonData(comparisonValues: ComparisonValues(scaleToFillValue: resizeWidthToHeightRatio,
+                                                                                                      aspectFitValue: startingWidthToHeightRatio,
+                                                                                                      aspectFillValue: startingWidthToHeightRatio),
+                                                                   asserStringComponents: ComparisonValues(scaleToFillValue: "`resizeWidthToHeightRatio`",
+                                                                                                           aspectFitValue: "`startingWidthToHeightRatio`",
+                                                                                                           aspectFillValue: "`startingWidthToHeightRatio`"),
+                                                                   sharedAssertStringSuffix: " should be equal to `resizeWidthToHeightRatio`"))
+                        
+                    case .resizeParametersNewSizeToResizedImage:
+                        performTest(value: resizeParameters.newSize,
+                                    comparisonData: ComparisonData(comparisonValues: ComparisonValues(scaleToFillValue: resizedImage.size,
+                                                                                                      aspectFitValue: CGSize(width: resizedImage.size.width / resizeWidthToHeightRatio, height: resizedImage.size.height),
+                                                                                                      aspectFillValue: CGSize(width: resizedImage.size.width / resizeWidthToHeightRatio, height: resizedImage.size.height)),
+                                                                   asserStringComponents: ComparisonValues(scaleToFillValue: "`resizedImage.size`",
+                                                                                                           aspectFitValue: "`CGSize(width: resizedImage.size.width / resizeWidthToHeightRatio, height: resizedImage.size.height)`",
+                                                                                                           aspectFillValue: "`CGSize(width: resizedImage.size.width / resizeWidthToHeightRatio, height: resizedImage.size.height)`"),
+                                                                   sharedAssertStringSuffix: " should be equal to `resizeParameters.newSize`"))
+                    }
+                }
+                
                 switch resizeType {
                 case .scaleToFill:
-                    XCTAssert(resizeWidthToHeightRatio == resizedImageWidthToHeightRatio, { () -> [String] in
-                        var assertStringComponents = assertStringComponents
-                        assertStringComponents.insert("`resizeWidthToHeightRatio` should be equal to `resizeWidthToHeightRatio`", at: 0)
-                        return assertStringComponents
-                        }().xctAssertFormatted)
-                    
-                    XCTAssert(resizedImage.size == resizeParameters.newSize, { () -> [String] in
-                        var assertStringComponents = assertStringComponents
-                        assertStringComponents.insert("`resizedImage.size` should be equal to `resizeParameters.newSize`", at: 0)
-                        return assertStringComponents
-                        }().xctAssertFormatted)
-                    
                     XCTAssert(resizedImage.size.width * resizeWidthToHeightRatio == resizedImage.size.height, { () -> [String] in
                         var assertStringComponents = assertStringComponents
                         assertStringComponents.insert("`resizedImage.size.width * resizeWidthToHeightRatio` should be equal to `resizedImage.size.height`", at: 0)
@@ -114,49 +156,13 @@ class Tests_UIImage_RIRImageResizing: XCTestCase {
                         }().xctAssertFormatted)
                     
                 case .aspectFit:
-                    XCTAssert(startingWidthToHeightRatio == resizedImageWidthToHeightRatio, { () -> [String] in
-                        var assertStringComponents = assertStringComponents
-                        assertStringComponents.insert("`startingWidthToHeightRatio` should be equal to `resizeWidthToHeightRatio`", at: 0)
-                        return assertStringComponents
-                        }().xctAssertFormatted)
-                    
-                    XCTAssert(resizedImage.size.height == resizeParameters.newSize.height, { () -> [String] in
-                        var assertStringComponents = assertStringComponents
-                        assertStringComponents.insert("`resizedImage.size.height` should be equal to `resizeParameters.newSize.height`", at: 0)
-                        return assertStringComponents
-                        }().xctAssertFormatted)
-                    
-                    XCTAssert(resizedImage.size.width == resizeParameters.newSize.width * resizeWidthToHeightRatio, { () -> [String] in
-                        var assertStringComponents = assertStringComponents
-                        assertStringComponents.insert("`resizedImage.size.width` should be equal to `resizeParameters.newSize.width * resizeWidthToHeightRatio`", at: 0)
-                        return assertStringComponents
-                        }().xctAssertFormatted)
-                    
                     XCTAssert(startingImage.size.width == resizeParameters.newSize.width * resizeWidthToHeightRatio, { () -> [String] in
                         var assertStringComponents = assertStringComponents
                         assertStringComponents.insert("`startingImage.size.width` should be equal to `resizeParameters.newSize.width * resizeWidthToHeightRatio`", at: 0)
                         return assertStringComponents
                         }().xctAssertFormatted)
-                
+                    
                 case .aspectFill:
-                    XCTAssert(startingWidthToHeightRatio == resizedImageWidthToHeightRatio, { () -> [String] in
-                        var assertStringComponents = assertStringComponents
-                        assertStringComponents.insert("`startingWidthToHeightRatio` should be equal to `resizeWidthToHeightRatio`", at: 0)
-                        return assertStringComponents
-                        }().xctAssertFormatted)
-                    
-                    XCTAssert(resizedImage.size.height == resizeParameters.newSize.height, { () -> [String] in
-                        var assertStringComponents = assertStringComponents
-                        assertStringComponents.insert("`resizedImage.size.height` should be equal to `resizeParameters.newSize.height`", at: 0)
-                        return assertStringComponents
-                        }().xctAssertFormatted)
-                    
-                    XCTAssert(resizedImage.size.width == resizeParameters.newSize.width * resizeWidthToHeightRatio, { () -> [String] in
-                        var assertStringComponents = assertStringComponents
-                        assertStringComponents.insert("`resizedImage.size.width` should be equal to `resizeParameters.newSize.width * resizeWidthToHeightRatio`", at: 0)
-                        return assertStringComponents
-                        }().xctAssertFormatted)
-                    
                     XCTAssert(startingImage.size.width == resizeParameters.newSize.width * resizeWidthToHeightRatio, { () -> [String] in
                         var assertStringComponents = assertStringComponents
                         assertStringComponents.insert("`startingImage.size.width` should be equal to `resizeParameters.newSize.width * resizeWidthToHeightRatio`", at: 0)
@@ -164,7 +170,7 @@ class Tests_UIImage_RIRImageResizing: XCTestCase {
                         }().xctAssertFormatted)
                 }
                 
-//                print(assertStringComponents.xctAssertFormatted)
+                //                print(assertStringComponents.xctAssertFormatted)
             }
         }
     }
@@ -179,5 +185,27 @@ private extension UIImage {
         
         guard let cgImage = image?.cgImage else { return nil }
         self.init(cgImage: cgImage)
+    }
+}
+
+extension Tests_UIImage_RIRImageResizing.ComparisonData {
+    typealias ComparisonValues = Tests_UIImage_RIRImageResizing.ComparisonValues
+    init(comparisonValues: ComparisonValues<T>, asserStringComponents: ComparisonValues<String>, sharedAssertStringSuffix: String? = nil) {
+        func stringToParam(_ asserStringInitialComponent: String) -> ([String]) -> [String] {
+            return { assertStringComponents in
+                var assertStringComponents = assertStringComponents
+                assertStringComponents.insert({
+                    guard let sharedAssertStringSuffix = sharedAssertStringSuffix else { return asserStringInitialComponent }
+                    return asserStringInitialComponent + sharedAssertStringSuffix
+                }(), at: 0)
+                return assertStringComponents
+            }
+        }
+        
+        
+        self.init(comparisonValues: comparisonValues,
+                  asserStringComponents: .init(scaleToFillValue: stringToParam(asserStringComponents.scaleToFillValue),
+                                               aspectFitValue: stringToParam(asserStringComponents.aspectFitValue),
+                                               aspectFillValue: stringToParam(asserStringComponents.aspectFillValue)))
     }
 }
