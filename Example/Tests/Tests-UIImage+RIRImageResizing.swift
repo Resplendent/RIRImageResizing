@@ -89,13 +89,82 @@ class Tests_UIImage_RIRImageResizing: XCTestCase {
                         return assertStringComponents
                         }().xctAssertFormatted)
                     
-                case .aspectFit, .aspectFill:
+                    XCTAssert(resizedImage.size == resizeParameters.newSize, { () -> [String] in
+                        var assertStringComponents = assertStringComponents
+                        assertStringComponents.insert("`resizedImage.size` should be equal to `resizeParameters.newSize`", at: 0)
+                        return assertStringComponents
+                        }().xctAssertFormatted)
+                    
+                    XCTAssert(resizedImage.size.width * resizeWidthToHeightRatio == resizedImage.size.height, { () -> [String] in
+                        var assertStringComponents = assertStringComponents
+                        assertStringComponents.insert("`resizedImage.size.width * resizeWidthToHeightRatio` should be equal to `resizedImage.size.height`", at: 0)
+                        return assertStringComponents
+                        }().xctAssertFormatted)
+                    
+                    XCTAssert(startingImage.size.width == resizedImage.size.width, { () -> [String] in
+                        var assertStringComponents = assertStringComponents
+                        assertStringComponents.insert("`startingImage.size.width` should be equal to `resizedImage.size.width`", at: 0)
+                        return assertStringComponents
+                        }().xctAssertFormatted)
+                    
+                    XCTAssert(startingImage.size.height * resizeWidthToHeightRatio == resizedImage.size.height, { () -> [String] in
+                        var assertStringComponents = assertStringComponents
+                        assertStringComponents.insert("`startingImage.size.height * resizeWidthToHeightRatio` should be equal to `resizedImage.size.height`", at: 0)
+                        return assertStringComponents
+                        }().xctAssertFormatted)
+                    
+                case .aspectFit:
                     XCTAssert(startingWidthToHeightRatio == resizedImageWidthToHeightRatio, { () -> [String] in
                         var assertStringComponents = assertStringComponents
                         assertStringComponents.insert("`startingWidthToHeightRatio` should be equal to `resizeWidthToHeightRatio`", at: 0)
                         return assertStringComponents
                         }().xctAssertFormatted)
+                    
+                    XCTAssert(resizedImage.size.height == resizeParameters.newSize.height, { () -> [String] in
+                        var assertStringComponents = assertStringComponents
+                        assertStringComponents.insert("`resizedImage.size.height` should be equal to `resizeParameters.newSize.height`", at: 0)
+                        return assertStringComponents
+                        }().xctAssertFormatted)
+                    
+                    XCTAssert(resizedImage.size.width == resizeParameters.newSize.width * resizeWidthToHeightRatio, { () -> [String] in
+                        var assertStringComponents = assertStringComponents
+                        assertStringComponents.insert("`resizedImage.size.width` should be equal to `resizeParameters.newSize.width * resizeWidthToHeightRatio`", at: 0)
+                        return assertStringComponents
+                        }().xctAssertFormatted)
+                    
+                    XCTAssert(startingImage.size.width == resizeParameters.newSize.width * resizeWidthToHeightRatio, { () -> [String] in
+                        var assertStringComponents = assertStringComponents
+                        assertStringComponents.insert("`startingImage.size.width` should be equal to `resizeParameters.newSize.width * resizeWidthToHeightRatio`", at: 0)
+                        return assertStringComponents
+                        }().xctAssertFormatted)
+                
+                case .aspectFill:
+                    XCTAssert(startingWidthToHeightRatio == resizedImageWidthToHeightRatio, { () -> [String] in
+                        var assertStringComponents = assertStringComponents
+                        assertStringComponents.insert("`startingWidthToHeightRatio` should be equal to `resizeWidthToHeightRatio`", at: 0)
+                        return assertStringComponents
+                        }().xctAssertFormatted)
+                    
+                    XCTAssert(resizedImage.size.height == resizeParameters.newSize.height, { () -> [String] in
+                        var assertStringComponents = assertStringComponents
+                        assertStringComponents.insert("`resizedImage.size.height` should be equal to `resizeParameters.newSize.height`", at: 0)
+                        return assertStringComponents
+                        }().xctAssertFormatted)
+                    
+                    XCTAssert(resizedImage.size.width == resizeParameters.newSize.width * resizeWidthToHeightRatio, { () -> [String] in
+                        var assertStringComponents = assertStringComponents
+                        assertStringComponents.insert("`resizedImage.size.width` should be equal to `resizeParameters.newSize.width * resizeWidthToHeightRatio`", at: 0)
+                        return assertStringComponents
+                        }().xctAssertFormatted)
+                    
+                    XCTAssert(startingImage.size.width == resizeParameters.newSize.width * resizeWidthToHeightRatio, { () -> [String] in
+                        var assertStringComponents = assertStringComponents
+                        assertStringComponents.insert("`startingImage.size.width` should be equal to `resizeParameters.newSize.width * resizeWidthToHeightRatio`", at: 0)
+                        return assertStringComponents
+                        }().xctAssertFormatted)
                 }
+                
+//                print(assertStringComponents.xctAssertFormatted)
             }
         }
     }
