@@ -64,10 +64,17 @@ public class RIRResizeImageOperation {
     
     private func resizedImageAspectFit() throws -> UIImage {
         return try resizedImageScaleToFill(size: {
-            let initialSize = image.size.scaled(to: parameters.newSize)
-            return initialSize.boundedWithPreservedScale(by: parameters.newSize)
-//            let boundedToNewSize = initialSize.scaledAndBounded(by: parameters.newSize)
-//            return boundedToNewSize.scaledAndBounded(by: image.size)
+            let initialSize = image.size
+            var sizeChanges: [(CGSize) -> CGSize] = []
+            sizeChanges.append { [self] in $0.scaled(to: self.parameters.newSize) }
+            sizeChanges.append { [self] in $0.boundedWithPreservedScale(by: self.parameters.newSize) }
+            sizeChanges.append { $0.boundedWithPreservedScale(by: initialSize) }
+
+            var size = initialSize
+            sizeChanges.forEach({ sizeFunction in
+                size = sizeFunction(size)
+            })
+            return size
         }())
     }
     

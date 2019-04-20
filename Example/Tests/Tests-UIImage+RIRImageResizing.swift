@@ -21,11 +21,6 @@ class Tests_UIImage_RIRImageResizing: XCTestCase {
     }
     
     // MARK: - rirScaledImage(with: CGSize)
-    fileprivate enum Comparison: CaseIterable {
-        case resizedImageWidthToHeightRatioAssertion
-        case resizeParametersNewSizeToResizedImage
-    }
-    
     fileprivate struct ComparisonValues<T> {
         let scaleToFillValue: T
         let aspectFitValue: T
@@ -46,8 +41,8 @@ class Tests_UIImage_RIRImageResizing: XCTestCase {
     }
     
     func testScaledImage() {
-        for isLarger in [true, false] {
-            let assertStringComponents = ["isLarger: \(isLarger)"]
+        for isHeightLarger in [true, false] {
+            let assertStringComponents = ["isHeightLarger: \(isHeightLarger)"]
             for resizeType in RIRImageResizeType.allCases {
                 var assertStringComponents = assertStringComponents
                 assertStringComponents.append("resizeType: \(resizeType)")
@@ -64,12 +59,12 @@ class Tests_UIImage_RIRImageResizing: XCTestCase {
                 assertStringComponents.append("startingWidthToHeightRatio: \(startingWidthToHeightRatio)")
                 
                 let resizeWidthRatio: CGFloat = 1.0
-                let resizeHeightRatio: CGFloat = isLarger ? 1.5 : 0.5
+                let resizeHeightRatio: CGFloat = isHeightLarger ? 1.5 : 0.5
                 assertStringComponents.append("resizeWidthRatio: \(resizeWidthRatio)")
                 assertStringComponents.append("resizeHeightRatio: \(resizeHeightRatio)")
                 
                 guard let resizeParameters: RIRResizeImageOperationParameters = {
-                    let parametersSize = CGSize(width: startingSize.width * resizeWidthRatio, height: startingSize.height * resizeHeightRatio)
+                    let parametersSize = startingSize.scaled(scaleWidth: resizeWidthRatio, height: resizeHeightRatio)
                     do {
                         return try RIRResizeImageOperationParameters(newSize: parametersSize,
                                                                      resizeType: resizeType)
@@ -111,6 +106,12 @@ class Tests_UIImage_RIRImageResizing: XCTestCase {
                     XCTAssert(value == valueToCompareTo, assertStringComponentsClosure(assertStringComponents).xctAssertFormatted, file: file, line: line)
                 }
                 
+                enum Comparison: CaseIterable {
+                    case resizedImageWidthToHeightRatioAssertion
+//                    case resizeParametersNewSizeToResizedImage
+                    case resizedImageSizeToStartingImageOrParametersSize
+                }
+                
                 for comparison in Comparison.allCases {
                     switch comparison {
                     case .resizedImageWidthToHeightRatioAssertion:
@@ -123,15 +124,20 @@ class Tests_UIImage_RIRImageResizing: XCTestCase {
                                                                                                            aspectFillValue: "`startingWidthToHeightRatio`"),
                                                                    sharedAssertStringSuffix: " should be equal to `resizeWidthToHeightRatio`"))
                         
-                    case .resizeParametersNewSizeToResizedImage:
-                        performTest(value: resizeParameters.newSize,
-                                    comparisonData: ComparisonData(comparisonValues: ComparisonValues(scaleToFillValue: resizedImage.size,
-                                                                                                      aspectFitValue: CGSize(width: resizedImage.size.width / resizeWidthToHeightRatio, height: resizedImage.size.height),
-                                                                                                      aspectFillValue: CGSize(width: resizedImage.size.width / resizeWidthToHeightRatio, height: resizedImage.size.height)),
-                                                                   asserStringComponents: ComparisonValues(scaleToFillValue: "`resizedImage.size`",
-                                                                                                           aspectFitValue: "`CGSize(width: resizedImage.size.width / resizeWidthToHeightRatio, height: resizedImage.size.height)`",
-                                                                                                           aspectFillValue: "`CGSize(width: resizedImage.size.width / resizeWidthToHeightRatio, height: resizedImage.size.height)`"),
-                                                                   sharedAssertStringSuffix: " should be equal to `resizeParameters.newSize`"))
+                    case .resizedImageSizeToStartingImageOrParametersSize:
+                        let aspectFitValue = isHeightLarger ? startingImage.size : resizeParameters.newSize.scaled(scaleWidth: resizeWidthToHeightRatio)
+                        let aspectFillValue = isHeightLarger ? resizeParameters.newSize.scaled(scaleWidth: resizeWidthToHeightRatio) : startingImage.size
+                        performTest(value: resizedImage.size,
+                                    comparisonData: ComparisonData(comparisonValues: ComparisonValues(scaleToFillValue: resizeParameters.newSize,
+                                                                                                      aspectFitValue: aspectFitValue,
+                                                                                                      aspectFillValue: aspectFillValue),
+                                                                   asserStringComponents: ComparisonValues(scaleToFillValue: "`resizeParameters.newSize`",
+                                                                                                           aspectFitValue: "`aspectFitValue`",
+                                                                                                           aspectFillValue: "`aspectFillValue`"),
+                                                                   sharedAssertStringSuffix: " should be equal to `resizeParameters.newSize`",
+                                                                   extraAsserStringComponents: ComparisonValues(scaleToFillValue: nil,
+                                                                                                                aspectFitValue: [  "aspectFitValue".xctAssertComponentFormatted(with: aspectFitValue) ],
+                                                                                                                aspectFillValue: [ "aspectFillValue".xctAssertComponentFormatted(with: aspectFillValue) ])))
                     }
                 }
                 
@@ -190,22 +196,25 @@ private extension UIImage {
 
 extension Tests_UIImage_RIRImageResizing.ComparisonData {
     typealias ComparisonValues = Tests_UIImage_RIRImageResizing.ComparisonValues
-    init(comparisonValues: ComparisonValues<T>, asserStringComponents: ComparisonValues<String>, sharedAssertStringSuffix: String? = nil) {
-        func stringToParam(_ asserStringInitialComponent: String) -> ([String]) -> [String] {
+    init(comparisonValues: ComparisonValues<T>, asserStringComponents: ComparisonValues<String>, sharedAssertStringSuffix: String? = nil, extraAsserStringComponents: ComparisonValues<[String]?>? = nil) {
+        func stringToParam(_ asserStringInitialComponent: String, extraAsserStringComponents: [String]? = nil) -> ([String]) -> [String] {
             return { assertStringComponents in
                 var assertStringComponents = assertStringComponents
                 assertStringComponents.insert({
                     guard let sharedAssertStringSuffix = sharedAssertStringSuffix else { return asserStringInitialComponent }
                     return asserStringInitialComponent + sharedAssertStringSuffix
                 }(), at: 0)
+                if let extraAsserStringComponents = extraAsserStringComponents {
+                    assertStringComponents.append(contentsOf: extraAsserStringComponents)
+                }
                 return assertStringComponents
             }
         }
         
         
         self.init(comparisonValues: comparisonValues,
-                  asserStringComponents: .init(scaleToFillValue: stringToParam(asserStringComponents.scaleToFillValue),
-                                               aspectFitValue: stringToParam(asserStringComponents.aspectFitValue),
-                                               aspectFillValue: stringToParam(asserStringComponents.aspectFillValue)))
+                  asserStringComponents: .init(scaleToFillValue: stringToParam(asserStringComponents.scaleToFillValue, extraAsserStringComponents: extraAsserStringComponents?.scaleToFillValue),
+                                               aspectFitValue: stringToParam(asserStringComponents.aspectFitValue, extraAsserStringComponents: extraAsserStringComponents?.aspectFitValue),
+                                               aspectFillValue: stringToParam(asserStringComponents.aspectFillValue, extraAsserStringComponents: extraAsserStringComponents?.aspectFillValue)))
     }
 }

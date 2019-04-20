@@ -10,6 +10,11 @@ import Foundation
 
 extension String {
     var xctAssertFormatted: String { return "\n" + self }
+    
+    // MARK: - Component
+    func xctAssertComponentFormatted(with value: Any) -> String {
+        return self + " " + String(describing: value)
+    }
 }
 
 extension Array where Element == String {

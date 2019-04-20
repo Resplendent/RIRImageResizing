@@ -8,22 +8,33 @@
 import Foundation
 
 public class RIRResizeImageOperationParameters {
+    // MARK: - Constants
+    public struct PublicConstants {
+        static let allowLargerResizedDimensionsDefaultValue = RIRResizeImageOperationParametersObjCLegacy.allowLargerResizedDimensionsDefaultValue
+    }
+    
     let newSize: CGSize
     let resizeType: RIRImageResizeType
     let scale: CGFloat?
+    
+    let allowLargerResizedDimensions: Bool
     
     // MARK: - Init
     enum InitError: Error {
         case badNewSizeWidth, badNewSizeHeight
     }
     
-    init(newSize: CGSize, resizeType: RIRImageResizeType, scale: CGFloat? = 0) throws {
+    init(newSize: CGSize,
+         resizeType: RIRImageResizeType,
+         scale: CGFloat? = 0,
+         allowLargerResizedDimensions: Bool = PublicConstants.allowLargerResizedDimensionsDefaultValue) throws {
         guard newSize.width > 0 else    { throw InitError.badNewSizeWidth }
         guard newSize.height > 0 else   { throw InitError.badNewSizeHeight }
         
         self.newSize = newSize
         self.resizeType = resizeType
         self.scale = scale
+        self.allowLargerResizedDimensions = allowLargerResizedDimensions
     }
 }
 
@@ -38,21 +49,29 @@ extension RIRResizeImageOperationParameters: CustomStringConvertible {
 }
 
 @objc(RIRResizeImageOperationParameters) public class RIRResizeImageOperationParametersObjCLegacy: NSObject {
+    // MARK: - Constants
+    @objc static let allowLargerResizedDimensionsDefaultValue = false
+    
     @objc var newSize: CGSize { return swiftInstance.newSize }
     @objc let resizeType: RIRImageResizeTypeObjCLegacy
     @objc var scale: CGFloat { return swiftInstance.scale ?? 0 }
+    @objc var allowLargerResizedDimensions: Bool { return swiftInstance.allowLargerResizedDimensions }
     
     // MARK: - Swift Instance
     let swiftInstance: RIRResizeImageOperationParameters
     
     // MARK: - Init
-    @objc(init_with_newSize:resizeMode:scale:) public init?(newSize: CGSize, resizeType: RIRImageResizeTypeObjCLegacy, scale: CGFloat = 0) {
+    @objc(init_with_newSize:resizeMode:scale:allowLargerResizedDimensions:) public init?(newSize: CGSize, resizeType: RIRImageResizeTypeObjCLegacy, scale: CGFloat = 0, allowLargerResizedDimensions: Bool = false) {
         self.resizeType = resizeType
         do {
-            try swiftInstance = RIRResizeImageOperationParameters(newSize: newSize, resizeType: resizeType.swiftValue, scale: scale)
+            try swiftInstance = RIRResizeImageOperationParameters(newSize: newSize, resizeType: resizeType.swiftValue, scale: scale, allowLargerResizedDimensions: allowLargerResizedDimensions)
         } catch {
             assertionFailure("Failed to create `swiftParameters`")
             return nil
         }
+    }
+    
+    @objc(init_with_newSize:resizeMode:scale:) public convenience init?(newSize: CGSize, resizeType: RIRImageResizeTypeObjCLegacy, scale: CGFloat = 0) {
+        self.init(newSize: newSize, resizeType: resizeType, scale: scale)
     }
 }
