@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension UIImage {
+public extension UIImage {
     func rirScaledImageOperation(with parameters: RIRResizeImageOperationParameters) -> RIRResizeImageOperation {
         return RIRResizeImageOperation(parameters: parameters, image: self)
     }

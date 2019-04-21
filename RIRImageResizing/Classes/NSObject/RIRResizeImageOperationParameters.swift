@@ -24,10 +24,10 @@ public class RIRResizeImageOperationParameters {
         case badNewSizeWidth, badNewSizeHeight
     }
     
-    init(newSize: CGSize,
-         resizeType: RIRImageResizeType,
-         scale: CGFloat? = 0,
-         allowLargerResizedDimensions: Bool = PublicConstants.allowLargerResizedDimensionsDefaultValue) throws {
+    public init(newSize: CGSize,
+                resizeType: RIRImageResizeType,
+                scale: CGFloat? = 0,
+                allowLargerResizedDimensions: Bool = PublicConstants.allowLargerResizedDimensionsDefaultValue) throws {
         guard newSize.width > 0 else    { throw InitError.badNewSizeWidth }
         guard newSize.height > 0 else   { throw InitError.badNewSizeHeight }
         
