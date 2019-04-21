@@ -40,8 +40,13 @@ class Tests_UIImage_RIRImageResizing: XCTestCase {
         let asserStringComponents: ComparisonValues<([String]) -> [String]>
     }
     
-    fileprivate enum StartingImageToResizeSizeScaling: CaseIterable {
-        case smaller, largerHeight//, largerWidth//, largerSize
+    fileprivate enum StartingImageToResizeSizeScalingDimensionLength: CaseIterable {
+        case smaller, normal, larger
+    }
+    
+    fileprivate struct StartingImageToResizeSizeScaling {
+//        let width: StartingImageToResizeSizeScalingDimensionLength
+        let height: StartingImageToResizeSizeScalingDimensionLength
     }
     
     fileprivate struct TestScaledImageCase {
@@ -50,6 +55,10 @@ class Tests_UIImage_RIRImageResizing: XCTestCase {
     }
     
     func testScaledImage() {
+        func resizeRatioValue(height: StartingImageToResizeSizeScalingDimensionLength) -> CGFloat {
+            return height.value(smaller: 0.5, normal: 1.0, larger: 1.5)
+        }
+        
         var assertStringComponents: [String] = []
         let startingSize = CGSize(width: 100, height: 100)
         assertStringComponents.append("startingSize: \(startingSize)")
@@ -58,6 +67,7 @@ class Tests_UIImage_RIRImageResizing: XCTestCase {
             var assertStringComponents = assertStringComponents
             assertStringComponents.append("startingImageToResizeSizeScaling".xctAssertComponentFormatted(with: testCase.scaling))
             assertStringComponents.append("resizeType".xctAssertComponentFormatted(with: testCase.resizeType))
+            print(assertStringComponents.xctAssertFormatted)
             guard let startingImage = UIImage(size: startingSize) else {
                 XCTFail("Failed to create image with size \(startingSize)".xctAssertFormatted)
                 return
@@ -71,7 +81,7 @@ class Tests_UIImage_RIRImageResizing: XCTestCase {
             assertStringComponents.append("startingWidthToHeightRatio: \(startingWidthToHeightRatio)")
             
             let resizeWidthRatio: CGFloat = 1.0
-            let resizeHeightRatio: CGFloat = testCase.scaling.value(smaller: 0.5, largerHeight: 1.5)
+            let resizeHeightRatio: CGFloat = resizeRatioValue(height: testCase.scaling.height)
             assertStringComponents.append("resizeWidthRatio: \(resizeWidthRatio)")
             assertStringComponents.append("resizeHeightRatio: \(resizeHeightRatio)")
             
@@ -159,8 +169,10 @@ class Tests_UIImage_RIRImageResizing: XCTestCase {
             for comparison in Comparison.allCases {
                 switch comparison {
                 case .resizedImageWidthToHeightRatioAssertion:
-                    let comparisonValues = ComparisonValues(scaleToFillValue: testCase.scaling.value(smaller: resizeWidthToHeightRatio,
-                                                                                                     largerHeight: startingWidthToHeightRatio),
+                    
+                    let comparisonValues = ComparisonValues(scaleToFillValue: testCase.scaling.height.value(smaller: resizeWidthToHeightRatio,
+                                                                                                            normal: 1.0,
+                                                                                                            larger: startingWidthToHeightRatio),
                                                             aspectFitValue: startingWidthToHeightRatio,
                                                             aspectFillValue: startingWidthToHeightRatio)
                     performTest(value: resizedImageWidthToHeightRatio,
@@ -170,10 +182,10 @@ class Tests_UIImage_RIRImageResizing: XCTestCase {
                                                                extraAsserStringComponents: extraAsserStringComponentsComparisonValues(comparisonValues: comparisonValues)))
                     
                 case .resizedImageSizeToStartingImageSize:
-                    let comparisonValues = ComparisonValues(scaleToFillValue: testCase.scaling.value(smaller: startingImage.size.scaled(scaleHeight: resizeHeightRatio),
-                                                                                                     largerHeight: startingImage.size),
-                                                            aspectFitValue: testCase.scaling.value(smaller: startingImage.size.scaled(scaleWidth: resizeHeightRatio, scaleHeight: resizeHeightRatio),
-                                                                                                   largerHeight: startingImage.size),
+                    let comparisonValues = ComparisonValues(scaleToFillValue: testCase.scaling.height.value(smaller: startingImage.size.scaled(scaleHeight: resizeHeightRatio),
+                                                                                                            normalAndLarger: startingImage.size),
+                                                            aspectFitValue: testCase.scaling.height.value(smaller: startingImage.size.scaled(scaleWidth: resizeHeightRatio, scaleHeight: resizeHeightRatio),
+                                                                                                          normalAndLarger: startingImage.size),
                                                             aspectFillValue: startingImage.size)
                     
                     performTest(value: resizedImage.size,
@@ -183,9 +195,10 @@ class Tests_UIImage_RIRImageResizing: XCTestCase {
                                                                extraAsserStringComponents: extraAsserStringComponentsComparisonValues(comparisonValues: comparisonValues)))
                     
                 case .resizedImageSizeToParametersNewSize:
-                    let comparisonValues = ComparisonValues(scaleToFillValue: testCase.scaling.value(smaller: resizeParameters.newSize,
-                                                                                                     largerHeight: resizeParameters.newSize.scaled(scaleHeight: 1 / resizeHeightRatio)),
-                                                            aspectFitValue: testCase.scaling.value(smaller: resizeParameters.newSize.scaled(scaleWidth: resizeWidthToHeightRatio), largerHeight: resizeParameters.newSize.scaled(scaleHeight: 1 / resizeHeightRatio)),
+                    let comparisonValues = ComparisonValues(scaleToFillValue: testCase.scaling.height.value(smaller: resizeParameters.newSize,
+                                                                                                            normalAndLarger: resizeParameters.newSize.scaled(scaleHeight: 1 / resizeHeightRatio)),
+                                                            aspectFitValue: testCase.scaling.height.value(smaller: resizeParameters.newSize.scaled(scaleWidth: resizeWidthToHeightRatio),
+                                                                                                          normalAndLarger: resizeParameters.newSize.scaled(scaleHeight: 1 / resizeHeightRatio)),
                                                             aspectFillValue: resizeParameters.newSize.scaled(scaleHeight: 1 / resizeHeightRatio))
                     performTest(value: resizedImage.size,
                                 comparisonData: ComparisonData(comparisonValues: comparisonValues,
@@ -247,38 +260,102 @@ extension ComparisonValues where T == String {
                                                           aspectFillValue: "comparisonValues.aspectFillValue")
 }
 
-private typealias StartingImageToResizeSizeScaling = Tests_UIImage_RIRImageResizing.StartingImageToResizeSizeScaling
-extension StartingImageToResizeSizeScaling {
+private typealias StartingImageToResizeSizeScalingDimensionLength = Tests_UIImage_RIRImageResizing.StartingImageToResizeSizeScalingDimensionLength
+extension StartingImageToResizeSizeScalingDimensionLength {
     typealias ValueParameterType<T> = () -> T
     func value<T>(smaller: ValueParameterType<T>,
-                  largerHeight: ValueParameterType<T>) -> T {
+                  normal: ValueParameterType<T>,
+                  larger: ValueParameterType<T>) -> T {
         switch self {
-        case .smaller:          return smaller()
-        case .largerHeight:     return largerHeight()
+        case .smaller:  return smaller()
+        case .normal:   return normal()
+        case .larger:   return larger()
         }
     }
     
     func value<T>(smaller: T,
-                  largerHeight: T) -> T {
+                  normal: T,
+                  larger: T) -> T {
         return value(smaller: { smaller },
-                     largerHeight: { largerHeight })
+                     normal: { normal },
+                     larger: { larger })
     }
     
-    // MARK: - Optional
-    func value<T>(smaller: ValueParameterType<T>? = nil,
-                  largerHeight: ValueParameterType<T>? = nil) -> T? {
-        switch self {
-        case .smaller:          return smaller?()
-        case .largerHeight:     return largerHeight?()
-        }
+    func value<T>(smaller: T,
+                  normalAndLarger: T) -> T {
+        return value(smaller: smaller,
+                     normal: normalAndLarger,
+                     larger: normalAndLarger)
     }
 }
+
+private typealias StartingImageToResizeSizeScaling = Tests_UIImage_RIRImageResizing.StartingImageToResizeSizeScaling
+extension StartingImageToResizeSizeScaling: CaseIterable {
+    typealias AllCases = [StartingImageToResizeSizeScaling]
+    
+    static let allCases: [StartingImageToResizeSizeScaling] = Tests_UIImage_RIRImageResizing.StartingImageToResizeSizeScalingDimensionLength.allCases.map {
+        return .init(height: $0)
+    }
+}
+//extension StartingImageToResizeSizeScaling {
+//
+//
+//    typealias ValueParameterType<T> = () -> T
+//    func value<T>(smaller: ValueParameterType<T>,
+//                  largerHeight: ValueParameterType<T>,
+//                  largerWidth: ValueParameterType<T>) -> T {
+//        switch self {
+//        case .smaller:          return smaller()
+//        case .largerHeight:     return largerHeight()
+////        case .largerWidth:      return largerWidth()
+//        }
+//    }
+//
+//    func value<T>(smaller: T,
+//                  largerHeight: T,
+//                  largerWidth: T) -> T {
+//        return value(smaller: { smaller },
+//                     largerHeight: { largerHeight },
+//                     largerWidth: { largerWidth })
+//    }
+//
+//    func value<T>(smaller: T,
+//                  largerDimension: T) -> T {
+//        return value(smaller: smaller,
+//                     largerHeight: largerDimension,
+//                     largerWidth: largerDimension)
+//    }
+//
+//    // MARK: - Optional
+//    func oValue<T>(smaller: ValueParameterType<T>? = nil,
+//                  largerHeight: ValueParameterType<T>? = nil,
+//                  largerWidth: ValueParameterType<T>? = nil,
+//                  defaultValue: @escaping ValueParameterType<T?> = { return nil } ) -> T? {
+//        return value(smaller: smaller ?? defaultValue,
+//                     largerHeight: largerHeight ?? defaultValue,
+//                     largerWidth: largerWidth ?? defaultValue)
+//    }
+//
+//    // MARK: - Height
+//    func value<T>(largerHeight: T,
+//                  other: T) -> T {
+//        return value(smaller: other,
+//                     largerHeight: largerHeight,
+//                     largerWidth: other)
+//    }
+//
+//    // MARK: - Width
+//    func value<T>(largerWidth: T,
+//                  other: T) -> T {
+//        return value(smaller: { other },
+//                     largerHeight: { other },
+//                     largerWidth: { largerWidth })
+//    }
+//}
 
 private typealias TestScaledImageCase = Tests_UIImage_RIRImageResizing.TestScaledImageCase
 extension TestScaledImageCase: CaseIterable {
     typealias AllCases = [TestScaledImageCase]
     
-    static let allCases: [TestScaledImageCase] = {
-        return zip(StartingImageToResizeSizeScaling.allCases, RIRImageResizeType.allCases).map { return .init(scaling: $0, resizeType: $1) }
-    }()
+    static let allCases: [TestScaledImageCase] = zip(StartingImageToResizeSizeScaling.allCases, RIRImageResizeType.allCases).map { .init(scaling: $0, resizeType: $1) }
 }
