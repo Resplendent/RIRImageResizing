@@ -10,11 +10,11 @@ import Foundation
 import CoreGraphics
 
 extension CGSize {
-    func scaled(scaleWidth: CGFloat = 1, height: CGFloat = 1) -> CGSize {
-        return CGSize(width: width * scaleWidth, height: self.height * height)
+    func scaled(scaleWidth: CGFloat = 1, scaleHeight: CGFloat = 1) -> CGSize {
+        return CGSize(width: width * scaleWidth, height: self.height * scaleHeight)
     }
     
     func scaled(by scale: CGFloat) -> CGSize {
-        return scaled(scaleWidth: scale, height: scale)
+        return scaled(scaleWidth: scale, scaleHeight: scale)
     }
 }

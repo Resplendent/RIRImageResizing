@@ -61,7 +61,7 @@ extension RIRResizeImageOperationParameters: CustomStringConvertible {
     let swiftInstance: RIRResizeImageOperationParameters
     
     // MARK: - Init
-    @objc(init_with_newSize:resizeMode:scale:allowLargerResizedDimensions:) public init?(newSize: CGSize, resizeType: RIRImageResizeTypeObjCLegacy, scale: CGFloat = 0, allowLargerResizedDimensions: Bool = false) {
+    @objc(init_with_newSize:resizeMode:scale:allowLargerResizedDimensions:) public init?(newSize: CGSize, resizeType: RIRImageResizeTypeObjCLegacy, scale: CGFloat = 0, allowLargerResizedDimensions: Bool) {
         self.resizeType = resizeType
         do {
             try swiftInstance = RIRResizeImageOperationParameters(newSize: newSize, resizeType: resizeType.swiftValue, scale: scale, allowLargerResizedDimensions: allowLargerResizedDimensions)
@@ -72,6 +72,6 @@ extension RIRResizeImageOperationParameters: CustomStringConvertible {
     }
     
     @objc(init_with_newSize:resizeMode:scale:) public convenience init?(newSize: CGSize, resizeType: RIRImageResizeTypeObjCLegacy, scale: CGFloat = 0) {
-        self.init(newSize: newSize, resizeType: resizeType, scale: scale)
+        self.init(newSize: newSize, resizeType: resizeType, scale: scale, allowLargerResizedDimensions: RIRResizeImageOperationParametersObjCLegacy.allowLargerResizedDimensionsDefaultValue)
     }
 }

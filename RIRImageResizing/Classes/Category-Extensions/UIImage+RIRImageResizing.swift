@@ -22,7 +22,7 @@ extension UIImage {
         return RIRResizeImageOperationObjCLegacy(parameters: parameters, image: self)
     }
     
-    @objc(rir_scaledImage_with_parameters:) func rirScaledImageObjCLegacy(with parameters: RIRResizeImageOperationParametersObjCLegacy) -> UIImage? {
-        return rirScaledImageOperationObjCLegacy(with: parameters).resizedImage
+    @objc(rir_scaledImage_with_parameters:error:) func rirScaledImageObjCLegacy(with parameters: RIRResizeImageOperationParametersObjCLegacy) throws -> UIImage {
+        return try rirScaledImageOperationObjCLegacy(with: parameters).resizedImage()
     }
 }

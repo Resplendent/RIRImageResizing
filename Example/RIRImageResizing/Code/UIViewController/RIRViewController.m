@@ -266,8 +266,11 @@
     RIRImageResizeType const resizeModeForRow = [self.tableSectionManager sectionForIndexPathSection:indexPath.section];
     
     RIRResizeImageOperationParameters* const resizeParameters = [[RIRResizeImageOperationParameters alloc] init_with_newSize:imageSize resizeMode:resizeModeForRow scale:0.0f];
-
-    return [image rir_scaledImage_with_parameters:resizeParameters];
+    
+    NSError* error = nil;
+    UIImage* const resiziedImage = [image rir_scaledImage_with_parameters:resizeParameters error:&error];
+    NSAssert(error != nil, @"error: %@",error);
+    return resiziedImage;
 }
 
 #pragma mark - UIImagePickerControllerDelegate

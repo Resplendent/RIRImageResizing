@@ -27,4 +27,8 @@ public extension CGSize {
         
         return scaledAndBoundedSize
     }
+    
+    func bounded(by size: CGSize) -> CGSize {
+        return CGSize(width: min(width, size.width), height: min(height, size.height))
+    }
 }

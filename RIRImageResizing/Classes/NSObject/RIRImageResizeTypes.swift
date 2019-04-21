@@ -9,6 +9,8 @@ import Foundation
 
 public enum RIRImageResizeType: CaseIterable {
     case scaleToFill, aspectFit, aspectFill
+    
+    var isAspect: Bool { return [.aspectFit, .aspectFill].contains(self) }
 }
 
 @objc(RIRImageResizeType) public enum RIRImageResizeTypeObjCLegacy: Int, CaseIterable {

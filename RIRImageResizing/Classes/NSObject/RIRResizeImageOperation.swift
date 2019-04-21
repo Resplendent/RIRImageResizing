@@ -50,41 +50,49 @@ public class RIRResizeImageOperation {
     }
     
     // MARK: - Resized Image (functions)
-    private func resizedImageGenerate() throws -> UIImage {
-        switch parameters.resizeType {
-        case .scaleToFill:  return try resizedImageScaleToFill()
-        case .aspectFit:    return try resizedImageAspectFit()
-        case .aspectFill:   return try resizedImageAspectFill()
-        }
+    var resizedImageSize: CGSize {
+        return {
+            switch parameters.resizeType {
+            case .scaleToFill:  return resizedImageSizeScaleToFill
+            case .aspectFit:    return resizedImageSizeAspectFit
+            case .aspectFill:   return resizedImageSizeAspectFill
+            }
+        }()
     }
     
-    private func resizedImageScaleToFill() throws -> UIImage {
-        return try resizedImageScaleToFill(size: parameters.newSize)
+    private var resizedImageSizeScaleToFill: CGSize {
+        return parameters.newSize.bounded(by: image.size)
     }
     
-    private func resizedImageAspectFit() throws -> UIImage {
-        return try resizedImageScaleToFill(size: {
-            let initialSize = image.size
-            var sizeChanges: [(CGSize) -> CGSize] = []
-            sizeChanges.append { [self] in $0.scaled(to: self.parameters.newSize) }
-            sizeChanges.append { [self] in $0.boundedWithPreservedScale(by: self.parameters.newSize) }
-            sizeChanges.append { $0.boundedWithPreservedScale(by: initialSize) }
-
-            var size = initialSize
-            sizeChanges.forEach({ sizeFunction in
-                size = sizeFunction(size)
-            })
-            return size
-        }())
+    private var resizedImageSizeAspectFit: CGSize {
+        let initialSize = image.size, newSize = parameters.newSize
+        var sizeChanges: [(CGSize) -> CGSize] = []
+        sizeChanges.append { $0.scaled(to: newSize) }
+        sizeChanges.append { $0.boundedWithPreservedScale(by: newSize) }
+        sizeChanges.append { $0.boundedWithPreservedScale(by: initialSize) }
+        
+        var size = initialSize
+        sizeChanges.forEach({ sizeFunction in
+            size = sizeFunction(size)
+        })
+        return size
     }
     
-    private func resizedImageAspectFill() throws -> UIImage {
+    private var resizedImageSizeAspectFill: CGSize {
         let newSize = parameters.newSize
         let widthRatio = newSize.width / image.size.width
         let heightRatio = newSize.height / image.size.height
         let heightRatioIsGreaterThanWidth = heightRatio > widthRatio
-        return try resizedImageScaleToFill(size: CGSize(width: heightRatioIsGreaterThanWidth ? image.size.width * heightRatio : newSize.width,
-                                                        height: heightRatioIsGreaterThanWidth ? newSize.height : image.size.height * widthRatio))
+        return image.size.boundedWithPreservedScale(by: CGSize(width: heightRatioIsGreaterThanWidth ? image.size.width * heightRatio : newSize.width,
+                                                               height: heightRatioIsGreaterThanWidth ? newSize.height : image.size.height * widthRatio))
+    }
+    
+    private func resizedImageGenerate() throws -> UIImage {
+        return try resizedImageScaleToFill(size: resizedImageSize)
+    }
+    
+    private func resizedImageScaleToFill() throws -> UIImage {
+        return try resizedImageScaleToFill(size: parameters.newSize)
     }
     
     private func resizedImageScaleToFill(size: CGSize) throws -> UIImage {
@@ -103,12 +111,6 @@ public class RIRResizeImageOperation {
         UIGraphicsEndImageContext()
         
         guard let finalImage = newImage else {
-            assertionFailure("""
-                Failed to create image with parameters:
-                image: \(image)
-                size: \(size)
-                scale: \(scale)
-                """)
             throw ResizeImageGenerationError.generatedImageWasNil
         }
         
@@ -136,13 +138,8 @@ public class RIRResizeImageOperation {
     let swiftInstance: RIRResizeImageOperation
     
     // MARK: - Resized Image
-    @objc var resizedImage: UIImage? {
-        do {
-            return try swiftInstance.resizedImage()
-        } catch {
-            assertionFailure("Failed to create resized image with error: \(error)")
-            return nil
-        }
+    @objc func resizedImage() throws -> UIImage {
+        return try swiftInstance.resizedImage()
     }
     
     // MARK: - Init
