@@ -297,61 +297,6 @@ extension StartingImageToResizeSizeScaling: CaseIterable {
         return .init(height: $0)
     }
 }
-//extension StartingImageToResizeSizeScaling {
-//
-//
-//    typealias ValueParameterType<T> = () -> T
-//    func value<T>(smaller: ValueParameterType<T>,
-//                  largerHeight: ValueParameterType<T>,
-//                  largerWidth: ValueParameterType<T>) -> T {
-//        switch self {
-//        case .smaller:          return smaller()
-//        case .largerHeight:     return largerHeight()
-////        case .largerWidth:      return largerWidth()
-//        }
-//    }
-//
-//    func value<T>(smaller: T,
-//                  largerHeight: T,
-//                  largerWidth: T) -> T {
-//        return value(smaller: { smaller },
-//                     largerHeight: { largerHeight },
-//                     largerWidth: { largerWidth })
-//    }
-//
-//    func value<T>(smaller: T,
-//                  largerDimension: T) -> T {
-//        return value(smaller: smaller,
-//                     largerHeight: largerDimension,
-//                     largerWidth: largerDimension)
-//    }
-//
-//    // MARK: - Optional
-//    func oValue<T>(smaller: ValueParameterType<T>? = nil,
-//                  largerHeight: ValueParameterType<T>? = nil,
-//                  largerWidth: ValueParameterType<T>? = nil,
-//                  defaultValue: @escaping ValueParameterType<T?> = { return nil } ) -> T? {
-//        return value(smaller: smaller ?? defaultValue,
-//                     largerHeight: largerHeight ?? defaultValue,
-//                     largerWidth: largerWidth ?? defaultValue)
-//    }
-//
-//    // MARK: - Height
-//    func value<T>(largerHeight: T,
-//                  other: T) -> T {
-//        return value(smaller: other,
-//                     largerHeight: largerHeight,
-//                     largerWidth: other)
-//    }
-//
-//    // MARK: - Width
-//    func value<T>(largerWidth: T,
-//                  other: T) -> T {
-//        return value(smaller: { other },
-//                     largerHeight: { other },
-//                     largerWidth: { largerWidth })
-//    }
-//}
 
 private typealias TestScaledImageCase = Tests_UIImage_RIRImageResizing.TestScaledImageCase
 extension TestScaledImageCase: CaseIterable {
