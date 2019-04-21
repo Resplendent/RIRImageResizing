@@ -45,7 +45,6 @@ class Tests_UIImage_RIRImageResizing: XCTestCase {
     }
     
     fileprivate struct StartingImageToResizeSizeScaling {
-//        let width: StartingImageToResizeSizeScalingDimensionLength
         let height: StartingImageToResizeSizeScalingDimensionLength
     }
     
