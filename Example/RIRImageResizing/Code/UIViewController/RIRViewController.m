@@ -8,8 +8,6 @@
 
 #import "RIRViewController.h"
 #import "RIRTableViewCell_GenericImageViewAndLabel.h"
-#import "UIImage+RIRImageResizing.h"
-#import "RIRResizeImageOperation.h"
 
 #import <ResplendentUtilities/RUConditionalReturn.h>
 #import <ResplendentUtilities/UIView+RUUtility.h>
@@ -17,6 +15,7 @@
 #import <RTSMTableSectionManager/RTSMTableSectionManager.h>
 #import <RTSMTableSectionManager/RTSMTableSectionRangeManager.h>
 
+#import <RIRImageResizing/RIRImageResizing-Swift.h>
 
 
 
@@ -84,7 +83,7 @@
 #pragma mark - UIViewController
 -(void)viewDidLoad
 {
-	[super viewDidLoad];
+    [super viewDidLoad];
     
     [self.navigationItem setTitle:@"RIRImageResizing"];
     
@@ -123,10 +122,10 @@
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLineEtched];
     [self.view addSubview:self.tableView];
     
-    _tableSectionManager = [[RTSMTableSectionManager alloc] initWithFirstSection:UIImage_RIRResizing_ResizeMode__first lastSection:UIImage_RIRResizing_ResizeMode__last];
+    _tableSectionManager = [[RTSMTableSectionManager alloc] initWithFirstSection:[RIRImageResizeTypeIteration first] lastSection:[RIRImageResizeTypeIteration last]];
     [self.tableSectionManager setSectionDelegate:self];
-    	
-	[self.view setBackgroundColor:[UIColor orangeColor]];
+        
+    [self.view setBackgroundColor:[UIColor orangeColor]];
 }
 
 -(void)viewWillLayoutSubviews
@@ -222,7 +221,7 @@
 #pragma mark - image
 -(void)addImageBarButtonItem_didTouchUpInside
 {
-    UIImagePickerController* const imagePickerController = [[UIImagePickerController alloc] init];
+    UIImagePickerController* const imagePickerController = [UIImagePickerController new];
     [imagePickerController setDelegate:self];
     
     UIAlertController* const alertController = [UIAlertController alertControllerWithTitle:@"Choose an image" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
@@ -259,11 +258,19 @@
     kRUConditionalReturn_ReturnValueNil(image == nil, NO);
     kRUConditionalReturn_ReturnValueNil(indexPath == nil, NO);
 
-    UIImage_RIRResizing_ResizeMode const resizeModeForRow = [self.tableSectionManager sectionForIndexPathSection:indexPath.section];
+    CGSize const imageSize = self.imageSize;
+    kRUConditionalReturn_ReturnValueNil((imageSize.width == 0)
+                                        ||
+                                        imageSize.height == 0, NO);
     
-    RIRResizeImageOperationParameters* const resizeParameters = [[RIRResizeImageOperationParameters alloc] init_with_newSize:self.imageSize resizeMode:resizeModeForRow scale:0.0f];
-
-    return [image rir_scaledImage_with_resizeOperationParameters:resizeParameters];
+    RIRImageResizeType const resizeModeForRow = [self.tableSectionManager sectionForIndexPathSection:indexPath.section];
+    
+    RIRResizeImageOperationParameters* const resizeParameters = [[RIRResizeImageOperationParameters alloc] init_with_newSize:imageSize resizeMode:resizeModeForRow scale:0.0f];
+    
+    NSError* error = nil;
+    UIImage* const resiziedImage = [image rir_scaledImage_with_parameters:resizeParameters error:&error];
+    NSAssert(error != nil, @"error: %@",error);
+    return resiziedImage;
 }
 
 #pragma mark - UIImagePickerControllerDelegate
@@ -284,24 +291,26 @@
 #pragma mark - cell helpers
 -(NSString *)labelTextForResizedImageCellAtIndexPath:(NSIndexPath *)indexPath
 {
-    UIImage_RIRResizing_ResizeMode resizeModeForRow = [self.tableSectionManager sectionForIndexPathSection:indexPath.section];
+    RIRImageResizeType const resizeModeForRow = [self.tableSectionManager sectionForIndexPathSection:indexPath.section];
     
     switch (resizeModeForRow) {
-        case UIImage_RIRResizing_ResizeMode_scaleToFill:
+        case RIRImageResizeTypeScaleToFill:
             return @"Scale to Fill";
             break;
             
-        case UIImage_RIRResizing_ResizeMode_aspectFit:
+        case RIRImageResizeTypeAspectFit:
             return @"Aspect Fit";
             break;
             
-        case UIImage_RIRResizing_ResizeMode_aspectFill:
+        case RIRImageResizeTypeAspectFill:
             return @"Aspect Fill";
             break;
             
         default:
             break;
     }
+    
+    NSAssert(false, @"unhandled resizeModeForRow %li",(long)resizeModeForRow);
     return @"";
 }
 
@@ -312,26 +321,27 @@
 
 -(UIViewContentMode)viewContentModeForNativeImageViewAtIndexPath:(NSIndexPath *)indexPath
 {
-    UIImage_RIRResizing_ResizeMode resizeModeForRow = [self.tableSectionManager sectionForIndexPathSection:indexPath.section];
+    RIRImageResizeType const resizeModeForRow = [self.tableSectionManager sectionForIndexPathSection:indexPath.section];
     
     switch (resizeModeForRow) {
-        case UIImage_RIRResizing_ResizeMode_scaleToFill:
+        case RIRImageResizeTypeScaleToFill:
             return UIViewContentModeScaleToFill;
             break;
             
-        case UIImage_RIRResizing_ResizeMode_aspectFit:
+        case RIRImageResizeTypeAspectFit:
             return UIViewContentModeScaleAspectFit;
             break;
             
-        case UIImage_RIRResizing_ResizeMode_aspectFill:
+        case RIRImageResizeTypeAspectFill:
             return UIViewContentModeScaleAspectFill;
             break;
             
         default:
             break;
     }
+    
+    NSAssert(false, @"unhandled resizeModeForRow %li",(long)resizeModeForRow);
     return UIViewContentModeScaleAspectFit;
-
 }
 
 #pragma mark - UITableViewDelegate, UITableViewDataSource
@@ -351,13 +361,11 @@
     [cell.label setText:[self labelTextForResizedImageCellAtIndexPath:indexPath]];
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     
-    UIImage* image = [self rescaledImage:self.image forIndexpath:indexPath];
-    if (image)
-    {
-        [cell.exampleImageView setImage:image];
-        [cell.nativeImageView setImage:self.image];
-        [cell.nativeImageView setContentMode:[self viewContentModeForNativeImageViewAtIndexPath:indexPath]];
-    }
+    UIImage* const rescaledImage = [self rescaledImage:self.image forIndexpath:indexPath];
+    [cell.exampleImageView setImage:rescaledImage];
+    [cell.nativeImageView setImage:self.image];
+    [cell.nativeImageView setContentMode:[self viewContentModeForNativeImageViewAtIndexPath:indexPath]];
+    
     return cell;
 }
 

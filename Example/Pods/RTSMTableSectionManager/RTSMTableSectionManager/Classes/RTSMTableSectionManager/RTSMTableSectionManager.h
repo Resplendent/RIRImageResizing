@@ -17,7 +17,7 @@
 @interface RTSMTableSectionManager : NSObject
 
 #pragma mark - sectionDelegate
-@property (nonatomic, assign) id<RTSMTableSectionManager_SectionDelegate> sectionDelegate;
+@property (nonatomic, assign, nullable) id<RTSMTableSectionManager_SectionDelegate> sectionDelegate;
 -(BOOL)sectionDelegate_sectionIsAvailable:(NSInteger)section;
 
 #pragma mark - Sections
@@ -32,7 +32,7 @@
 -(NSInteger)indexPathSectionForSection:(NSInteger)section;
 
 #pragma mark - Init
--(instancetype)initWithFirstSection:(NSInteger)firstSection lastSection:(NSInteger)lastSection;
+-(nonnull instancetype)initWithFirstSection:(NSInteger)firstSection lastSection:(NSInteger)lastSection;
 
 #pragma mark - Available Sections
 -(NSInteger)firstAvailableSection;

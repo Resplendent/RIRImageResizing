@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'RIRImageResizing'
-  s.version          = '0.1.1'
+  s.version          = '0.2.0'
   s.summary          = 'A library with tools to resize an image.'
 
 # This description is used to generate tags and improve search results.
@@ -29,10 +29,9 @@ Resizing methods offer:
   s.author           = { 'Benjamin Maer' => 'ben@resplendent.co' }
   s.source           = { :git => 'https://github.com/Resplendent/RIRImageResizing.git', :tag => "v#{s.version}" }
 
-  s.ios.deployment_target = '7.0'
-
+  s.ios.deployment_target = '8.0'
+  
   s.source_files = 'RIRImageResizing/Classes/**/*'
-
-  s.dependency 'ResplendentUtilities', '~> 0.5.0'
-
+  
+  s.swift_version = '4.2'
 end

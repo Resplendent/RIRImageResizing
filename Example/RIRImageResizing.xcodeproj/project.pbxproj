@@ -18,9 +18,12 @@
 		6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
-		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		B63789131DDE25ED00FE4433 /* RIRNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = B63789121DDE25ED00FE4433 /* RIRNavigationController.m */; };
 		B6BC2AF11DDE33AC00384D79 /* RIRTableViewCell_GenericImageViewAndLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = B6BC2AF01DDE33AC00384D79 /* RIRTableViewCell_GenericImageViewAndLabel.m */; };
+		D752B06D2266A9EC00B48363 /* Tests-CGSize+Scale.swift in Sources */ = {isa = PBXBuildFile; fileRef = D752B06C2266A9EC00B48363 /* Tests-CGSize+Scale.swift */; };
+		D7B8187D2266B94A002DE1A2 /* String+XCTAssertFormatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B8187B2266B83F002DE1A2 /* String+XCTAssertFormatting.swift */; };
+		D7B818812267E510002DE1A2 /* Tests-UIImage+RIRImageResizing.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B818802267E510002DE1A2 /* Tests-UIImage+RIRImageResizing.swift */; };
+		D7B818862267E9DF002DE1A2 /* CGSize+Scaling.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B818832267E94B002DE1A2 /* CGSize+Scaling.swift */; };
 		D7C423021DA855E100614F30 /* RIRAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D7C422FE1DA855E100614F30 /* RIRAppDelegate.m */; };
 		D7C423031DA855E100614F30 /* RIRViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D7C423011DA855E100614F30 /* RIRViewController.m */; };
 		F039887B7ED5D3B79095BA5F /* Pods_RIRImageResizing_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 506C8093F268DED6B096CD01 /* Pods_RIRImageResizing_Example.framework */; };
@@ -38,7 +41,7 @@
 
 /* Begin PBXFileReference section */
 		23C189E9A72BC9CBEEEAED77 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
-		41A6AA3919ACAF8282425BC9 /* RIRImageResizing.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = RIRImageResizing.podspec; path = ../RIRImageResizing.podspec; sourceTree = "<group>"; };
+		41A6AA3919ACAF8282425BC9 /* RIRImageResizing.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = RIRImageResizing.podspec; path = ../RIRImageResizing.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		506C8093F268DED6B096CD01 /* Pods_RIRImageResizing_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RIRImageResizing_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C749903BE08DC90AC963E24 /* Pods-RIRImageResizing_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RIRImageResizing_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-RIRImageResizing_Tests/Pods-RIRImageResizing_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		5D3CC14FEBD9919AE681A765 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
@@ -55,7 +58,6 @@
 		6003F5AF195388D20070C39A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		6003F5B7195388D20070C39A /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
 		6003F5B9195388D20070C39A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		6003F5BB195388D20070C39A /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
 		80918B468316FDEBFD9ED05B /* Pods-RIRImageResizing_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RIRImageResizing_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RIRImageResizing_Tests/Pods-RIRImageResizing_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		8570B0987F525C3206D077BF /* Pods-RIRImageResizing_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RIRImageResizing_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RIRImageResizing_Example/Pods-RIRImageResizing_Example.debug.xcconfig"; sourceTree = "<group>"; };
@@ -65,10 +67,16 @@
 		B6BC2AF01DDE33AC00384D79 /* RIRTableViewCell_GenericImageViewAndLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RIRTableViewCell_GenericImageViewAndLabel.m; sourceTree = "<group>"; };
 		BA23F6FD650BC0F9C1069A63 /* Pods-RIRImageResizing_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RIRImageResizing_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-RIRImageResizing_Example/Pods-RIRImageResizing_Example.release.xcconfig"; sourceTree = "<group>"; };
 		C4EF27ED1AC70CFC022DF8A2 /* Pods_RIRImageResizing_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RIRImageResizing_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D752B0692266A22000B48363 /* RIRImageResizing_Tests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RIRImageResizing_Tests-Bridging-Header.h"; sourceTree = "<group>"; };
+		D752B06C2266A9EC00B48363 /* Tests-CGSize+Scale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tests-CGSize+Scale.swift"; sourceTree = "<group>"; };
+		D7B8187B2266B83F002DE1A2 /* String+XCTAssertFormatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+XCTAssertFormatting.swift"; sourceTree = "<group>"; };
+		D7B818802267E510002DE1A2 /* Tests-UIImage+RIRImageResizing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tests-UIImage+RIRImageResizing.swift"; sourceTree = "<group>"; };
+		D7B818832267E94B002DE1A2 /* CGSize+Scaling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGSize+Scaling.swift"; sourceTree = "<group>"; };
 		D7C422FD1DA855E100614F30 /* RIRAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RIRAppDelegate.h; sourceTree = "<group>"; };
 		D7C422FE1DA855E100614F30 /* RIRAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RIRAppDelegate.m; sourceTree = "<group>"; };
 		D7C423001DA855E100614F30 /* RIRViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RIRViewController.h; sourceTree = "<group>"; };
 		D7C423011DA855E100614F30 /* RIRViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RIRViewController.m; sourceTree = "<group>"; };
+		D7F4764322656236008C96B7 /* RIRImageResizing_Example-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RIRImageResizing_Example-Bridging-Header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +144,7 @@
 			children = (
 				D7C422FB1DA855E100614F30 /* Code */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
+				D7F4764222656236008C96B7 /* Resources */,
 				6003F594195388D20070C39A /* Supporting Files */,
 			);
 			name = "Example for RIRImageResizing";
@@ -156,8 +165,11 @@
 		6003F5B5195388D20070C39A /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				6003F5BB195388D20070C39A /* Tests.m */,
+				D7B818752266B780002DE1A2 /* Categories-Extensions */,
+				D752B0692266A22000B48363 /* RIRImageResizing_Tests-Bridging-Header.h */,
 				6003F5B6195388D20070C39A /* Supporting Files */,
+				D752B06C2266A9EC00B48363 /* Tests-CGSize+Scale.swift */,
+				D7B818802267E510002DE1A2 /* Tests-UIImage+RIRImageResizing.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -200,6 +212,31 @@
 			path = UITableViewCell;
 			sourceTree = "<group>";
 		};
+		D7B818752266B780002DE1A2 /* Categories-Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				D7B818822267E943002DE1A2 /* CGSize */,
+				D7B8187A2266B820002DE1A2 /* String */,
+			);
+			path = "Categories-Extensions";
+			sourceTree = "<group>";
+		};
+		D7B8187A2266B820002DE1A2 /* String */ = {
+			isa = PBXGroup;
+			children = (
+				D7B8187B2266B83F002DE1A2 /* String+XCTAssertFormatting.swift */,
+			);
+			path = String;
+			sourceTree = "<group>";
+		};
+		D7B818822267E943002DE1A2 /* CGSize */ = {
+			isa = PBXGroup;
+			children = (
+				D7B818832267E94B002DE1A2 /* CGSize+Scaling.swift */,
+			);
+			path = CGSize;
+			sourceTree = "<group>";
+		};
 		D7C422FB1DA855E100614F30 /* Code */ = {
 			isa = PBXGroup;
 			children = (
@@ -229,6 +266,14 @@
 			path = UIViewController;
 			sourceTree = "<group>";
 		};
+		D7F4764222656236008C96B7 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D7F4764322656236008C96B7 /* RIRImageResizing_Example-Bridging-Header.h */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		E3645AF46EA35BD759272673 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -252,7 +297,6 @@
 				6003F587195388D20070C39A /* Frameworks */,
 				6003F588195388D20070C39A /* Resources */,
 				3AA77ED283CF58E8C1E22C6E /* [CP] Embed Pods Frameworks */,
-				30B47411A0EEC5DF157010DB /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -271,8 +315,6 @@
 				6003F5AA195388D20070C39A /* Sources */,
 				6003F5AB195388D20070C39A /* Frameworks */,
 				6003F5AC195388D20070C39A /* Resources */,
-				21C0EE646918368A186F3379 /* [CP] Embed Pods Frameworks */,
-				EAC0DB3274CCECE9CEB13148 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -291,20 +333,22 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = RIR;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = "Benjamin Maer";
 				TargetAttributes = {
 					6003F589195388D20070C39A = {
-						DevelopmentTeam = 5JUTPUCSKB;
+						DevelopmentTeam = 2P455BMH67;
+						LastSwiftMigration = 1020;
 					};
 					6003F5AD195388D20070C39A = {
+						LastSwiftMigration = 1020;
 						TestTargetID = 6003F589195388D20070C39A;
 					};
 				};
 			};
 			buildConfigurationList = 6003F585195388D10070C39A /* Build configuration list for PBXProject "RIRImageResizing" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
@@ -342,49 +386,26 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		21C0EE646918368A186F3379 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RIRImageResizing_Tests/Pods-RIRImageResizing_Tests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		30B47411A0EEC5DF157010DB /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RIRImageResizing_Example/Pods-RIRImageResizing_Example-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		3AA77ED283CF58E8C1E22C6E /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RIRImageResizing_Example/Pods-RIRImageResizing_Example-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/RIRImageResizing/RIRImageResizing.framework",
+				"${BUILT_PRODUCTS_DIR}/RTSMTableSectionManager/RTSMTableSectionManager.framework",
+				"${BUILT_PRODUCTS_DIR}/ResplendentUtilities/ResplendentUtilities.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RIRImageResizing.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RTSMTableSectionManager.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ResplendentUtilities.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RIRImageResizing_Example/Pods-RIRImageResizing_Example-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RIRImageResizing_Example/Pods-RIRImageResizing_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		4E69D78A10184CDCD18CA28D /* [CP] Check Pods Manifest.lock */ = {
@@ -393,13 +414,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-RIRImageResizing_Tests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		869F109FB00ABB9856D421A6 /* [CP] Check Pods Manifest.lock */ = {
@@ -408,28 +432,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-RIRImageResizing_Example-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		EAC0DB3274CCECE9CEB13148 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RIRImageResizing_Tests/Pods-RIRImageResizing_Tests-resources.sh\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -451,7 +463,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6003F5BC195388D20070C39A /* Tests.m in Sources */,
+				D7B818862267E9DF002DE1A2 /* CGSize+Scaling.swift in Sources */,
+				D7B818812267E510002DE1A2 /* Tests-UIImage+RIRImageResizing.swift in Sources */,
+				D7B8187D2266B94A002DE1A2 /* String+XCTAssertFormatting.swift in Sources */,
+				D752B06D2266A9EC00B48363 /* Tests-CGSize+Scale.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -493,14 +508,22 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -538,14 +561,22 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -574,14 +605,19 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				DEVELOPMENT_TEAM = 5JUTPUCSKB;
+				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = 2P455BMH67;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RIRImageResizing/RIRImageResizing-Prefix.pch";
 				INFOPLIST_FILE = "RIRImageResizing/RIRImageResizing-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "RIRImageResizing/Resources/RIRImageResizing_Example-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -592,14 +628,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				DEVELOPMENT_TEAM = 5JUTPUCSKB;
+				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = 2P455BMH67;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RIRImageResizing/RIRImageResizing-Prefix.pch";
 				INFOPLIST_FILE = "RIRImageResizing/RIRImageResizing-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "RIRImageResizing/Resources/RIRImageResizing_Example-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -609,6 +649,7 @@
 			baseConfigurationReference = 80918B468316FDEBFD9ED05B /* Pods-RIRImageResizing_Tests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -621,8 +662,12 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "Tests/Tests-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Tests/RIRImageResizing_Tests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RIRImageResizing_Example.app/RIRImageResizing_Example";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -633,6 +678,7 @@
 			baseConfigurationReference = 5C749903BE08DC90AC963E24 /* Pods-RIRImageResizing_Tests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -641,8 +687,11 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Tests/Tests-Prefix.pch";
 				INFOPLIST_FILE = "Tests/Tests-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Tests/RIRImageResizing_Tests-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RIRImageResizing_Example.app/RIRImageResizing_Example";
 				WRAPPER_EXTENSION = xctest;
 			};

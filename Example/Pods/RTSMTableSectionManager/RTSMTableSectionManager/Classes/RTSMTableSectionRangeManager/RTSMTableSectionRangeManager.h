@@ -27,7 +27,7 @@
 -(BOOL)tableSectionManager_sectionIsAvailable:(NSInteger)section;
 
 #pragma mark - sectionLengthDelegate
-@property (nonatomic, assign, nullable) id<RTSMTableSectionRangeManager_SectionLengthDelegate> sectionLengthDelegate;
+@property (nonatomic, weak, nullable) id<RTSMTableSectionRangeManager_SectionLengthDelegate> sectionLengthDelegate;
 -(NSUInteger)sectionLengthDelegate_tableSectionRangeManager:(nonnull RTSMTableSectionRangeManager*)tableSectionRangeManager
 											lengthOfSection:(NSInteger)section;
 

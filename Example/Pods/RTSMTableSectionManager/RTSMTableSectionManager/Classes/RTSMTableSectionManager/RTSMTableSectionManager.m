@@ -28,7 +28,7 @@
 @implementation RTSMTableSectionManager
 
 #pragma mark - init
--(instancetype)initWithFirstSection:(NSInteger)firstSection lastSection:(NSInteger)lastSection
+-(nonnull instancetype)initWithFirstSection:(NSInteger)firstSection lastSection:(NSInteger)lastSection
 {
 	if (self = [self init])
 	{
@@ -64,11 +64,11 @@
 #pragma mark - sectionForIndexPathSection
 -(NSInteger)sectionForIndexPathSection:(NSInteger)indexPathSection
 {
-	NSInteger firstSection = self.firstSection;
+	NSInteger const firstSection = self.firstSection;
 
 	kRUConditionalReturn_ReturnValue(self.firstAndLastSectionsAreAppropriate == false, YES, firstSection);
 
-	NSInteger forLoopMax = MIN(firstSection + indexPathSection, self.lastSection);
+	NSInteger const forLoopMax = MIN(firstSection + indexPathSection, self.lastSection);
 	kRUConditionalReturn_ReturnValue(forLoopMax < firstSection, YES, firstSection);
 
 	NSInteger sectionsSkipped = 0;
@@ -83,8 +83,8 @@
 		}
 	}
 	
-	NSInteger indexPathSectionPlusFirst = indexPathSection + firstSection;
-	NSInteger finalSection = indexPathSectionPlusFirst + sectionsSkipped;
+	NSInteger const indexPathSectionPlusFirst = indexPathSection + firstSection;
+	NSInteger const finalSection = indexPathSectionPlusFirst + sectionsSkipped;
 	kRUConditionalReturn_ReturnValue([self sectionIsWithinBounds:finalSection] == false, YES, firstSection)
 	
 	return finalSection;
@@ -94,7 +94,7 @@
 {
 	kRUConditionalReturn_ReturnValue([self sectionDelegate_sectionIsAvailable:section] == false, YES, NSNotFound);
 	
-	NSInteger firstSection = self.firstSection;
+	NSInteger const firstSection = self.firstSection;
 
 	NSInteger sectionsSkipped = 0;
 	for (NSInteger sectionLoop = firstSection;
@@ -113,7 +113,10 @@
 #pragma mark - sectionDelegate
 -(BOOL)sectionDelegate_sectionIsAvailable:(NSInteger)section
 {
-	return [self.sectionDelegate tableSectionManager:self sectionIsAvailable:section];
+	id<RTSMTableSectionManager_SectionDelegate> const sectionDelegate = self.sectionDelegate;
+	kRUConditionalReturn_ReturnValueTrue(sectionDelegate == nil, NO);
+
+	return [sectionDelegate tableSectionManager:self sectionIsAvailable:section];
 }
 
 #pragma mark - firstAndLastSectionsAreAppropriate
@@ -131,7 +134,7 @@
 #pragma mark - Available Sections
 -(NSInteger)firstAvailableSection
 {
-	NSInteger returnValue_error = NSNotFound;
+	NSInteger const returnValue_error = NSNotFound;
 	kRUConditionalReturn_ReturnValue(self.firstAndLastSectionsAreAppropriate == false, YES, returnValue_error);
 	
 	for (NSInteger sectionLoop = self.firstSection;
