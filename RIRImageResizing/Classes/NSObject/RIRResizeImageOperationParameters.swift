@@ -10,7 +10,7 @@ import Foundation
 public class RIRResizeImageOperationParameters {
     // MARK: - Constants
     public struct PublicConstants {
-        static let allowLargerResizedDimensionsDefaultValue = RIRResizeImageOperationParametersObjCLegacy.allowLargerResizedDimensionsDefaultValue
+        public static let allowLargerResizedDimensionsDefaultValue = RIRResizeImageOperationParametersObjCLegacy.allowLargerResizedDimensionsDefaultValue
     }
     
     let newSize: CGSize
@@ -50,7 +50,7 @@ extension RIRResizeImageOperationParameters: CustomStringConvertible {
 
 @objc(RIRResizeImageOperationParameters) public class RIRResizeImageOperationParametersObjCLegacy: NSObject {
     // MARK: - Constants
-    @objc static let allowLargerResizedDimensionsDefaultValue = false
+    @objc public static let allowLargerResizedDimensionsDefaultValue = false
     
     @objc var newSize: CGSize { return swiftInstance.newSize }
     @objc let resizeType: RIRImageResizeTypeObjCLegacy
