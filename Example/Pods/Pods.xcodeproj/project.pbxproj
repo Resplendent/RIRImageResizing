@@ -1770,6 +1770,38 @@
 			};
 			name = Release;
 		};
+		1B8780D31D8CE6F0D8896DF14D30CC77 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5FAC2B3D0689E31459A21DD50BCE182D /* RIRImageResizing.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/RIRImageResizing/RIRImageResizing-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/RIRImageResizing/RIRImageResizing-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/RIRImageResizing/RIRImageResizing.modulemap";
+				PRODUCT_MODULE_NAME = RIRImageResizing;
+				PRODUCT_NAME = RIRImageResizing;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		421ECB1396280A8D83853C3DDBED1700 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1834,6 +1866,37 @@
 			};
 			name = Debug;
 		};
+		589C948B26352DD8A1FDBD78697268C1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5FAC2B3D0689E31459A21DD50BCE182D /* RIRImageResizing.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/RIRImageResizing/RIRImageResizing-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/RIRImageResizing/RIRImageResizing-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/RIRImageResizing/RIRImageResizing.modulemap";
+				PRODUCT_MODULE_NAME = RIRImageResizing;
+				PRODUCT_NAME = RIRImageResizing;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 		5A05592487A0194FBB8C02D0617C3C29 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E408DCBEB956CF7D5761BC51A9ABBA7D /* ResplendentUtilities.xcconfig */;
@@ -1865,9 +1928,43 @@
 			};
 			name = Debug;
 		};
-		86276C4B347441F05A6822E751324B29 /* Debug */ = {
+		693AB9667F8CB04113AC91E49E90DDB3 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 532C0025ECFB7401F6379CD5D4E39344 /* Pods-RIRImageResizing_Example.debug.xcconfig */;
+			baseConfigurationReference = DBB11D4E3C899B2B511C6F9AFA7D0E7D /* Pods-RIRImageResizing_Tests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-RIRImageResizing_Tests/Pods-RIRImageResizing_Tests-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-RIRImageResizing_Tests/Pods-RIRImageResizing_Tests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		6AF65854A98E1831EEEBB3F243455DE4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 914AEF1B87159FA629A3C78D4ED6A9E1 /* Pods-RIRImageResizing_Example.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CODE_SIGN_IDENTITY = "";
@@ -1892,12 +1989,12 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Debug;
+			name = Release;
 		};
 		89229CC2C407EE49A35FF185ECA85F61 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -1930,37 +2027,6 @@
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
-		};
-		8989FB80E31D485E1DDB541E2965BFD5 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5FAC2B3D0689E31459A21DD50BCE182D /* RIRImageResizing.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/RIRImageResizing/RIRImageResizing-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/RIRImageResizing/RIRImageResizing-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/RIRImageResizing/RIRImageResizing.modulemap";
-				PRODUCT_MODULE_NAME = RIRImageResizing;
-				PRODUCT_NAME = RIRImageResizing;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
 		};
 		9459ED9ED14E10DF61493BF0E4498ACC /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -2025,7 +2091,7 @@
 			};
 			name = Release;
 		};
-		D22BC9055F6D2ABAABA447EF67F2DB91 /* Debug */ = {
+		DC053D496E870841FD735C17022E117B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 210192359A2E6CE99E681A154D0BD006 /* Pods-RIRImageResizing_Tests.debug.xcconfig */;
 			buildSettings = {
@@ -2052,16 +2118,15 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
 		};
-		DF932A43522EA97C3BDC381EEE514A47 /* Release */ = {
+		FEA2343DB65126F40E40F624C1F9EF71 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 914AEF1B87159FA629A3C78D4ED6A9E1 /* Pods-RIRImageResizing_Example.release.xcconfig */;
+			baseConfigurationReference = 532C0025ECFB7401F6379CD5D4E39344 /* Pods-RIRImageResizing_Example.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CODE_SIGN_IDENTITY = "";
@@ -2086,80 +2151,11 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Release;
-		};
-		F33F1B7DF7F3A7BB5D0BB21BBBCEC291 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5FAC2B3D0689E31459A21DD50BCE182D /* RIRImageResizing.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/RIRImageResizing/RIRImageResizing-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/RIRImageResizing/RIRImageResizing-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/RIRImageResizing/RIRImageResizing.modulemap";
-				PRODUCT_MODULE_NAME = RIRImageResizing;
-				PRODUCT_NAME = RIRImageResizing;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		FB1999D4F20392E2D03C5A150647D221 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = DBB11D4E3C899B2B511C6F9AFA7D0E7D /* Pods-RIRImageResizing_Tests.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-RIRImageResizing_Tests/Pods-RIRImageResizing_Tests-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-RIRImageResizing_Tests/Pods-RIRImageResizing_Tests.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
+			name = Debug;
 		};
 /* End XCBuildConfiguration section */
 
@@ -2167,8 +2163,8 @@
 		19B79F19851D55EADDB083DDD0A37E19 /* Build configuration list for PBXNativeTarget "Pods-RIRImageResizing_Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D22BC9055F6D2ABAABA447EF67F2DB91 /* Debug */,
-				FB1999D4F20392E2D03C5A150647D221 /* Release */,
+				DC053D496E870841FD735C17022E117B /* Debug */,
+				693AB9667F8CB04113AC91E49E90DDB3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -2185,8 +2181,8 @@
 		5E3F94547BEAFF285545E5F831E016D2 /* Build configuration list for PBXNativeTarget "Pods-RIRImageResizing_Example" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				86276C4B347441F05A6822E751324B29 /* Debug */,
-				DF932A43522EA97C3BDC381EEE514A47 /* Release */,
+				FEA2343DB65126F40E40F624C1F9EF71 /* Debug */,
+				6AF65854A98E1831EEEBB3F243455DE4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -2203,8 +2199,8 @@
 		C5635355B2DDC2389E17EBA1CC71355B /* Build configuration list for PBXNativeTarget "RIRImageResizing" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				8989FB80E31D485E1DDB541E2965BFD5 /* Debug */,
-				F33F1B7DF7F3A7BB5D0BB21BBBCEC291 /* Release */,
+				589C948B26352DD8A1FDBD78697268C1 /* Debug */,
+				1B8780D31D8CE6F0D8896DF14D30CC77 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
