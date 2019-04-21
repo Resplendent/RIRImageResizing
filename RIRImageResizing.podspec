@@ -30,7 +30,8 @@ Resizing methods offer:
   s.source           = { :git => 'https://github.com/Resplendent/RIRImageResizing.git', :tag => "v#{s.version}" }
 
   s.ios.deployment_target = '7.0'
-
+  
   s.source_files = 'RIRImageResizing/Classes/**/*'
-
+  
+  s.swift_version = '4.2'
 end
