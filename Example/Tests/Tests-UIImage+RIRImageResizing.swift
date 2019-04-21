@@ -40,15 +40,18 @@ class Tests_UIImage_RIRImageResizing: XCTestCase {
         let asserStringComponents: ComparisonValues<([String]) -> [String]>
     }
     
+    fileprivate enum StartingImageToResizeSizeScaling: CaseIterable {
+        case smaller, largerHeight//, largerWidth//, largerSize
+    }
+    
     func testScaledImage() {
         var assertStringComponents: [String] = []
         let startingSize = CGSize(width: 100, height: 100)
         assertStringComponents.append("startingSize: \(startingSize)")
         
-        for isHeightLarger in [true, false] {
+        for startingImageToResizeSizeScaling in StartingImageToResizeSizeScaling.allCases {
             var assertStringComponents = assertStringComponents
-            let startingSize = CGSize(width: 100, height: 100)
-            assertStringComponents.append("isHeightLarger: \(isHeightLarger)")
+            assertStringComponents.append("startingImageToResizeSizeScaling".xctAssertComponentFormatted(with: startingImageToResizeSizeScaling))
             for resizeType in RIRImageResizeType.allCases {
                 var assertStringComponents = assertStringComponents
                 assertStringComponents.append("resizeType".xctAssertComponentFormatted(with: resizeType))
@@ -65,7 +68,7 @@ class Tests_UIImage_RIRImageResizing: XCTestCase {
                 assertStringComponents.append("startingWidthToHeightRatio: \(startingWidthToHeightRatio)")
                 
                 let resizeWidthRatio: CGFloat = 1.0
-                let resizeHeightRatio: CGFloat = isHeightLarger ? 1.5 : 0.5
+                let resizeHeightRatio: CGFloat = startingImageToResizeSizeScaling.value(smaller: 0.5, largerHeight: 1.5)
                 assertStringComponents.append("resizeWidthRatio: \(resizeWidthRatio)")
                 assertStringComponents.append("resizeHeightRatio: \(resizeHeightRatio)")
                 
@@ -153,7 +156,8 @@ class Tests_UIImage_RIRImageResizing: XCTestCase {
                 for comparison in Comparison.allCases {
                     switch comparison {
                     case .resizedImageWidthToHeightRatioAssertion:
-                        let comparisonValues = ComparisonValues(scaleToFillValue: isHeightLarger ? startingWidthToHeightRatio : resizeWidthToHeightRatio,
+                        let comparisonValues = ComparisonValues(scaleToFillValue: startingImageToResizeSizeScaling.value(smaller: resizeWidthToHeightRatio,
+                                                                                                                         largerHeight: startingWidthToHeightRatio),
                                                                 aspectFitValue: startingWidthToHeightRatio,
                                                                 aspectFillValue: startingWidthToHeightRatio)
                         performTest(value: resizedImageWidthToHeightRatio,
@@ -163,8 +167,10 @@ class Tests_UIImage_RIRImageResizing: XCTestCase {
                                                                    extraAsserStringComponents: extraAsserStringComponentsComparisonValues(comparisonValues: comparisonValues)))
                         
                     case .resizedImageSizeToStartingImageSize:
-                        let comparisonValues = ComparisonValues(scaleToFillValue: isHeightLarger ? startingImage.size : startingImage.size.scaled(scaleHeight: resizeHeightRatio),
-                                                                aspectFitValue: isHeightLarger ? startingImage.size : startingImage.size.scaled(scaleWidth: resizeHeightRatio, scaleHeight: resizeHeightRatio),
+                        let comparisonValues = ComparisonValues(scaleToFillValue: startingImageToResizeSizeScaling.value(smaller: startingImage.size.scaled(scaleHeight: resizeHeightRatio),
+                                                                                                                         largerHeight: startingImage.size),
+                                                                aspectFitValue: startingImageToResizeSizeScaling.value(smaller: startingImage.size.scaled(scaleWidth: resizeHeightRatio, scaleHeight: resizeHeightRatio),
+                                                                                                                       largerHeight: startingImage.size),
                                                                 aspectFillValue: startingImage.size)
 
                         performTest(value: resizedImage.size,
@@ -174,8 +180,9 @@ class Tests_UIImage_RIRImageResizing: XCTestCase {
                                                                    extraAsserStringComponents: extraAsserStringComponentsComparisonValues(comparisonValues: comparisonValues)))
 
                     case .resizedImageSizeToParametersNewSize:
-                        let comparisonValues = ComparisonValues(scaleToFillValue: isHeightLarger ? resizeParameters.newSize.scaled(scaleHeight: 1 / resizeHeightRatio) : resizeParameters.newSize,
-                                                                aspectFitValue: isHeightLarger ? resizeParameters.newSize.scaled(scaleHeight: 1 / resizeHeightRatio) : resizeParameters.newSize.scaled(scaleWidth: resizeWidthToHeightRatio),
+                        let comparisonValues = ComparisonValues(scaleToFillValue: startingImageToResizeSizeScaling.value(smaller: resizeParameters.newSize,
+                                                                                                                         largerHeight: resizeParameters.newSize.scaled(scaleHeight: 1 / resizeHeightRatio)),
+                                                                aspectFitValue: startingImageToResizeSizeScaling.value(smaller: resizeParameters.newSize.scaled(scaleWidth: resizeWidthToHeightRatio), largerHeight: resizeParameters.newSize.scaled(scaleHeight: 1 / resizeHeightRatio)),
                                                                 aspectFillValue: resizeParameters.newSize.scaled(scaleHeight: 1 / resizeHeightRatio))
                         performTest(value: resizedImage.size,
                                     comparisonData: ComparisonData(comparisonValues: comparisonValues,
@@ -237,3 +244,33 @@ extension ComparisonValues where T == String {
                                                           aspectFitValue: "comparisonValues.aspectFitValue",
                                                           aspectFillValue: "comparisonValues.aspectFillValue")
 }
+
+private typealias StartingImageToResizeSizeScaling = Tests_UIImage_RIRImageResizing.StartingImageToResizeSizeScaling
+extension StartingImageToResizeSizeScaling {
+    typealias ValueParameterType<T> = () -> T
+    func value<T>(smaller: ValueParameterType<T>,
+                  largerHeight: ValueParameterType<T>) -> T {
+        switch self {
+        case .smaller:          return smaller()
+        case .largerHeight:     return largerHeight()
+        }
+    }
+    
+    func value<T>(smaller: T,
+                  largerHeight: T) -> T {
+        return value(smaller: { smaller },
+                     largerHeight: { largerHeight })
+    }
+    
+    // MARK: - Optional
+    func value<T>(smaller: ValueParameterType<T>? = nil,
+                  largerHeight: ValueParameterType<T>? = nil) -> T? {
+        switch self {
+        case .smaller:          return smaller?()
+        case .largerHeight:     return largerHeight?()
+        }
+    }
+}
+//fileprivate enum StartingImageToResizeSizeScaling {
+//    case smaller, largerHeight//, largerWidth//, largerSize
+//}
